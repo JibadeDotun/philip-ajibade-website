@@ -10,6 +10,7 @@ export default function Home() {
   const [light, setLight] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showScroll, setShowScroll] = useState(true);
   const [scrollHintOpacity, setScrollHintOpacity] = useState(1);
   const mx = useRef(0), my = useRef(0);
   const rx = useRef(0), ry = useRef(0);
@@ -17,13 +18,22 @@ export default function Home() {
   const mathSymbols = ['∇','∫','∑','∂','φ','∞','∴','∵','π','λ','δ','∈','⊂','≡','∮'];
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
-      setScrollHintOpacity(window.scrollY > window.innerHeight * 0.8 ? 0 : 1);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      const pastHero = scrollY > windowHeight * 0.8;
+      const nearBottom = scrollY + windowHeight >= docHeight - 150;
+
+      setShowScroll(!(pastHero || nearBottom));
+      setScrolled(scrollY > 40);
+      setScrollHintOpacity(!(pastHero || nearBottom) ? 1 : 0);
     };
-    window.addEventListener('scroll', onScroll);
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -134,24 +144,27 @@ export default function Home() {
           .nav-links {display:none !important;}
           .hamburger {display:block !important;}
           .theme-toggle {display:none !important;}
-          .logo-wrapper {position:absolute;left:50%;transform:translateX(-50%);}
+          .logo-wrapper {display:none !important;}
           .nav-actions {justify-content:flex-end;}
-          .hero {padding-top:90px !important;}
           .mobile-menu-overlay {display:flex !important;opacity:0;visibility:hidden;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:999;align-items:center;justify-content:center;}
           .mobile-menu-overlay.open {opacity:1;visibility:visible;}
           .mobile-menu-close {display:block;cursor: none;}
-          .hero .anim-1{display:none;}
-          .hero {display:block !important;padding:0 20px !important;}
-          .hero-left, .hero-right {padding: 64px 0 40px !important;}
+          .hero {display:block !important;padding:90px 20px 0 20px !important;}
+          .hero-left, .hero-right {padding: 0 !important;}
           .hero h1 {font-size:52px !important;}
           .services, .work, .about-strip {padding: 48px 20px !important;}
           .services-grid {grid-template-columns:1fr !important;}
           .work-grid {grid-template-columns:1fr !important;}
           .work-grid > div {grid-column: span 12 !important;}
           .about-strip {grid-template-columns:1fr !important;}
+          .about-strip a {display:inline-block !important;align-self:flex-start !important;padding:13px 26px !important;}
           footer {flex-direction:column !important;align-items:center !important;gap:16px !important;padding:24px 20px !important;text-align:center;}
-          .nav-links a, .hamburger, .mobile-menu-overlay a, .nav button, .about-strip a, footer a {font-size:1.1rem !important;}
-          .hero .anim-9 {position:fixed !important;bottom:20px !important;left:50% !important;transform:translateX(-50%) !important;}
+          .nav-links a, .hamburger, .mobile-menu-overlay a, .nav button, footer a {font-size:1.1rem !important;}
+          .hero .anim-9 {position:fixed !important;bottom:20px !important;left:50% !important;transform:translateX(-50%) !important;z-index:50 !important;}
+          .footer-closing {font-size:clamp(36px,8vw,60px) !important;}
+          .footer-bottom-row {grid-template-columns:1fr !important;gap:16px !important;}
+          .footer-bottom-row > div {width:100% !important;}
+          .footer-copyright {text-align:center !important;}
         }
 
         @media (min-width:768px) and (max-width:1024px) {
@@ -288,7 +301,7 @@ export default function Home() {
           {/* Horizontal divider */}
           <div style={{position:'absolute',bottom:72,left:0,right:0,height:1,background:border}}/>
           {/* Scroll hint */}
-          <div className="anim-9" style={{position:'fixed',bottom:20,left:'50%',transform:'translateX(-50%)',display:'flex',flexDirection:'column',alignItems:'center',gap:6,zIndex:2,opacity:scrollHintOpacity,transition:'opacity 0.4s ease'}}>
+          <div className="anim-9" style={{opacity: showScroll ? 1 : 0, transition: 'opacity 0.4s ease', pointerEvents: 'none', position: 'fixed', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', zIndex: 50}}>
             <div style={{width:1,height:28,background:`linear-gradient(to bottom,${accent},transparent)`,animation:'scrollDrop 2s ease-in-out infinite'}}/>
             <span style={{fontSize:9,letterSpacing:'0.2em',textTransform:'uppercase',color:text3}}>Scroll</span>
           </div>
@@ -355,10 +368,10 @@ export default function Home() {
                 {span:4,fill:light?'linear-gradient(150deg,#e0b8b8,#d08a8a)':'linear-gradient(150deg,#1e0d0d,#4a1a1a)',tag:'Photography',name:'Editorial Series',desc:'',ratio:'16/9'},
               ].map((w,i)=>(
                 <div key={i} onMouseEnter={e=>handleHoverEnter(e.currentTarget)} onMouseLeave={e=>handleHoverLeave(e.currentTarget)}
-                  style={{gridColumn:`span ${w.span}`,background:bg,overflow:'hidden',cursor:'none',transition:'background .25s'}}
+                  style={{gridColumn:`span ${w.span}`,background:bg,overflow:'visible',cursor:'none',transition:'background .25s'}}
                   onMouseOver={e=>{(e.currentTarget as HTMLElement).style.background=bg3}}
                   onMouseOut={e=>{(e.currentTarget as HTMLElement).style.background=bg}}>
-                  <div style={{width:'100%',aspectRatio:w.ratio,overflow:'hidden'}}>
+                  <div style={{width:'100%',overflow:'hidden',height: w.span===7 ? 400 : w.span===5 ? 300 : 220}}>
                     <div style={{width:'100%',height:'100%',background:w.fill,transition:'transform .5s'}}/>
                   </div>
                   <div style={{padding:'18px 22px'}}>
@@ -412,14 +425,37 @@ export default function Home() {
 
         {/* FOOTER */}
         <RevealSection>
-          <footer style={{borderTop:`1px solid ${border}`,padding:'36px 48px',display:'flex',alignItems:'center',justifyContent:'space-between',position:'relative',zIndex:1}}>
-            <div style={{fontFamily:"'Playfair Display',serif",fontSize:13,fontWeight:700,color:text2}}>Philip Ajibade</div>
-            <div style={{fontFamily:"'Playfair Display',serif",fontSize:12,fontStyle:'italic',color:text3}}>∎ design(complexity) → clarity</div>
-            <div style={{display:'flex',gap:22}}>
-              {['LinkedIn','Dribbble','Instagram','Email'].map(l=>(
-                <a key={l} href="#" onMouseEnter={e=>handleHoverEnter(e.currentTarget)} onMouseLeave={e=>handleHoverLeave(e.currentTarget)}
-                  style={{fontSize:11,letterSpacing:'0.1em',textTransform:'uppercase',color:text3,textDecoration:'none'}}>{l}</a>
-              ))}
+          <footer style={{borderTop:`1px solid ${border}`,padding:'80px 48px 40px',position:'relative',zIndex:1}}>
+            <div className="footer-bottom-row" style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:28,alignItems:'start'}}>
+              <div>
+                <div style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:text}}>Philip Ajibade</div>
+                <div style={{fontSize:11,color:text2,marginTop:4}}>Designer & Mathematician</div>
+              </div>
+              <div style={{display:'flex',flexDirection:'column',gap:8}}>
+                {[
+                  {n:'01',label:'Work'},
+                  {n:'02',label:'Photography'},
+                  {n:'03',label:'Blog'},
+                  {n:'04',label:'About'},
+                ].map(item=>(
+                  <a key={item.n} href="#" onMouseEnter={e=>handleHoverEnter(e.currentTarget)} onMouseLeave={e=>handleHoverLeave(e.currentTarget)} style={{fontSize:11,letterSpacing:'0.1em',textTransform:'uppercase',color:text3,textDecoration:'none'}}>
+                    <span style={{color:accent,marginRight:6}}>{item.n}</span>{item.label}
+                  </a>
+                ))}
+              </div>
+              <div style={{display:'flex',flexDirection:'column',gap:10}}>
+                <div>
+                  <div style={{fontSize:10,color:text3,letterSpacing:'0.05em'}}>Say hi</div>
+                  <a href="mailto:hello@philipajibade.com" style={{fontSize:13,color:text,textDecoration:'none'}}>hello@philipajibade.com</a>
+                </div>
+                <div>
+                  <div style={{fontSize:10,color:text3,letterSpacing:'0.05em'}}>Connect</div>
+                  <a href="#" style={{fontSize:13,color:text,textDecoration:'none'}}>LinkedIn</a>
+                </div>
+              </div>
+            </div>
+            <div className="footer-copyright" style={{marginTop:40,textAlign:'center',fontSize:10,color:text3}}>
+              All rights reserved © Philip Ajibade {new Date().getFullYear()}
             </div>
           </footer>
         </RevealSection>
