@@ -231,9 +231,10 @@ export default function Home() {
             />
           </a>
           <div className="nav-links" style={{display:'flex',gap:36,order:3}}>
-            {['Work','Photography','Blog','About'].map(l=>(
-              <a key={l} href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{fontSize:12,fontWeight:400,letterSpacing:'0.1em',textTransform:'uppercase',color:text2,textDecoration:'none',transition:'color 0.2s ease'}}>{l}</a>
-            ))}
+            {['Work','Photography','Blog','About'].map(l=>{
+              const href = l==='Work'?'/work':l==='About'?'/about':l==='Blog'?'/blog':'#';
+              return (<a key={l} href={href} onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{fontSize:12,fontWeight:400,letterSpacing:'0.1em',textTransform:'uppercase',color:text2,textDecoration:'none',transition:'color 0.2s ease'}}>{l}</a>);
+            })}
           </div>
           <div className="nav-actions" style={{display:'flex',alignItems:'center',gap:14,order:4}}>
             <button className="theme-toggle" onClick={()=>setLight(l=>!l)} onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{width:34,height:34,borderRadius:'50%',background:'transparent',border:`1px solid ${border}`,cursor:'none',color:text2,fontSize:13,display:'flex',alignItems:'center',justifyContent:'center',transition:'border-color .2s,color .2s'}}>
@@ -254,9 +255,10 @@ export default function Home() {
           <button className="mobile-menu-close" onClick={()=>setMenuOpen(false)} style={{position:'absolute',top:20,right:24,fontSize:24,border:'none',background:'transparent',color:text,cursor:'none'}}>✕</button>
           <button className="theme-toggle-mobile" onClick={()=>setLight(l=>!l)} style={{position:'absolute',top:20,left:24,fontSize:22,border:'none',background:'transparent',color:text,cursor:'none'}}>{light?'☾':'☀'}</button>
           <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100%',gap:22}}>
-            {['Work','Photography','Blog','About'].map(l => (
-              <a key={l} href="#" onClick={()=>setMenuOpen(false)} style={{fontSize:24,fontWeight:700,color:text,textDecoration:'none',transition:'color .2s ease'}}>{l}</a>
-            ))}
+            {['Work','Photography','Blog','About'].map(l => {
+              const href = l==='Work'?'/work':l==='About'?'/about':l==='Blog'?'/blog':'#';
+              return <a key={l} href={href} onClick={()=>setMenuOpen(false)} style={{fontSize:24,fontWeight:700,color:text,textDecoration:'none',transition:'color .2s ease'}}>{l}</a>;
+            })}
           </div>
         </div>
 
