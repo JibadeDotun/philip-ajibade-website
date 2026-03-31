@@ -239,7 +239,7 @@ export default function Home() {
             <button className="theme-toggle" onClick={()=>setLight(l=>!l)} onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{width:34,height:34,borderRadius:'50%',background:'transparent',border:`1px solid ${border}`,cursor:'none',color:text2,fontSize:13,display:'flex',alignItems:'center',justifyContent:'center',transition:'border-color .2s,color .2s'}}>
               {light?'☾':'☀'}
             </button>
-            <a href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.opacity = '0.85';}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.opacity = '1';}} style={{fontSize:11,fontWeight:500,letterSpacing:'0.12em',textTransform:'uppercase',color:bg,background:accentBg,padding:'9px 20px',borderRadius:2,textDecoration:'none',transition:'opacity 0.2s ease',cursor:'none'}}>
+            <a href="/hire" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.opacity = '0.85';}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.opacity = '1';}} style={{fontSize:11,fontWeight:500,letterSpacing:'0.12em',textTransform:'uppercase',color:bg,background:accentBg,padding:'9px 20px',borderRadius:2,textDecoration:'none',transition:'opacity 0.2s ease',cursor:'none'}}>
               Hire me
             </a>
           </div>
@@ -453,7 +453,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div style={{fontSize:10,color:text3,letterSpacing:'0.05em'}}>Connect</div>
-                  <a href="#" style={{fontSize:13,color:text,textDecoration:'none'}}>LinkedIn</a>
+                  <a href="https://linkedin.com/in/philip-ajibade" target="_blank" rel="noreferrer" style={{fontSize:13,color:text,textDecoration:'none'}}>linkedin.com/in/philip-ajibade</a>
                 </div>
               </div>
             </div>

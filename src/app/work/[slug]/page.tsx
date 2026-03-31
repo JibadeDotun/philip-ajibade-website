@@ -105,7 +105,7 @@ export default function ProjectCase({ params }:{ params: Promise<{ slug:string }
             </div>
             <div className="nav-actions" style={{display:'flex',alignItems:'center',gap:14,order:4}}>
               <button className="theme-toggle" onClick={()=>setLight(l=>!l)} style={{width:34,height:34,borderRadius:'50%',background:'transparent',border:`1px solid ${border}`,cursor:'none',color:text2,fontSize:13,display:'flex',alignItems:'center',justifyContent:'center',transition:'border-color .2s,color .2s'}}>{light?'☾':'☀'}</button>
-              <Link href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.opacity='0.85';}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.opacity='1';}} style={{fontSize:11,fontWeight:500,letterSpacing:'0.12em',textTransform:'uppercase',color:bg,background:accent,padding:'9px 20px',borderRadius:2,textDecoration:'none',transition:'opacity .2s ease',cursor:'none'}}>Hire me</Link>
+              <Link href="/hire" onMouseEnter={e=>{handleHoverEnter(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.opacity='0.85';}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.opacity='1';}} style={{fontSize:11,fontWeight:500,letterSpacing:'0.12em',textTransform:'uppercase',color:bg,background:accent,padding:'9px 20px',borderRadius:2,textDecoration:'none',transition:'opacity .2s ease',cursor:'none'}}>Hire me</Link>
             </div>
           </div>
         </nav>
@@ -221,7 +221,7 @@ export default function ProjectCase({ params }:{ params: Promise<{ slug:string }
             </div>
             <div style={{display:'flex',flexDirection:'column',gap:10}}>
               <div><div style={{fontSize:10,color:text3,letterSpacing:'.05em'}}>Say hi</div><a href="mailto:hello@philipajibade.com" style={{fontSize:13,color:text,textDecoration:'none'}}>hello@philipajibade.com</a></div>
-              <div><div style={{fontSize:10,color:text3,letterSpacing:'.05em'}}>Connect</div><a href="#" style={{fontSize:13,color:text,textDecoration:'none'}}>LinkedIn</a></div>
+              <div><div style={{fontSize:10,color:text3,letterSpacing:'.05em'}}>Connect</div><a href="https://linkedin.com/in/philip-ajibade" target="_blank" rel="noreferrer" style={{fontSize:13,color:text,textDecoration:'none'}}>linkedin.com/in/philip-ajibade</a></div>
             </div>
           </div>
           <div style={{marginTop:40,textAlign:'center',fontSize:10,color:text3}}>All rights reserved © Philip Ajibade {new Date().getFullYear()}</div>

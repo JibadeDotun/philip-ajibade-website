@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
-export default function AboutPage() {
+export default function HirePage() {
   const [light, setLight] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -136,6 +136,7 @@ export default function AboutPage() {
   const text2 = light ? '#6b6960' : '#9c9a90';
   const text3 = light ? '#b8b6ae' : '#3e3d38';
   const accent = light ? '#4a7200' : '#c8f565';
+  const bg2 = light ? '#f0ede6' : '#1a1a18';
   const cardBg = light ? '#e9e7e2' : '#1b1b19';
 
   return (
@@ -149,10 +150,13 @@ export default function AboutPage() {
         #sym{position:fixed;font-family:'Playfair Display',serif;font-style:italic;font-size:12px;pointer-events:none;z-index:9997;transform:translate(14px,-18px);opacity:0;transition:opacity .25s;white-space:nowrap}
         .anim-1{opacity:1;transform:translateY(0)}
         .reveal{opacity:1;transform:translateY(0)}
-        .section-card{border:1px solid ${border};background:${cardBg};border-radius:8px;padding:32px;transition:transform .25s,border-color .25s;}
-        .section-card:hover{transform:translateY(-6px);border-color:${accent}}
-        .timeline-line{position:absolute;top:60px;left:48px;bottom:0;width:1px;background:${border}}
-        @media (max-width:767px){body{cursor:auto!important}#cur,#ring,#sym{display:none!important}.nav{padding:16px 20px !important}.nav-links{display:none !important}.hamburger{display:block !important;padding-left:20px !important}.theme-toggle{display:none !important}.logo-wrapper{display:none !important}.nav-actions{justify-content:flex-end}.hero{padding:130px 20px 20px 20px!important}.hero-inner{grid-template-columns:1fr!important}.values-grid,.skills-grid{grid-template-columns:1fr!important}.timeline-columns{grid-template-columns:1fr!important}.cv-cta{flex-direction:column;align-items:flex-start}.cv-cta button{width:100%}.hero img{height:100%}.hero > div:last-child{margin:0 auto;max-width:320px;aspect-ratio:1 / 1;}} @media (min-width:768px){.mobile-theme-toggle{display:none!important}}
+        .step-card{border-top:1px solid ${accent};padding:24px;}
+        .step-card h3{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin:8px 0;color:${text}}
+        .input-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:${text3};margin-bottom:6px;}
+        .input-field{width:100%;background:${bg2};border:1px solid ${border};padding:12px 16px;border-radius:2px;color:${text};font-family:'DM Sans',sans-serif;font-size:14px;}
+        .input-field:focus{outline:none;border-color:${accent}}
+        @media (max-width:767px){body{cursor:auto!important}#cur,#ring,#sym{display:none!important}.nav{padding:16px 20px !important}.nav-links{display:none !important}.hamburger{display:block !important;padding-left:20px !important}.theme-toggle{display:none !important}.logo-wrapper{display:none !important}.nav-actions{justify-content:flex-end}.hero{padding:130px 20px 20px 20px!important}.hero-inner{grid-template-columns:1fr!important}.process-grid{grid-template-columns:1fr!important}.contact-columns{grid-template-columns:1fr!important}.cv-cta{flex-direction:column;align-items:flex-start}.cv-cta button{width:100%}}
+        @media (min-width:768px){.mobile-theme-toggle{display:none!important}}
       `}</style>
 
       <div id="cur" ref={cursorRef} style={{ background: accent }} />
@@ -167,7 +171,7 @@ export default function AboutPage() {
             <Link className="logo-wrapper" href='/' style={{ textDecoration: 'none', color: 'inherit', cursor: 'none' }}><img src="/logo.svg" height="36" alt="P.Ajibade" style={{ height: 36, width: 'auto', display: 'block', filter: light ? 'brightness(0)' : 'brightness(0) invert(1) opacity(0.7)' }} /></Link>
             <div className="nav-links" style={{ display: 'flex', gap: 36, order: 3 }}>
               {['Work', 'About', 'Photography', 'Blog'].map((l) => (
-                <Link key={l} href={l === 'Work' ? '/work' : l === 'About' ? '/about' : '#'} onMouseEnter={(e) => { handleHoverEnter(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color = text; }} onMouseLeave={(e) => { handleHoverLeave(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color = text2; }} style={{ fontSize: 12, fontWeight: 400, letterSpacing: '0.1em', textTransform: 'uppercase', color: l === 'About' ? text : text2, textDecoration: 'none', transition: 'color .2s ease' }}>{l}</Link>
+                <Link key={l} href={l === 'Work' ? '/work' : l === 'About' ? '/about' : '#'} onMouseEnter={(e) => { handleHoverEnter(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color = text; }} onMouseLeave={(e) => { handleHoverLeave(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color = text2; }} style={{ fontSize: 12, fontWeight: 400, letterSpacing: '0.1em', textTransform: 'uppercase', color: text2, textDecoration: 'none', transition: 'color .2s ease' }}>{l}</Link>
               ))}
             </div>
             <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: 14, order: 4 }}>
@@ -190,125 +194,100 @@ export default function AboutPage() {
         </div>
 
         <div className="page-inner" style={{ maxWidth: 1400, width: '100%', margin: '0 auto', position: 'relative', paddingTop: '100px' }}>
-          <section className="hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'start', padding: '56px 48px' }}>
-            <div className="hero-inner" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'center' }}>
-              <div>
-                <div style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: text3, marginBottom: 10 }}>∴ About</div>
-                <h1 style={{ fontFamily: 'Playfair Display,serif', fontSize: 'clamp(48px,5.5vw,72px)', fontWeight: 900, margin: '0 0 14px', lineHeight: 1.08, color: text }}>
-                  The person<br />
-                  <span style={{ fontStyle: 'italic' }}>behind the work</span>
-                </h1>
-                <p style={{ fontSize: 15, lineHeight: 1.85, color: text2, maxWidth: 480 }}>I'm Philip Ajibade — a designer with a BSc in Mathematics and over eight years of experience across interaction design, data visualisation, advertising, and UI/UX. I work between Nigeria and the UK, bringing mathematical rigour to creative problems and design intuition to analytical ones.</p>
+          <section className="hero" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24, padding: '56px 48px' }}>
+            <div style={{ maxWidth: 760 }}>
+              <div style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: text3, marginBottom: 10 }}>→ Work with me</div>
+              <h1 style={{ fontFamily: 'Playfair Display,serif', fontSize: 'clamp(48px,5.5vw,72px)', fontWeight: 900, margin: '0 0 14px', lineHeight: 1.08, color: text }}>
+                Let's build<br />
+                <span style={{ fontStyle: 'italic' }}>something great</span>
+              </h1>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0' }}>
+                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#4caf50', animation: 'pulse 1.4s infinite' }} />
+                <span style={{ fontSize: 13, color: text }}>Currently available for new projects</span>
               </div>
-            </div>
-            <div style={{ width: '100%', borderRadius: 4, border: `1px solid ${border}`, maxWidth: 720, overflow: 'hidden' }}>
-              <img src="/philip.jpg" alt="Philip Ajibade portrait" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block', border: `1px solid ${border}`, borderRadius: 4 }} />
+              <p style={{ fontSize: 15, color: text2, marginTop: 6 }}>Senior design roles · Consulting engagements · Freelance projects</p>
             </div>
           </section>
 
           <section style={{ padding: '40px 48px', marginBottom: 40 }}>
-            <div style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: text3, marginBottom: 8 }}>∈ Values & approach</div>
-            <h2 style={{ fontFamily: 'Playfair Display,serif', fontSize: 36, margin: '0 0 24px', color: text }}>How I work</h2>
-            <div className="values-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 18 }}>
+            <div style={{ fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: text3, marginBottom: 8 }}>f(x) Process</div>
+            <h2 style={{ fontFamily: 'Playfair Display,serif', fontSize: 36, margin: '0 0 24px', color: text }}>How we work together</h2>
+            <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 18 }}>
               {[{
-                sym: '∇',
-                title: 'Rigour first',
-                text: "Every design decision is grounded in research, logic and evidence. I don't guess — I derive.",
+                step: '01',
+                title: 'Discovery',
+                desc: 'We start with a conversation about your goals, constraints and vision. No briefs, no forms — just a real discussion.',
               }, {
-                sym: '∫',
-                title: 'Systems thinking',
-                text: 'I design at the system level, not just the surface. Every component belongs to a whole.',
+                step: '02',
+                title: 'Proposal',
+                desc: 'I\'ll send a clear scope of work, timeline and what to expect. Everything defined before we begin.',
               }, {
-                sym: '∴',
-                title: 'Clarity as craft',
-                text: "Complexity is the raw material. Clarity is the output. That's the work.",
+                step: '03',
+                title: 'Design',
+                desc: 'Iterative, collaborative design with regular check-ins. You\'re involved throughout, not just at the end.',
+              }, {
+                step: '04',
+                title: 'Delivery',
+                desc: 'Polished final files, documentation and a handover that actually makes sense to your team.',
               }].map((item) => (
-                <div key={item.sym} className="section-card">
-                  <div style={{ fontFamily: 'Playfair Display,serif', fontStyle: 'italic', fontSize: 32, color: accent, marginBottom: 10 }}>{item.sym}</div>
-                  <div style={{ fontFamily: 'Playfair Display,serif', fontSize: 18, fontWeight: 700, marginBottom: 8, color: text }}>{item.title}</div>
-                  <p style={{ fontSize: 13, color: text2, lineHeight: 1.7, margin: 0 }}>{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section style={{ padding: '40px 48px', marginBottom: 40, position: 'relative' }}>
-            <div style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: text3, marginBottom: 8 }}>f(t) Career</div>
-            <h2 style={{ fontFamily: 'Playfair Display,serif', fontSize: 36, margin: '0 0 24px', color: text }}>Where I&apos;ve been</h2>
-            <div className="timeline-line" />
-            <div className="timeline-columns" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 24, position: 'relative' }}>
-              {[{
-                range: '2024–Present',
-                role: 'Senior Interaction Designer · DWP Digital, UK',
-                text: 'Leading inclusive product teams to deliver data-driven services in complex public sector ecosystems.',
-              }, {
-                range: '2022–2024',
-                role: 'Lead UX Designer · Fintech startup, Lagos',
-                text: 'Built behaviour-based dashboards and transaction flows for high-volume mobile audiences.',
-              }, {
-                range: '2020–2022',
-                role: 'Art Director & Digital Designer · Advertising agency, Lagos',
-                text: 'Directed cross-channel campaigns, interactive experiences, and brand storytelling projects.',
-              }, {
-                range: '2018–2020',
-                role: 'UI/UX Designer · Various clients, Lagos',
-                text: 'Delivered user-centric web and app products for health, finance and education sectors.',
-              }, {
-                range: '2014–2018',
-                role: 'BSc Mathematics · University (First Degree)',
-                text: 'Graduated with strong analytical grounding, applied mathematical reasoning to design practice.',
-              }].map((item, idx) => (
-                <div key={item.range} style={{ position: 'relative', paddingBottom: 30 }}>
-                  <div style={{ fontFamily: 'Playfair Display,serif', fontStyle: 'italic', color: text, marginBottom: 4 }}><span style={{ color: accent }}>{item.range}</span> · {item.role}</div>
-                  <p style={{ fontSize: 13, color: text2, lineHeight: 1.75, margin: 0 }}>{item.text}</p>
+                <div key={item.step} className="step-card" style={{ background: cardBg, borderRadius: 6 }}>
+                  <div style={{ fontFamily: 'Playfair Display,serif', fontStyle: 'italic', fontSize: 18, color: accent }}>{item.step}</div>
+                  <h3>{item.title}</h3>
+                  <p style={{ fontSize: 13, color: text2, lineHeight: 1.7, margin: 0 }}>{item.desc}</p>
                 </div>
               ))}
             </div>
           </section>
 
           <section style={{ padding: '40px 48px', marginBottom: 40 }}>
-            <div style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: text3, marginBottom: 8 }}>∑ Skills</div>
-            <h2 style={{ fontFamily: 'Playfair Display,serif', fontSize: 36, margin: '0 0 24px', color: text }}>What I bring</h2>
-            <div className="skills-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+            <div className="contact-columns" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
               <div>
-                <div style={{ fontFamily: 'Playfair Display,serif', fontSize: 18, fontWeight: 700, marginBottom: 12, color: text }}>Design Skills</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                  {['Interaction Design', 'Service Design', 'UX Research', 'Data Visualisation', 'Infographics', 'Dashboard Design', 'Presentation Design', 'Brand Identity', 'Photography'].map((skill) => (
-                    <span key={skill} style={{ display: 'inline-block', border: `1px solid ${border}`, borderRadius: 999, padding: '8px 12px', fontSize: 12, color: text2 }}>{skill}</span>
-                  ))}
+                <h2 style={{ fontFamily: 'Playfair Display,serif', fontSize: 28, margin: '0 0 16px', color: text }}>Get in touch</h2>
+                <p style={{ fontSize: 15, color: text2, lineHeight: 1.7, marginBottom: 24 }}>Whether you have a project in mind or just want to explore possibilities — I'd love to hear from you.</p>
+                <div style={{ marginBottom: 18 }}>
+                  <div className="input-label">Email</div>
+                  <a href="mailto:hello@philipajibade.com" style={{ fontSize: 15, color: text, textDecoration: 'none' }} onMouseEnter={(e) => (e.currentTarget.style.color = accent)} onMouseLeave={(e) => (e.currentTarget.style.color = text)}>hello@philipajibade.com</a>
                 </div>
+                <div style={{ marginBottom: 18 }}>
+                  <div className="input-label">LinkedIn</div>
+                  <a href="https://linkedin.com/in/philip-ajibade" target="_blank" rel="noreferrer" style={{ fontSize: 15, color: text, textDecoration: 'none' }} onMouseEnter={(e) => (e.currentTarget.style.color = accent)} onMouseLeave={(e) => (e.currentTarget.style.color = text)}>linkedin.com/in/philip-ajibade</a>
+                </div>
+                <p style={{ fontSize: 12, color: text3, fontStyle: 'italic', marginTop: 12 }}>I typically respond within 24 hours.</p>
               </div>
-              <div>
-                <div style={{ fontFamily: 'Playfair Display,serif', fontSize: 18, fontWeight: 700, marginBottom: 12, color: text }}>Tools</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                  {['Figma', 'FigJam', 'Adobe Illustrator', 'Adobe InDesign', 'Photoshop', 'Miro', 'Notion', 'Framer'].map((tool) => (
-                    <span key={tool} style={{ display: 'inline-block', border: `1px solid ${border}`, borderRadius: 999, padding: '8px 12px', fontSize: 12, color: text2 }}>{tool}</span>
-                  ))}
+
+              <div style={{ background: cardBg, border: `1px solid ${border}`, borderRadius: 6, padding: 22 }}>
+                <div style={{ marginBottom: 14 }}>
+                  <div className="input-label">Name</div>
+                  <input className="input-field" type="text" placeholder="Your full name" />
                 </div>
+                <div style={{ marginBottom: 14 }}>
+                  <div className="input-label">Email</div>
+                  <input className="input-field" type="email" placeholder="you@example.com" />
+                </div>
+                <div style={{ marginBottom: 14 }}>
+                  <div className="input-label">Subject</div>
+                  <input className="input-field" type="text" placeholder="Project name or reason" />
+                </div>
+                <div style={{ marginBottom: 14 }}>
+                  <div className="input-label">What are you looking for?</div>
+                  <select className="input-field" style={{ appearance: 'none' }}>
+                    {['Interaction Design', 'Data Visualisation', 'Presentation Design', 'Service Design', 'Photography', 'Other'].map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+                <div style={{ marginBottom: 16 }}>
+                  <div className="input-label">Message</div>
+                  <textarea className="input-field" style={{ minHeight: 140, resize: 'vertical' }} placeholder="Tell me about your needs" />
+                </div>
+                <button style={{ width: '100%', background: accent, color: bg, border: 'none', borderRadius: 2, padding: '12px 16px', textTransform: 'uppercase', letterSpacing: '.08em', fontWeight: 700, cursor: 'none' }}>Send message →</button>
               </div>
             </div>
           </section>
 
-          <section style={{ padding: '32px 48px', marginBottom: 40, borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }} className="cv-cta">
-            <div>
-              <div style={{ fontFamily: 'Playfair Display,serif', fontSize: 24, marginBottom: 8, color: text }}>Want the full picture?</div>
-              <div style={{ fontSize: 13, color: text2, lineHeight: 1.7 }}>Download my CV for a complete overview of my experience and education.</div>
-            </div>
-            <a href="/cv.pdf" style={{ textDecoration: 'none' }}>
-              <button style={{ background: accent, color: bg, border: 'none', borderRadius: 2, padding: '11px 24px', fontSize: 12, fontWeight: 700, letterSpacing: '0.09em', cursor: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
-                Download CV
-                <span style={{ fontSize: 16 }}>⤓</span>
-              </button>
-            </a>
-          </section>
-
-          <section style={{ textAlign: 'center', padding: '40px 20px 80px' }}>
-            <div style={{ fontSize: 16, fontWeight: 600, color: text }}>Let's work together</div>
-            <div style={{ fontFamily: 'Playfair Display,serif', fontSize: 28, fontStyle: 'italic', margin:'12px 0 22px', color: text }}>I'm currently open to senior design roles and consulting engagements</div>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
-              <Link href="/work" style={{ background: 'transparent', border: `1px solid ${accent}`, color: accent, borderRadius: 2, padding: '10px 22px', fontSize: 12, textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.1em' }}>View my work</Link>
-              <Link href="/hire" style={{ background: accent, color: bg, border: 'none', borderRadius: 2, padding: '10px 22px', fontSize: 12, textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Get in touch</Link>
-            </div>
+          <section style={{ textAlign: 'center', padding: '40px 20px 80px', borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}`, marginBottom: 40 }}>
+            <div style={{ fontFamily: 'Playfair Display,serif', fontStyle: 'italic', fontSize: 28, color: text, marginBottom: 10 }}>"Good design is not about making things look nice. It's about making things work beautifully."</div>
+            <div style={{ fontSize: 12, color: text3 }}>— Philip Ajibade</div>
           </section>
         </div>
 
@@ -325,7 +304,7 @@ export default function AboutPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div><div style={{ fontSize: 10, color: text3, letterSpacing: '.05em' }}>Say hi</div><a href="mailto:hello@philipajibade.com" style={{ fontSize: 13, color: text, textDecoration: 'none' }}>hello@philipajibade.com</a></div>
-              <div><div style={{ fontSize: 10, color: text3, letterSpacing: '.05em' }}>Connect</div><a href="https://linkedin.com/in/philip-ajibade" target="_blank" rel="noreferrer" style={{ fontSize: 13, color: text, textDecoration: 'none' }}>linkedin.com/in/philip-ajibade</a></div>
+              <div><div style={{ fontSize: 10, color: text3, letterSpacing: '.05em' }}>Connect</div><a href="#" style={{ fontSize: 13, color: text, textDecoration: 'none' }}>LinkedIn</a></div>
             </div>
           </div>
           <div style={{ marginTop: 40, textAlign: 'center', fontSize: 10, color: text3 }}>All rights reserved © Philip Ajibade {new Date().getFullYear()}</div>
