@@ -9,6 +9,7 @@ export default function Home() {
   const symRef = useRef<HTMLDivElement>(null);
   const [light, setLight] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const mx = useRef(0), my = useRef(0);
   const rx = useRef(0), ry = useRef(0);
 
@@ -112,6 +113,50 @@ export default function Home() {
         .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
         .reveal.vis{opacity:1;transform:translateY(0)}
         @keyframes scrollDrop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+        /* Responsive rules */
+        .mobile-menu-overlay {display:none;position:fixed;inset:0;opacity:0;visibility:hidden;z-index:999;align-items:center;justify-content:center;transition:opacity .2s ease,visibility .2s ease;}
+
+        @media (hover: none) {
+          body{cursor:auto !important}
+          #cur,#ring,#sym{display:none !important}
+          .hamburger{display:block !important}
+          .nav-links{display:none !important}
+        }
+
+        @media (max-width:767px) {
+          .nav {padding: 16px 20px !important;}
+          .nav-links {display:none !important;}
+          .hamburger {display:block !important;}
+          .mobile-menu-overlay {display:flex !important;opacity:0;visibility:hidden;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:999;align-items:center;justify-content:center;}
+          .mobile-menu-overlay.open {opacity:1;visibility:visible;}
+          .mobile-menu-close {display:block;cursor: none;}
+          .hero {display:block !important;padding:0 20px !important;}
+          .hero-left, .hero-right {padding: 64px 0 40px !important;}
+          .hero h1 {font-size:52px !important;}
+          .services, .work, .about-strip {padding: 48px 20px !important;}
+          .services-grid {grid-template-columns:1fr !important;}
+          .work-grid {grid-template-columns:1fr !important;}
+          .work-grid > div {grid-column: span 12 !important;}
+          .about-strip {grid-template-columns:1fr !important;}
+          footer {flex-direction:column !important;align-items:center !important;gap:16px !important;padding:24px 20px !important;text-align:center;}
+          .nav-links a, .hamburger, .mobile-menu-overlay a, .nav button, .about-strip a, footer a {font-size:1.1rem !important;}
+          .hero .anim-9 {left:50% !important;transform:translateX(-50%) !important;}
+        }
+
+        @media (min-width:768px) and (max-width:1024px) {
+          .nav {padding: 16px 32px !important;}
+          .nav-links {gap:16px !important;}
+          .hero {padding:0 32px !important;}
+          .hero h1 {font-size:60px !important;}
+          .services, .work, .about-strip {padding: 64px 32px !important;}
+          .services-grid {grid-template-columns:repeat(2,1fr) !important;}
+          .work-grid {grid-template-columns:repeat(12,1fr) !important;}
+          .work-grid > div:nth-child(1){grid-column:span 12 !important;}
+          .work-grid > div:nth-child(2){grid-column:span 12 !important;}
+          .work-grid > div:nth-child(3), .work-grid > div:nth-child(4), .work-grid > div:nth-child(5){grid-column:span 4 !important;}
+          .about-strip {grid-template-columns:1fr 1fr !important;}
+        }
       `}</style>
 
       {/* Cursor */}
@@ -125,8 +170,9 @@ export default function Home() {
       <div style={{background:bg,color:text,minHeight:'100vh',transition:'background .4s,color .4s',position:'relative'}}>
 
         {/* NAV */}
-        <nav style={{position:'fixed',top:0,left:0,right:0,zIndex:100,display:'flex',alignItems:'center',justifyContent:'space-between',padding:'22px 48px',borderBottom:`1px solid ${scrolled?border:'transparent'}`,background:scrolled?(light?'rgba(245,243,238,0.9)':'rgba(12,12,11,0.88)'):'transparent',backdropFilter:scrolled?'blur(18px)':'none',transition:'all .3s'}}>
-          <a href="#" style={{textDecoration:'none',color:'inherit',display:'inline-block',cursor:'none'}}>
+        <nav className="nav" style={{position:'fixed',top:0,left:0,right:0,zIndex:100,background:scrolled?(light?'rgba(245,243,238,0.9)':'rgba(12,12,11,0.88)'):'transparent',borderBottom:`1px solid ${scrolled?border:'transparent'}`,backdropFilter:scrolled?'blur(18px)':'none',transition:'all .3s'}}>
+          <div className="nav-inner" style={{maxWidth:1400,width:'100%',margin:'0 auto',padding:'22px 20px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:24}}>
+            <a href="#" style={{textDecoration:'none',color:'inherit',display:'inline-block',cursor:'none'}}>
             <img
               src="/logo.svg"
               height="36"
@@ -146,7 +192,8 @@ export default function Home() {
               }}
             />
           </a>
-          <div style={{display:'flex',gap:36}}>
+          <button className="hamburger" onClick={()=>setMenuOpen(o=>!o)} style={{border:'none',background:'transparent',color:text2,fontSize:22,cursor:'none',display:'none'}} aria-label="Open menu">☰</button>
+          <div className="nav-links" style={{display:'flex',gap:36}}>
             {['Work','Photography','Blog','About'].map(l=>(
               <a key={l} href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{fontSize:12,fontWeight:400,letterSpacing:'0.1em',textTransform:'uppercase',color:text2,textDecoration:'none',transition:'color 0.2s ease'}}>{l}</a>
             ))}
@@ -155,15 +202,26 @@ export default function Home() {
             <button onClick={()=>setLight(l=>!l)} onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{width:34,height:34,borderRadius:'50%',background:'transparent',border:`1px solid ${border}`,cursor:'none',color:text2,fontSize:13,display:'flex',alignItems:'center',justifyContent:'center',transition:'border-color .2s,color .2s'}}>
               {light?'☾':'☀'}
             </button>
-            <a href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.opacity = '0.85';}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.opacity = '1';}} style={{fontSize:11,fontWeight:500,letterSpacing:'0.12em',textTransform:'uppercase',color:bg,background:accentBg,padding:'9px 20px',borderRadius:2,textDecoration:'none',transition:'opacity 0.2s ease'}}>
+            <a href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.opacity = '0.85';}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.opacity = '1';}} style={{fontSize:11,fontWeight:500,letterSpacing:'0.12em',textTransform:'uppercase',color:bg,background:accentBg,padding:'9px 20px',borderRadius:2,textDecoration:'none',transition:'opacity 0.2s ease',cursor:'none'}}>
               Hire me
             </a>
           </div>
+        </div>
         </nav>
 
+        <div className={`mobile-menu-overlay ${menuOpen ? 'open' : ''}`}>
+          <button className="mobile-menu-close" onClick={()=>setMenuOpen(false)} style={{position:'absolute',top:20,right:24,fontSize:24,border:'none',background:'transparent',color:text,cursor:'none'}}>✕</button>
+          <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100%',gap:22}}>
+            {['Work','Photography','Blog','About'].map(l => (
+              <a key={l} href="#" onClick={()=>setMenuOpen(false)} style={{fontSize:24,fontWeight:700,color:text,textDecoration:'none',transition:'color .2s ease'}}>{l}</a>
+            ))}
+          </div>
+        </div>
+
         {/* HERO */}
-        <section style={{minHeight:'100vh',display:'grid',gridTemplateColumns:'1fr 1fr',position:'relative',padding:'0 48px',overflow:'hidden'}}>
-          <div style={{display:'flex',flexDirection:'column',justifyContent:'center',padding:'120px 64px 100px 0',position:'relative',zIndex:1}}>
+        <div className="page-inner" style={{maxWidth:1400,width:'100%',margin:'0 auto',position:'relative'}}>
+          <section className="hero" style={{minHeight:'100vh',display:'grid',gridTemplateColumns:'1fr 1fr',position:'relative',padding:'0 48px',overflow:'hidden'}}>
+          <div className="hero-left" style={{display:'flex',flexDirection:'column',justifyContent:'center',padding:'120px 64px 100px 0',position:'relative',zIndex:1}}>
             <p className="anim-1" style={{fontSize:10,fontWeight:500,letterSpacing:'0.2em',textTransform:'uppercase',color:accent,display:'flex',alignItems:'center',gap:12,marginBottom:28}}>
               <span style={{fontFamily:"'Playfair Display',serif",fontStyle:'italic',fontSize:14}}>∴</span>
               Available for work
@@ -189,7 +247,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{display:'flex',flexDirection:'column',justifyContent:'center',padding:'120px 0 100px 64px',position:'relative',zIndex:1,gap:16}}>
+          <div className="hero-right" style={{display:'flex',flexDirection:'column',justifyContent:'center',padding:'120px 0 100px 64px',position:'relative',zIndex:1,gap:16}}>
             <p className="anim-6" style={{fontSize:10,fontWeight:500,letterSpacing:'0.16em',textTransform:'uppercase',color:text3}}>Featured projects</p>
             {[
               {title:'Financial Onboarding',meta:'Tier-1 · USSD + React Native',tag:'UX · Fintech',fill:light?'linear-gradient(135deg,#c0d4e8,#90b8d8)':'linear-gradient(135deg,#0d1e30,#1a3a55)'},
@@ -224,7 +282,7 @@ export default function Home() {
 
         {/* SERVICES */}
         <RevealSection>
-          <section style={{padding:'96px 48px',position:'relative',zIndex:1}}>
+          <section className="services" style={{padding:'96px 48px',position:'relative',zIndex:1}}>
             <div style={{display:'flex',alignItems:'flex-end',justifyContent:'space-between',paddingBottom:24,borderBottom:`1px solid ${border}`,marginBottom:56}}>
               <div>
                 <p style={{fontSize:10,fontWeight:500,letterSpacing:'0.18em',textTransform:'uppercase',color:accent,marginBottom:10}}>∑ What I do</p>
@@ -236,7 +294,7 @@ export default function Home() {
                 Work with me <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M1.5 6.5h10M8 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
             </div>
-            <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:1,background:border,border:`1px solid ${border}`}}>
+            <div className="services-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:1,background:border,border:`1px solid ${border}`}}>
               {[
                 {n:'x₁',title:'Interaction & UX Design',desc:'End-to-end product design — from research and service blueprints through to polished interfaces and design systems.',tags:['Service design','UI/UX','Prototyping']},
                 {n:'x₂',title:'Data & Visual Communication',desc:'Translating complex data, research, and policy into infographics, dashboards, and reports people actually understand.',tags:['Infographics','Dashboards','Reports']},
@@ -262,7 +320,7 @@ export default function Home() {
 
         {/* WORK */}
         <RevealSection>
-          <section style={{padding:'0 48px 96px',position:'relative',zIndex:1}}>
+          <section className="work" style={{padding:'0 48px 96px',position:'relative',zIndex:1}}>
             <div style={{display:'flex',alignItems:'flex-end',justifyContent:'space-between',paddingBottom:24,borderBottom:`1px solid ${border}`,marginBottom:56}}>
               <div>
                 <p style={{fontSize:10,fontWeight:500,letterSpacing:'0.18em',textTransform:'uppercase',color:accent,marginBottom:10}}>∫ Selected work</p>
@@ -274,7 +332,7 @@ export default function Home() {
                 All work <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M1.5 6.5h10M8 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
             </div>
-            <div style={{display:'grid',gridTemplateColumns:'repeat(12,1fr)',gap:1,background:border,border:`1px solid ${border}`}}>
+            <div className="work-grid" style={{display:'grid',gridTemplateColumns:'repeat(12,1fr)',gap:1,background:border,border:`1px solid ${border}`}}>
               {[
                 {span:7,fill:light?'linear-gradient(150deg,#b8d0e4,#8ab4d0)':'linear-gradient(150deg,#0d1e30,#1a3a55)',tag:'Interaction design',name:'Express Tier-1 Onboarding',desc:'Hybrid USSD + mobile onboarding for unbanked users. Zero regulatory penalties across 12 months.',ratio:'4/3'},
                 {span:5,fill:light?'linear-gradient(150deg,#d0b8e4,#b48ad0)':'linear-gradient(150deg,#1e1228,#3a1f50)',tag:'Data visualisation',name:'Policy Communication',desc:'Research to infographic — complex policy made accessible.',ratio:'16/9'},
@@ -302,7 +360,7 @@ export default function Home() {
 
         {/* ABOUT */}
         <RevealSection>
-          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',borderTop:`1px solid ${border}`,position:'relative',zIndex:1,margin:'0 48px'}}>
+          <div className="about-strip" style={{display:'grid',gridTemplateColumns:'1fr 1fr',borderTop:`1px solid ${border}`,position:'relative',zIndex:1,margin:'0 48px'}}>
             <div style={{padding:'80px 64px 80px 0',borderRight:`1px solid ${border}`}}>
               <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(26px,3.2vw,42px)',fontWeight:700,letterSpacing:'-.02em',lineHeight:1.15,color:text}}>
                 A designer who thinks <em style={{fontStyle:'italic',fontWeight:400,color:text2}}>in systems,</em> built on mathematics
@@ -351,7 +409,7 @@ export default function Home() {
             </div>
           </footer>
         </RevealSection>
-
+        </div>
       </div>
     </>
   );
