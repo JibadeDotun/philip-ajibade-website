@@ -11,29 +11,33 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showScroll, setShowScroll] = useState(true);
-  const [scrollHintOpacity, setScrollHintOpacity] = useState(1);
   const mx = useRef(0), my = useRef(0);
   const rx = useRef(0), ry = useRef(0);
 
   const mathSymbols = ['∇','∫','∑','∂','φ','∞','∴','∵','π','λ','δ','∈','⊂','≡','∮'];
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleNavScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', handleNavScroll);
+    handleNavScroll();
+    return () => window.removeEventListener('scroll', handleNavScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleScrollHint = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
-
+      const distanceFromBottom = docHeight - scrollY - windowHeight;
       const pastHero = scrollY > windowHeight * 0.8;
-      const nearBottom = scrollY + windowHeight >= docHeight - 150;
-
-      setShowScroll(!(pastHero || nearBottom));
-      setScrolled(scrollY > 40);
-      setScrollHintOpacity(!(pastHero || nearBottom) ? 1 : 0);
+      const nearBottom = distanceFromBottom < 300;
+      setShowScroll(!pastHero && !nearBottom);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScrollHint);
+    handleScrollHint();
+    return () => window.removeEventListener('scroll', handleScrollHint);
   }, []);
 
   useEffect(() => {
@@ -153,6 +157,7 @@ export default function Home() {
           .hero-left, .hero-right {padding: 0 !important;}
           .hero h1 {font-size:52px !important;}
           .services, .work, .about-strip {padding: 48px 20px !important;}
+          .about-strip {display: none !important;}
           .services-grid {grid-template-columns:1fr !important;}
           .work-grid {grid-template-columns:1fr !important;}
           .work-grid > div {grid-column: span 12 !important;}
@@ -426,22 +431,10 @@ export default function Home() {
         {/* FOOTER */}
         <RevealSection>
           <footer style={{borderTop:`1px solid ${border}`,padding:'80px 48px 40px',position:'relative',zIndex:1}}>
-            <div className="footer-bottom-row" style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:28,alignItems:'start'}}>
+            <div className="footer-bottom-row" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:28,alignItems:'start'}}>
               <div>
                 <div style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:text}}>Philip Ajibade</div>
                 <div style={{fontSize:11,color:text2,marginTop:4}}>Designer & Mathematician</div>
-              </div>
-              <div style={{display:'flex',flexDirection:'column',gap:8}}>
-                {[
-                  {n:'01',label:'Work'},
-                  {n:'02',label:'Photography'},
-                  {n:'03',label:'Blog'},
-                  {n:'04',label:'About'},
-                ].map(item=>(
-                  <a key={item.n} href="#" onMouseEnter={e=>handleHoverEnter(e.currentTarget)} onMouseLeave={e=>handleHoverLeave(e.currentTarget)} style={{fontSize:11,letterSpacing:'0.1em',textTransform:'uppercase',color:text3,textDecoration:'none'}}>
-                    <span style={{color:accent,marginRight:6}}>{item.n}</span>{item.label}
-                  </a>
-                ))}
               </div>
               <div style={{display:'flex',flexDirection:'column',gap:10}}>
                 <div>
