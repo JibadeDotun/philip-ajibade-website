@@ -10,14 +10,19 @@ export default function Home() {
   const [light, setLight] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollHintOpacity, setScrollHintOpacity] = useState(1);
   const mx = useRef(0), my = useRef(0);
   const rx = useRef(0), ry = useRef(0);
 
   const mathSymbols = ['∇','∫','∑','∂','φ','∞','∴','∵','π','λ','δ','∈','⊂','≡','∮'];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      setScrollHintOpacity(window.scrollY > window.innerHeight * 0.8 ? 0 : 1);
+    };
     window.addEventListener('scroll', onScroll);
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -116,21 +121,26 @@ export default function Home() {
 
         /* Responsive rules */
         .mobile-menu-overlay {display:none;position:fixed;inset:0;opacity:0;visibility:hidden;z-index:999;align-items:center;justify-content:center;transition:opacity .2s ease,visibility .2s ease;}
+        .nav-inner {max-width:1400px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24;position:relative;}
+        .page-inner {max-width:1400px;width:100%;margin:0 auto;position:relative;}
 
         @media (hover: none) {
           body{cursor:auto !important}
           #cur,#ring,#sym{display:none !important}
-          .hamburger{display:block !important}
-          .nav-links{display:none !important}
         }
 
         @media (max-width:767px) {
           .nav {padding: 16px 20px !important;}
           .nav-links {display:none !important;}
           .hamburger {display:block !important;}
+          .theme-toggle {display:none !important;}
+          .logo-wrapper {position:absolute;left:50%;transform:translateX(-50%);}
+          .nav-actions {justify-content:flex-end;}
+          .hero {padding-top:90px !important;}
           .mobile-menu-overlay {display:flex !important;opacity:0;visibility:hidden;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:999;align-items:center;justify-content:center;}
           .mobile-menu-overlay.open {opacity:1;visibility:visible;}
           .mobile-menu-close {display:block;cursor: none;}
+          .hero .anim-1{display:none;}
           .hero {display:block !important;padding:0 20px !important;}
           .hero-left, .hero-right {padding: 64px 0 40px !important;}
           .hero h1 {font-size:52px !important;}
@@ -141,7 +151,7 @@ export default function Home() {
           .about-strip {grid-template-columns:1fr !important;}
           footer {flex-direction:column !important;align-items:center !important;gap:16px !important;padding:24px 20px !important;text-align:center;}
           .nav-links a, .hamburger, .mobile-menu-overlay a, .nav button, .about-strip a, footer a {font-size:1.1rem !important;}
-          .hero .anim-9 {left:50% !important;transform:translateX(-50%) !important;}
+          .hero .anim-9 {position:fixed !important;bottom:20px !important;left:50% !important;transform:translateX(-50%) !important;}
         }
 
         @media (min-width:768px) and (max-width:1024px) {
@@ -156,6 +166,9 @@ export default function Home() {
           .work-grid > div:nth-child(2){grid-column:span 12 !important;}
           .work-grid > div:nth-child(3), .work-grid > div:nth-child(4), .work-grid > div:nth-child(5){grid-column:span 4 !important;}
           .about-strip {grid-template-columns:1fr 1fr !important;}
+          .theme-toggle {display:block !important;}
+          .hamburger {display:none !important;}
+          .logo-wrapper {position:static;transform:none;}
         }
       `}</style>
 
@@ -171,8 +184,9 @@ export default function Home() {
 
         {/* NAV */}
         <nav className="nav" style={{position:'fixed',top:0,left:0,right:0,zIndex:100,background:scrolled?(light?'rgba(245,243,238,0.9)':'rgba(12,12,11,0.88)'):'transparent',borderBottom:`1px solid ${scrolled?border:'transparent'}`,backdropFilter:scrolled?'blur(18px)':'none',transition:'all .3s'}}>
-          <div className="nav-inner" style={{maxWidth:1400,width:'100%',margin:'0 auto',padding:'22px 20px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:24}}>
-            <a href="#" style={{textDecoration:'none',color:'inherit',display:'inline-block',cursor:'none'}}>
+          <div className="nav-inner" style={{maxWidth:1400,width:'100%',margin:'0 auto',padding:'22px 20px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:24,position:'relative'}}>
+            <button className="hamburger" onClick={()=>setMenuOpen(o=>!o)} style={{border:'none',background:'transparent',color:text2,fontSize:22,cursor:'none',display:'none',order:1}} aria-label="Open menu">☰</button>
+            <a className="logo-wrapper" href="#" style={{textDecoration:'none',color:'inherit',cursor:'none'}}>
             <img
               src="/logo.svg"
               height="36"
@@ -192,14 +206,13 @@ export default function Home() {
               }}
             />
           </a>
-          <button className="hamburger" onClick={()=>setMenuOpen(o=>!o)} style={{border:'none',background:'transparent',color:text2,fontSize:22,cursor:'none',display:'none'}} aria-label="Open menu">☰</button>
-          <div className="nav-links" style={{display:'flex',gap:36}}>
+          <div className="nav-links" style={{display:'flex',gap:36,order:3}}>
             {['Work','Photography','Blog','About'].map(l=>(
               <a key={l} href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{fontSize:12,fontWeight:400,letterSpacing:'0.1em',textTransform:'uppercase',color:text2,textDecoration:'none',transition:'color 0.2s ease'}}>{l}</a>
             ))}
           </div>
-          <div style={{display:'flex',alignItems:'center',gap:14}}>
-            <button onClick={()=>setLight(l=>!l)} onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{width:34,height:34,borderRadius:'50%',background:'transparent',border:`1px solid ${border}`,cursor:'none',color:text2,fontSize:13,display:'flex',alignItems:'center',justifyContent:'center',transition:'border-color .2s,color .2s'}}>
+          <div className="nav-actions" style={{display:'flex',alignItems:'center',gap:14,order:4}}>
+            <button className="theme-toggle" onClick={()=>setLight(l=>!l)} onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{width:34,height:34,borderRadius:'50%',background:'transparent',border:`1px solid ${border}`,cursor:'none',color:text2,fontSize:13,display:'flex',alignItems:'center',justifyContent:'center',transition:'border-color .2s,color .2s'}}>
               {light?'☾':'☀'}
             </button>
             <a href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.opacity = '0.85';}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.opacity = '1';}} style={{fontSize:11,fontWeight:500,letterSpacing:'0.12em',textTransform:'uppercase',color:bg,background:accentBg,padding:'9px 20px',borderRadius:2,textDecoration:'none',transition:'opacity 0.2s ease',cursor:'none'}}>
@@ -211,6 +224,7 @@ export default function Home() {
 
         <div className={`mobile-menu-overlay ${menuOpen ? 'open' : ''}`}>
           <button className="mobile-menu-close" onClick={()=>setMenuOpen(false)} style={{position:'absolute',top:20,right:24,fontSize:24,border:'none',background:'transparent',color:text,cursor:'none'}}>✕</button>
+          <button className="theme-toggle-mobile" onClick={()=>setLight(l=>!l)} style={{position:'absolute',top:20,left:24,fontSize:22,border:'none',background:'transparent',color:text,cursor:'none'}}>{light?'☾':'☀'}</button>
           <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100%',gap:22}}>
             {['Work','Photography','Blog','About'].map(l => (
               <a key={l} href="#" onClick={()=>setMenuOpen(false)} style={{fontSize:24,fontWeight:700,color:text,textDecoration:'none',transition:'color .2s ease'}}>{l}</a>
@@ -274,7 +288,7 @@ export default function Home() {
           {/* Horizontal divider */}
           <div style={{position:'absolute',bottom:72,left:0,right:0,height:1,background:border}}/>
           {/* Scroll hint */}
-          <div className="anim-9" style={{position:'absolute',bottom:20,left:'50%',transform:'translateX(-50%)',display:'flex',flexDirection:'column',alignItems:'center',gap:6,zIndex:2}}>
+          <div className="anim-9" style={{position:'fixed',bottom:20,left:'50%',transform:'translateX(-50%)',display:'flex',flexDirection:'column',alignItems:'center',gap:6,zIndex:2,opacity:scrollHintOpacity,transition:'opacity 0.4s ease'}}>
             <div style={{width:1,height:28,background:`linear-gradient(to bottom,${accent},transparent)`,animation:'scrollDrop 2s ease-in-out infinite'}}/>
             <span style={{fontSize:9,letterSpacing:'0.2em',textTransform:'uppercase',color:text3}}>Scroll</span>
           </div>
