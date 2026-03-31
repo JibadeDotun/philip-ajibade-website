@@ -146,14 +146,16 @@ export default function Home() {
         @media (max-width:767px) {
           .nav {padding: 16px 20px !important;}
           .nav-links {display:none !important;}
-          .hamburger {display:block !important;}
+          .hamburger {display:block !important;padding-left:20px !important;}
           .theme-toggle {display:none !important;}
+          .mobile-theme-toggle {display:flex !important;}
           .logo-wrapper {display:none !important;}
           .nav-actions {justify-content:flex-end;}
+          .nav-actions > a {margin-right:20px !important;}
           .mobile-menu-overlay {display:flex !important;opacity:0;visibility:hidden;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:999;align-items:center;justify-content:center;}
           .mobile-menu-overlay.open {opacity:1;visibility:visible;}
           .mobile-menu-close {display:block;cursor: none;}
-          .hero {display:block !important;padding:90px 20px 0 20px !important;}
+          .hero {display:block !important;padding:140px 20px 0 20px !important;}
           .hero-left, .hero-right {padding: 0 !important;}
           .hero h1 {font-size:52px !important;}
           .services, .work, .about-strip {padding: 48px 20px !important;}
@@ -170,6 +172,10 @@ export default function Home() {
           .footer-bottom-row {grid-template-columns:1fr !important;gap:16px !important;}
           .footer-bottom-row > div {width:100% !important;}
           .footer-copyright {text-align:center !important;}
+        }
+
+        @media (min-width: 768px) {
+          .mobile-theme-toggle { display: none !important; }
         }
 
         @media (min-width:768px) and (max-width:1024px) {
@@ -239,6 +245,10 @@ export default function Home() {
           </div>
         </div>
         </nav>
+
+        <button className="mobile-theme-toggle" onClick={() => setLight(l => !l)} style={{position:'fixed',bottom:'24px',right:'20px',zIndex:90,width:34,height:34,borderRadius:'50%',border:`1px solid ${border}`,background:'transparent',color:text,cursor:'none',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          {light ? '☾' : '☀'}
+        </button>
 
         <div className={`mobile-menu-overlay ${menuOpen ? 'open' : ''}`}>
           <button className="mobile-menu-close" onClick={()=>setMenuOpen(false)} style={{position:'absolute',top:20,right:24,fontSize:24,border:'none',background:'transparent',color:text,cursor:'none'}}>✕</button>
@@ -434,7 +444,7 @@ export default function Home() {
             <div className="footer-bottom-row" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:28,alignItems:'start'}}>
               <div>
                 <div style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:text}}>Philip Ajibade</div>
-                <div style={{fontSize:11,color:text2,marginTop:4}}>Designer & Mathematician</div>
+                <div style={{fontSize:11,color:text2,marginTop:4}}>Designer</div>
               </div>
               <div style={{display:'flex',flexDirection:'column',gap:10}}>
                 <div>
