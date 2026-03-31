@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 export default function WorkPage() {
@@ -14,13 +15,13 @@ export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState('All');
 
   const projects = [
-    { id:1, title:'Express Tier-1 Onboarding', category:'Interaction Design', year:'2023', description:'Hybrid USSD + mobile onboarding for unbanked users. Zero regulatory penalties across 12 months.', featured:true, fill:'linear-gradient(135deg,#0d1e30,#1a3a55)' },
-    { id:2, title:'Policy Infographic Suite', category:'Data Viz', year:'2023', description:'Translating complex policy research into accessible visual communication.', featured:false, fill:'linear-gradient(135deg,#1e1228,#3a1f50)' },
-    { id:3, title:'Analytics Dashboard', category:'Data Viz', year:'2022', description:'Real-time data dashboard for operational decision making.', featured:false, fill:'linear-gradient(135deg,#0d2218,#1a4a2e)' },
-    { id:4, title:'Investor Pitch Deck', category:'Presentation', year:'2022', description:'Series A pitch deck for a fintech startup raising $4M.', featured:false, fill:'linear-gradient(135deg,#1e1c0d,#3a381a)' },
-    { id:5, title:'Editorial Photography', category:'Photography', year:'2023', description:'Documentary series exploring urban identity in Lagos.', featured:false, fill:'linear-gradient(135deg,#1e0d0d,#4a1a1a)' },
-    { id:6, title:'Service Design Blueprint', category:'Service Design', year:'2021', description:'End-to-end service redesign for a public sector organisation.', featured:false, fill:'linear-gradient(135deg,#0d1a2e,#1a2a4a)' },
-    { id:7, title:'Brand Identity System', category:'Presentation', year:'2021', description:'Complete visual identity for a Lagos-based creative agency.', featured:false, fill:'linear-gradient(135deg,#1a0d1e,#3a1a4a)' },
+    { id:1, title:'Express Tier-1 Onboarding', category:'Interaction Design', year:'2023', description:'Hybrid USSD + mobile onboarding for unbanked users. Zero regulatory penalties across 12 months.', featured:true, fill:'linear-gradient(135deg,#0d1e30,#1a3a55)', slug:'express-tier-1-onboarding' },
+    { id:2, title:'Policy Infographic Suite', category:'Data Viz', year:'2023', description:'Translating complex policy research into accessible visual communication.', featured:false, fill:'linear-gradient(135deg,#1e1228,#3a1f50)', slug:'policy-infographic-suite' },
+    { id:3, title:'Analytics Dashboard', category:'Data Viz', year:'2022', description:'Real-time data dashboard for operational decision making.', featured:false, fill:'linear-gradient(135deg,#0d2218,#1a4a2e)', slug:'analytics-dashboard' },
+    { id:4, title:'Investor Pitch Deck', category:'Presentation', year:'2022', description:'Series A pitch deck for a fintech startup raising $4M.', featured:false, fill:'linear-gradient(135deg,#1e1c0d,#3a381a)', slug:'investor-pitch-deck' },
+    { id:5, title:'Editorial Photography', category:'Photography', year:'2023', description:'Documentary series exploring urban identity in Lagos.', featured:false, fill:'linear-gradient(135deg,#1e0d0d,#4a1a1a)', slug:'editorial-photography' },
+    { id:6, title:'Service Design Blueprint', category:'Service Design', year:'2021', description:'End-to-end service redesign for a public sector organisation.', featured:false, fill:'linear-gradient(135deg,#0d1a2e,#1a2a4a)', slug:'service-design-blueprint' },
+    { id:7, title:'Brand Identity System', category:'Presentation', year:'2021', description:'Complete visual identity for a Lagos-based creative agency.', featured:false, fill:'linear-gradient(135deg,#1a0d1e,#3a1a4a)', slug:'brand-identity-system' },
   ];
 
   const categories = ['All','Interaction Design','Data Viz','Presentation','Photography','Service Design'];
@@ -219,15 +220,17 @@ export default function WorkPage() {
 
           <section className="work-grid reveal anim-4" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px',marginBottom:120}}>
             {nonFeatured.map(p => (
-              <article key={p.id} style={{border:`1px solid ${border}`,borderRadius:6,overflow:'hidden',background:bg,transition:'transform .2s,border-color .2s',cursor:'pointer'}} onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.borderColor=accent;}} onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.borderColor=border;}}>
-                <div style={{width:'100%',aspectRatio:'4 / 3',background:p.fill}} />
-                <div style={{padding:16}}>
-                  <div style={{fontSize:10,letterSpacing:'.12em',textTransform:'uppercase',color:accent,marginBottom:6}}>{p.category}</div>
-                  <h3 style={{fontFamily:'Playfair Display,serif',fontSize:18,fontWeight:700,margin:'0 0 4px',color:text}}>{p.title}</h3>
-                  <div style={{fontSize:11,color:text3,marginBottom:8}}>{p.year}</div>
-                  <p style={{fontSize:13,color:text2,lineHeight:1.5}}>{p.description}</p>
-                </div>
-              </article>
+              <Link key={p.id} href={`/work/${p.slug}`} style={{textDecoration:'none'}}>
+                <article style={{border:`1px solid ${border}`,borderRadius:6,overflow:'hidden',background:bg,transition:'transform .2s,border-color .2s',cursor:'pointer'}} onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.borderColor=accent;}} onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.borderColor=border;}}>
+                  <div style={{width:'100%',aspectRatio:'4 / 3',background:p.fill}} />
+                  <div style={{padding:16}}>
+                    <div style={{fontSize:10,letterSpacing:'.12em',textTransform:'uppercase',color:accent,marginBottom:6}}>{p.category}</div>
+                    <h3 style={{fontFamily:'Playfair Display,serif',fontSize:18,fontWeight:700,margin:'0 0 4px',color:text}}>{p.title}</h3>
+                    <div style={{fontSize:11,color:text3,marginBottom:8}}>{p.year}</div>
+                    <p style={{fontSize:13,color:text2,lineHeight:1.5}}>{p.description}</p>
+                  </div>
+                </article>
+              </Link>
             ))}
           </section>
         </div>
