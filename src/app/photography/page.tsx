@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const seriesOptions = ['All', 'Urban Identity', 'Editorial', 'Portraits', 'Abstract', 'Travel'];
 const photos = [
@@ -43,11 +44,23 @@ export default function PhotographyPage() {
   useEffect(()=>{const onMove=(e:MouseEvent)=>{if(cursorRef.current){cursorRef.current.style.left=e.clientX+'px';cursorRef.current.style.top=e.clientY+'px';} if(ringRef.current){ringRef.current.style.left=e.clientX+'px';ringRef.current.style.top=e.clientY+'px';}};window.addEventListener('mousemove',onMove);let id:number;const raf=()=>{id=requestAnimationFrame(raf)};raf();return()=>{window.removeEventListener('mousemove',onMove);cancelAnimationFrame(id);};},[]);
   useEffect(()=>{const canvas=canvasRef.current; if(!canvas) return; const ctx=canvas.getContext('2d'); if(!ctx) return; const draw=()=>{const W=window.innerWidth,H=window.innerHeight;canvas.width=W;canvas.height=H;ctx.clearRect(0,0,W,H);ctx.fillStyle=light?'#1a1a18':'#f0ede6';ctx.font='11px "DM Sans", monospace';ctx.textAlign='center';const exprs=['∇f(x,y)=0','∫₀^∞e⁻ˣdx=1','φ=(1+√5)/2','eⁱᵖⁱ+1=0','∑ᵢ₌₁ⁿi=n(n+1)/2','d/dx[xⁿ]=nxⁿ⁻¹','P(A|B)=P(B|A)P(A)/P(B)','∂u/∂t=α∂²u/∂x²','lim sin(x)/x=1','det(A)≠0','∀ε>0∃δ>0','n!=n·(n-1)!','rank(M)=n','aᵀa=I'];ctx.globalAlpha=0.3;for(let x=70;x<W;x+=70)for(let y=70;y<H;y+=70){ctx.beginPath();ctx.arc(x,y,0.9,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=0.55;exprs.forEach((e,i)=>{const fx=((Math.sin(i*2.4+7)*0.5+0.5)*0.86+0.07)*W;const fy=((Math.cos(i*1.8+3)*0.5+0.5)*0.86+0.07)*H;ctx.save();ctx.translate(fx,fy);ctx.rotate(Math.sin(i*1.1)*0.1);ctx.fillText(e,0,0);ctx.restore();});ctx.globalAlpha=1};draw();window.addEventListener('resize',draw);return()=>window.removeEventListener('resize',draw);},[light]);
 
-  useEffect(()=>{if(!lightboxOpen)return;const onKey=(e:KeyboardEvent)=>{if(e.key==='Escape'){setLightboxOpen(false);}else if(e.key==='ArrowRight'){setActiveIndex((i)=> (i+1)%filteredPhotos.length);}else if(e.key==='ArrowLeft'){setActiveIndex((i)=> (i-1+filteredPhotos.length)%filteredPhotos.length);}};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey);},[lightboxOpen]);
 
   const filterPhotos = activeSeries === 'All' ? photos : photos.filter(p=>p.series===activeSeries);
   const filteredPhotos = filterPhotos;
   const activePhoto=filteredPhotos[activeIndex]??null;
+
+  const photoCount = filteredPhotos.length;
+  useEffect(() => {
+    if (!lightboxOpen || photoCount === 0) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setLightboxOpen(false);
+      else if (event.key === 'ArrowRight') setActiveIndex(i => (i + 1) % photoCount);
+      else if (event.key === 'ArrowLeft') setActiveIndex(i => (i - 1 + photoCount) % photoCount);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxOpen, photoCount]);
+
 
   const openLightbox=(index:number)=>{setActiveIndex(index);setLightboxOpen(true);};
   const closeLightbox=()=>setLightboxOpen(false);
@@ -61,7 +74,6 @@ export default function PhotographyPage() {
   const text3 = light ? '#b8b6ae':'#3e3d38';
   const accent = light ? '#4a7200':'#c8f565';
   const bg3 = light ? '#e9e7e2':'#1c1c1a';
-  const bg2 = light ? '#f0ede6':'#1a1a18';
 
   return (
     <>
@@ -104,7 +116,7 @@ export default function PhotographyPage() {
         <nav className='nav' style={{position:'fixed',top:0,left:0,right:0,zIndex:100,background:scrolled?(light?'rgba(245,243,238,0.9)':'rgba(12,12,11,0.88)'):'transparent',borderBottom:`1px solid ${scrolled?border:'transparent'}`,backdropFilter:scrolled?'blur(18px)':'none',transition:'all .3s'}}>
           <div style={{padding:'22px 20px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:24}}>
             <button className='hamburger' onClick={()=>setMenuOpen(o=>!o)} style={{border:'none',background:'transparent',color:text3,fontSize:22,cursor:'none',display:'none'}}>☰</button>
-            <Link href='/' style={{textDecoration:'none',color:'inherit',cursor:'none'}}><img src='/logo.svg' height='36' alt='P.Ajibade' style={{height:36,width:'auto',display:'block',filter:light?'brightness(0)':'brightness(0) invert(1) opacity(0.7)'}} /></Link>
+            <Link href='/' style={{textDecoration:'none',color:'inherit',cursor:'none'}}><Image src='/logo.svg' width={36} height={36} alt='P.Ajibade' style={{height:36,width:'auto',display:'block',filter:light?'brightness(0)':'brightness(0) invert(1) opacity(0.7)'}} /></Link>
             <div style={{display:'flex',gap:36,order:3}}>{['Work','Photography','Blog','About'].map(l=>{const href=l==='Work'?'/work':l==='About'?'/about':l==='Blog'?'/blog':'#';return <Link key={l} href={href} onMouseEnter={e=>{handleHoverEnter(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color=text}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color=text2}} style={{fontSize:12,fontWeight:400,letterSpacing:'0.1em',textTransform:'uppercase',color:text2,textDecoration:'none',transition:'color .2s ease'}}>{l}</Link>;})}</div>
             <div style={{display:'flex',alignItems:'center',gap:14,order:4}}>
               <button onClick={()=>setLight(l=>!l)} style={{width:34,height:34,borderRadius:'50%',background:'transparent',border:`1px solid ${border}`,cursor:'none',color:text2,fontSize:13,display:'flex',alignItems:'center',justifyContent:'center',transition:'border-color .2s,color .2s'}}>{light?'☾':'☀'}</button>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 export default function WorkPage() {
@@ -170,7 +171,7 @@ export default function WorkPage() {
           <div className="nav-inner" style={{padding:'22px 20px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:24}}>
             <button className="hamburger" onClick={()=>setMenuOpen(o=>!o)} style={{border:'none',background:'transparent',color:text3,fontSize:22,cursor:'none',display:'none'}} aria-label="Open menu">☰</button>
             <a className="logo-wrapper" href="#" style={{textDecoration:'none',color:'inherit',cursor:'none'}}>
-              <img src="/logo.svg" height="36" alt="P.Ajibade" style={{height:36,width:'auto',display:'block',transition:'filter .2s ease',filter:light?'brightness(0)':'brightness(0) invert(1) opacity(0.7)'}} />
+              <Image src="/logo.svg" width={36} height={36} alt="P.Ajibade" style={{height:36,width:'auto',display:'block',transition:'filter .2s ease',filter:light?'brightness(0)':'brightness(0) invert(1) opacity(0.7)'}} />
             </a>
             <div className="nav-links" style={{display:'flex',gap:36,order:3}}>
               {['Work','Photography','Blog','About'].map(l=>(<a key={l} href="#" onMouseEnter={e=>{handleHoverEnter(e.currentTarget); e.currentTarget.style.color = text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget); e.currentTarget.style.color = text2;}} style={{fontSize:12,fontWeight:400,letterSpacing:'0.1em',textTransform:'uppercase',color:text2,textDecoration:'none',transition:'color .2s ease'}}>{l}</a>))}

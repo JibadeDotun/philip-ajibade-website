@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AboutPage() {
   const [light, setLight] = useState(false);
@@ -164,7 +165,7 @@ export default function AboutPage() {
         <nav className="nav" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: scrolled ? (light ? 'rgba(245,243,238,0.9)' : 'rgba(12,12,11,0.88)') : 'transparent', borderBottom: `1px solid ${scrolled ? border : 'transparent'}`, backdropFilter: scrolled ? 'blur(18px)' : 'none', transition: 'all .3s' }}>
           <div className="nav-inner" style={{ padding: '22px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
             <button className="hamburger" onClick={() => setMenuOpen((o) => !o)} style={{ border: 'none', background: 'transparent', color: text3, fontSize: 22, cursor: 'none', display: 'none' }} aria-label="Open menu">☰</button>
-            <Link className="logo-wrapper" href='/' style={{ textDecoration: 'none', color: 'inherit', cursor: 'none' }}><img src="/logo.svg" height="36" alt="P.Ajibade" style={{ height: 36, width: 'auto', display: 'block', filter: light ? 'brightness(0)' : 'brightness(0) invert(1) opacity(0.7)' }} /></Link>
+            <Link className="logo-wrapper" href='/' style={{ textDecoration: 'none', color: 'inherit', cursor: 'none' }}><Image src="/logo.svg" width={36} height={36} alt="P.Ajibade" style={{ height: 36, width: 'auto', display: 'block', filter: light ? 'brightness(0)' : 'brightness(0) invert(1) opacity(0.7)' }} /></Link>
             <div className="nav-links" style={{ display: 'flex', gap: 36, order: 3 }}>
               {['Work', 'About', 'Photography', 'Blog'].map((l) => (
                 <Link key={l} href={l === 'Work' ? '/work' : l === 'About' ? '/about' : '#'} onMouseEnter={(e) => { handleHoverEnter(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color = text; }} onMouseLeave={(e) => { handleHoverLeave(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color = text2; }} style={{ fontSize: 12, fontWeight: 400, letterSpacing: '0.1em', textTransform: 'uppercase', color: l === 'About' ? text : text2, textDecoration: 'none', transition: 'color .2s ease' }}>{l}</Link>
@@ -202,7 +203,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div style={{ width: '100%', borderRadius: 4, border: `1px solid ${border}`, maxWidth: 720, overflow: 'hidden' }}>
-              <img src="/philip.jpg" alt="Philip Ajibade portrait" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block', border: `1px solid ${border}`, borderRadius: 4 }} />
+              <Image src="/Philip.jpg" width={1080} height={1080} sizes="(max-width: 768px) 100vw, 50vw" alt="Philip Ajibade portrait" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block', border: `1px solid ${border}`, borderRadius: 4 }} />
             </div>
           </section>
 
@@ -257,7 +258,7 @@ export default function AboutPage() {
                 range: '2014–2018',
                 role: 'BSc Mathematics · University (First Degree)',
                 text: 'Graduated with strong analytical grounding, applied mathematical reasoning to design practice.',
-              }].map((item, idx) => (
+              }].map((item) => (
                 <div key={item.range} style={{ position: 'relative', paddingBottom: 30 }}>
                   <div style={{ fontFamily: 'Playfair Display,serif', fontStyle: 'italic', color: text, marginBottom: 4 }}><span style={{ color: accent }}>{item.range}</span> · {item.role}</div>
                   <p style={{ fontSize: 13, color: text2, lineHeight: 1.75, margin: 0 }}>{item.text}</p>

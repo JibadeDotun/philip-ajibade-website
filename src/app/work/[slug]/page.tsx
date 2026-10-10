@@ -2,6 +2,7 @@
 
 import { use, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Project {
   id:number;
@@ -23,10 +24,6 @@ const projects: Project[] = [
   { id:6, title:'Service Design Blueprint', category:'Service Design', year:'2021', description:'End-to-end service redesign for a public sector organisation.', featured:false, fill:'linear-gradient(135deg,#0d1a2e,#1a2a4a)', slug:'service-design-blueprint' },
   { id:7, title:'Brand Identity System', category:'Presentation', year:'2021', description:'Complete visual identity for a Lagos-based creative agency.', featured:false, fill:'linear-gradient(135deg,#1a0d1e,#3a1a4a)', slug:'brand-identity-system' },
 ];
-
-function slugToTitle(slug:string){
-  return slug.replace(/-/g,' ').replace(/\b\w/g, c=>c.toUpperCase());
-}
 
 export default function ProjectCase({ params }:{ params: Promise<{ slug:string }> }){
   const { slug } = use(params);
@@ -99,7 +96,7 @@ export default function ProjectCase({ params }:{ params: Promise<{ slug:string }
         <nav className="nav" style={{position:'fixed',top:0,left:0,right:0,zIndex:100,background:scrolled?(light?'rgba(245,243,238,0.9)':'rgba(12,12,11,0.88)'):'transparent',borderBottom:`1px solid ${scrolled?border:'transparent'}`,backdropFilter:scrolled?'blur(18px)':'none',transition:'all .3s'}}>
           <div className="nav-inner" style={{padding:'22px 20px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:24}}>
             <button className="hamburger" onClick={()=>setMenuOpen(o=>!o)} style={{border:'none',background:'transparent',color:text3,fontSize:22,cursor:'none',display:'none'}} aria-label="Open menu">☰</button>
-            <Link className="logo-wrapper" href='/' style={{textDecoration:'none',color:'inherit',cursor:'none'}}><img src="/logo.svg" height="36" alt="P.Ajibade" style={{height:36,width:'auto',display:'block',filter: light?'brightness(0)':'brightness(0) invert(1) opacity(0.7)'}} /></Link>
+            <Link className="logo-wrapper" href='/' style={{textDecoration:'none',color:'inherit',cursor:'none'}}><Image src="/logo.svg" width={36} height={36} alt="P.Ajibade" style={{height:36,width:'auto',display:'block',filter: light?'brightness(0)':'brightness(0) invert(1) opacity(0.7)'}} /></Link>
             <div className="nav-links" style={{display:'flex',gap:36,order:3}}>
               {['Work','Photography','Blog','About'].map(l=>(<Link key={l} href={l==='Work'?'/work':'#'} onMouseEnter={e=>{handleHoverEnter(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color=text;}} onMouseLeave={e=>{handleHoverLeave(e.currentTarget as HTMLElement); (e.currentTarget as HTMLElement).style.color=text2;}} style={{fontSize:12,fontWeight:400,letterSpacing:'0.1em',textTransform:'uppercase',color:text2,textDecoration:'none',transition:'color .2s ease'}}>{l}</Link>))}
             </div>

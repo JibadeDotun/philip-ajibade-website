@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const posts = [
   { slug:'design-and-mathematics', title:'Where design meets mathematics', excerpt:'The tools of mathematical thinking — abstraction, proof, structure — are more useful to designers than most realise.', category:'Mathematics & Design', date:'March 2025', readTime:'6 min read' },
@@ -69,7 +70,7 @@ export default function BlogPage() {
         <nav className="nav" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: scrolled ? (light ? 'rgba(245,243,238,0.9)' : 'rgba(12,12,11,0.88)') : 'transparent', borderBottom: `1px solid ${scrolled ? border : 'transparent'}`, backdropFilter: scrolled ? 'blur(18px)' : 'none', transition: 'all .3s' }}>
           <div className="nav-inner" style={{ padding: '22px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
             <button className="hamburger" onClick={() => setMenuOpen((o) => !o)} style={{ border: 'none', background: 'transparent', color: text3, fontSize: 22, cursor: 'none', display: 'none' }} aria-label="Open menu">☰</button>
-            <Link className="logo-wrapper" href='/' style={{ textDecoration: 'none', color: 'inherit', cursor: 'none' }}><img src="/logo.svg" height="36" alt="P.Ajibade" style={{ height: 36, width: 'auto', display: 'block', filter: light ? 'brightness(0)' : 'brightness(0) invert(1) opacity(0.7)' }} /></Link>
+            <Link className="logo-wrapper" href='/' style={{ textDecoration: 'none', color: 'inherit', cursor: 'none' }}><Image src="/logo.svg" width={36} height={36} alt="P.Ajibade" style={{ height: 36, width: 'auto', display: 'block', filter: light ? 'brightness(0)' : 'brightness(0) invert(1) opacity(0.7)' }} /></Link>
             <div className="nav-links" style={{ display: 'flex', gap: 36, order: 3 }}>
               {['Work', 'Photography', 'Blog', 'About'].map((l) => {
                 const href = l === 'Work' ? '/work' : l === 'About' ? '/about' : l === 'Blog' ? '/blog' : '#';
