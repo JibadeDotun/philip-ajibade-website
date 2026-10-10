@@ -2,7 +2,7 @@
   --gateway-background: #f7f6f2;
   --gateway-text: #000000;
   --gateway-accent: #345444;
-  --gateway-gap: 50px;
+  --gateway-gap: clamp(40px, 3.8vw, 56px);
   color-scheme: light;
   min-height: 100svh;
   display: grid;
@@ -11,22 +11,48 @@
   background: var(--gateway-background);
   color: var(--gateway-text);
 }
-.navigation { width: min(100%, 990px); display: grid; gap: var(--gateway-gap); text-align: center; }
+.navigation {
+  width: min(100%, 990px);
+  display: grid;
+  justify-items: center;
+  gap: var(--gateway-gap);
+  text-align: center;
+  /* A small optical adjustment balances the text within the viewport. */
+  padding-bottom: clamp(8px, 1.5vh, 16px);
+}
 .link {
   display: block;
+  width: fit-content;
+  max-width: 100%;
   font-family: var(--font-gateway), Georgia, serif;
   font-size: clamp(32px, 4.444vw, 64px);
   font-weight: 400;
   font-optical-sizing: auto;
-  line-height: 1.40625;
-  letter-spacing: 0;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
   color: var(--gateway-text);
-  text-decoration: none;
-  text-underline-offset: 0.2em;
-  transition: color 160ms ease-out;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 220ms ease-out, text-decoration-color 220ms ease-out;
+  animation: title-reveal 480ms ease-out both;
 }
-.link:hover { color: var(--gateway-accent); text-decoration: underline; text-decoration-thickness: 1px; }
-.link:focus-visible { color: var(--gateway-accent); outline: 2px solid var(--gateway-accent); outline-offset: 6px; }
+.link:nth-child(2) { animation-delay: 70ms; }
+.link:nth-child(3) { animation-delay: 140ms; }
+.link:hover { color: var(--gateway-accent); text-decoration-color: currentColor; }
+.link:focus-visible {
+  color: var(--gateway-accent);
+  text-decoration-color: currentColor;
+  outline: 2px solid var(--gateway-accent);
+  outline-offset: 8px;
+  /* Keyboard navigation never waits for the entrance animation. */
+  animation: none;
+}
+@keyframes title-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .section { align-content: center; justify-items: center; gap: 32px; text-align: center; }
 .title { font-family: var(--font-gateway), Georgia, serif; color: var(--gateway-text); font-size: clamp(32px, 4.444vw, 64px); line-height: 1.25; font-weight: 400; }
@@ -38,6 +64,6 @@
 @media (max-width: 40rem) {
   .gateway { padding: 24px; --gateway-gap: 40px; }
   .navigation { max-width: 342px; }
-  .link { font-size: 32px; line-height: 1.375; }
+  .link { font-size: clamp(30px, 8.2vw, 36px); line-height: 1.35; }
 }
-@media (prefers-reduced-motion: reduce) { .link { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .link { transition: none; animation: none; } }
