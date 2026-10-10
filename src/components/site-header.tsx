@@ -40,9 +40,8 @@ export default function SiteHeader() {
           </button>
         </div>
         <nav className={styles.menuNavigation} aria-label="Main navigation">
-          {items.map((item, index) => (
+          {items.map((item) => (
             <Link key={item.href} href={item.href} className={styles.menuLink} onClick={closeMenu}>
-              <span className={styles.number} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <span>{item.title}</span>
             </Link>
           ))}
