@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import DirectionalLink from "../components/directional-link";
 import styles from "./gateway.module.css";
 
 export const metadata: Metadata = {
@@ -12,9 +12,9 @@ export default function Home() {
     <main className={styles.gateway}>
       <h1 className={styles.srOnly}>Philip Ajibade — selected work</h1>
       <nav className={styles.navigation} aria-label="Explore portfolios">
-        <Link className={styles.link} href="/product-service-design">Product and Service Design</Link>
-        <Link className={styles.link} href="/art-direction">Art Direction</Link>
-        <Link className={styles.link} href="/photography">Photography</Link>
+        <DirectionalLink href="/product-service-design">Product and Service Design</DirectionalLink>
+        <DirectionalLink href="/art-direction">Art Direction</DirectionalLink>
+        <DirectionalLink href="/photography">Photography</DirectionalLink>
       </nav>
     </main>
   );
