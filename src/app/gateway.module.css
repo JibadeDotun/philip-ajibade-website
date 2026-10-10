@@ -2,7 +2,7 @@
   --gateway-background: #f7f6f2;
   --gateway-text: #000000;
   --gateway-accent: #345444;
-  --gateway-gap: clamp(40px, 3.8vw, 56px);
+  --gateway-gap: clamp(20px, 2.2vw, 32px);
   color-scheme: light;
   min-height: 100svh;
   display: grid;
@@ -37,19 +37,24 @@
 }
 .link:nth-child(2) { animation-delay: 70ms; }
 .link:nth-child(3) { animation-delay: 140ms; }
-/* Both panels share a grid cell, keeping the hit area stable during the reveal. */
+/* Reserve the preview space so interaction never shifts the other links. */
 .linkWindow {
   display: grid;
   overflow: hidden;
   padding: 4px 0;
-  min-height: 80px;
+  --preview-space: 88px;
+  grid-template-rows: auto var(--preview-space);
+  row-gap: 10px;
   align-items: center;
 }
 .linkTitle, .linkPreview {
-  grid-area: 1 / 1;
   transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 280ms ease;
 }
-.linkTitle { display: block; }
+.linkTitle {
+  display: block;
+  transform: translateY(calc((var(--preview-space) + 10px) / 2));
+  transform-origin: center;
+}
 .linkPreview {
   display: grid;
   justify-items: center;
@@ -60,20 +65,20 @@
   line-height: 1.5;
   letter-spacing: 0;
   opacity: 0;
-  transform: translateY(110%);
+  transform: translateY(12px);
 }
 .previewDescription { max-width: 44ch; text-wrap: balance; }
 .previewPrompt { font-size: 13px; color: var(--gateway-accent); }
 @media (hover: hover) and (pointer: fine) {
-  .link:hover .linkTitle { transform: translateY(-120%); opacity: 0; }
+  .link:hover .linkTitle { transform: translateY(6px) scale(0.88); }
   .link:hover .linkPreview { transform: translateY(0); opacity: 1; }
 }
-.link:focus-visible .linkTitle { transform: translateY(-120%); opacity: 0; }
+.link:focus-visible .linkTitle { transform: translateY(6px) scale(0.88); }
 .link:focus-visible .linkPreview { transform: translateY(0); opacity: 1; }
 /* Touch visitors get the description and action without needing a hover. */
 @media (hover: none) {
-  .linkWindow { gap: 12px; }
-  .linkTitle, .linkPreview { grid-area: auto; }
+  .linkWindow { gap: 12px; grid-template-rows: auto auto; }
+  .linkTitle { transform: none; }
   .linkPreview { opacity: 1; transform: none; }
   .link:focus-visible .linkTitle { transform: none; opacity: 1; }
 }
@@ -96,7 +101,7 @@
   .gateway { color-scheme: dark; --gateway-background: #111210; --gateway-text: #f1f2eb; --gateway-accent: #b4d3bc; }
 }
 @media (max-width: 40rem) {
-  .gateway { padding: 24px; --gateway-gap: 40px; }
+  .gateway { padding: 24px; --gateway-gap: 24px; }
   .navigation { max-width: 342px; }
   .link { font-size: clamp(30px, 8.2vw, 36px); line-height: 1.35; }
 }
