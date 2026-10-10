@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hedvig_Letters_Serif } from "next/font/google";
 import "./globals.css";
+import SiteHeader from "../components/site-header";
 
 const display = Hedvig_Letters_Serif({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={display.variable}>
-      <body>{children}</body>
+      <body><SiteHeader />{children}</body>
     </html>
   );
 }

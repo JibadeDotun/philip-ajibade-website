@@ -1,0 +1,94 @@
+.header, .menuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px clamp(24px, 4vw, 64px);
+}
+.header { position: absolute; inset: 0 0 auto; z-index: 10; }
+.name {
+  font-family: var(--font-gateway), Georgia, serif;
+  font-size: clamp(23px, 2vw, 30px);
+  line-height: 1.3;
+  color: var(--foreground);
+  text-decoration: none;
+}
+.button {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+}
+.menuIcon, .closeIcon { position: relative; display: block; width: 32px; height: 32px; }
+.menuIcon span, .closeIcon span {
+  position: absolute;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+.menuIcon span:first-child { top: 10px; }
+.menuIcon span:last-child { top: 22px; }
+.closeIcon span { top: 15px; }
+.closeIcon span:first-child { transform: rotate(45deg); }
+.closeIcon span:last-child { transform: rotate(-45deg); }
+.name:hover, .button:hover, .menuLink:hover { color: var(--accent); }
+.name, .button, .menuLink { transition: color 180ms ease; }
+.name:focus-visible, .button:focus-visible, .menuLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: auto;
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--background) 95%, transparent);
+  backdrop-filter: blur(16px);
+}
+.dialog::backdrop { background: transparent; }
+.dialog[open] { display: flex; flex-direction: column; animation: menu-reveal 240ms ease-out; }
+.menuHeader { flex: none; }
+.menuNavigation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(32px, 7vh, 80px);
+  padding: 32px 24px 100px;
+}
+.menuLink {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  font-family: var(--font-gateway), Georgia, serif;
+  font-size: clamp(44px, 6vw, 88px);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--foreground);
+}
+.number { font-size: clamp(16px, 1.7vw, 24px); font-style: italic; opacity: 0.55; }
+@keyframes menu-reveal { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 40rem) {
+  .header, .menuHeader { padding: 20px 24px; }
+  .menuNavigation { padding-bottom: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open] { animation: none; }
+  .name, .button, .menuLink { transition: none; }
+}
