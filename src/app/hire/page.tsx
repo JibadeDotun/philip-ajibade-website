@@ -42,7 +42,7 @@ export default function HirePage() {
     document.body.classList.add('cursor-hover');
     if (symRef.current) {
       symRef.current.style.opacity = '1';
-      symRef.current.textContent = hoverSymbols[Math.floor(Math.random() * hoverSymbols.length)];
+      symRef.current.textContent = hoverSymbols[(el.textContent?.length ?? 0) % hoverSymbols.length];
     }
   };
   const handleHoverLeave = (el: HTMLElement) => {
@@ -198,7 +198,7 @@ export default function HirePage() {
             <div style={{ maxWidth: 760 }}>
               <div style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: text3, marginBottom: 10 }}>→ Work with me</div>
               <h1 style={{ fontFamily: 'Playfair Display,serif', fontSize: 'clamp(48px,5.5vw,72px)', fontWeight: 900, margin: '0 0 14px', lineHeight: 1.08, color: text }}>
-                Let's build<br />
+                Let&apos;s build<br />
                 <span style={{ fontStyle: 'italic' }}>something great</span>
               </h1>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0' }}>
@@ -243,7 +243,7 @@ export default function HirePage() {
             <div className="contact-columns" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
               <div>
                 <h2 style={{ fontFamily: 'Playfair Display,serif', fontSize: 28, margin: '0 0 16px', color: text }}>Get in touch</h2>
-                <p style={{ fontSize: 15, color: text2, lineHeight: 1.7, marginBottom: 24 }}>Whether you have a project in mind or just want to explore possibilities — I'd love to hear from you.</p>
+                <p style={{ fontSize: 15, color: text2, lineHeight: 1.7, marginBottom: 24 }}>Whether you have a project in mind or just want to explore possibilities — I&apos;d love to hear from you.</p>
                 <div style={{ marginBottom: 18 }}>
                   <div className="input-label">Email</div>
                   <a href="mailto:hello@philipajibade.com" style={{ fontSize: 15, color: text, textDecoration: 'none' }} onMouseEnter={(e) => (e.currentTarget.style.color = accent)} onMouseLeave={(e) => (e.currentTarget.style.color = text)}>hello@philipajibade.com</a>
@@ -286,7 +286,7 @@ export default function HirePage() {
           </section>
 
           <section style={{ textAlign: 'center', padding: '40px 20px 80px', borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}`, marginBottom: 40 }}>
-            <div style={{ fontFamily: 'Playfair Display,serif', fontStyle: 'italic', fontSize: 28, color: text, marginBottom: 10 }}>"Good design is not about making things look nice. It's about making things work beautifully."</div>
+            <div style={{ fontFamily: 'Playfair Display,serif', fontStyle: 'italic', fontSize: 28, color: text, marginBottom: 10 }}>&quot;Good design is not about making things look nice. It&apos;s about making things work beautifully.&quot;</div>
             <div style={{ fontSize: 12, color: text3 }}>— Philip Ajibade</div>
           </section>
         </div>

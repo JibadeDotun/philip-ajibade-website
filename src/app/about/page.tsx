@@ -42,7 +42,7 @@ export default function AboutPage() {
     document.body.classList.add('cursor-hover');
     if (symRef.current) {
       symRef.current.style.opacity = '1';
-      symRef.current.textContent = hoverSymbols[Math.floor(Math.random() * hoverSymbols.length)];
+      symRef.current.textContent = hoverSymbols[(el.textContent?.length ?? 0) % hoverSymbols.length];
     }
   };
   const handleHoverLeave = (el: HTMLElement) => {
@@ -198,7 +198,7 @@ export default function AboutPage() {
                   The person<br />
                   <span style={{ fontStyle: 'italic' }}>behind the work</span>
                 </h1>
-                <p style={{ fontSize: 15, lineHeight: 1.85, color: text2, maxWidth: 480 }}>I'm Philip Ajibade — a designer with a BSc in Mathematics and over eight years of experience across interaction design, data visualisation, advertising, and UI/UX. I work between Nigeria and the UK, bringing mathematical rigour to creative problems and design intuition to analytical ones.</p>
+                <p style={{ fontSize: 15, lineHeight: 1.85, color: text2, maxWidth: 480 }}>I&apos;m Philip Ajibade — a designer with a BSc in Mathematics and over eight years of experience across interaction design, data visualisation, advertising, and UI/UX. I work between Nigeria and the UK, bringing mathematical rigour to creative problems and design intuition to analytical ones.</p>
               </div>
             </div>
             <div style={{ width: '100%', borderRadius: 4, border: `1px solid ${border}`, maxWidth: 720, overflow: 'hidden' }}>
@@ -303,8 +303,8 @@ export default function AboutPage() {
           </section>
 
           <section style={{ textAlign: 'center', padding: '40px 20px 80px' }}>
-            <div style={{ fontSize: 16, fontWeight: 600, color: text }}>Let's work together</div>
-            <div style={{ fontFamily: 'Playfair Display,serif', fontSize: 28, fontStyle: 'italic', margin:'12px 0 22px', color: text }}>I'm currently open to senior design roles and consulting engagements</div>
+            <div style={{ fontSize: 16, fontWeight: 600, color: text }}>Let&apos;s work together</div>
+            <div style={{ fontFamily: 'Playfair Display,serif', fontSize: 28, fontStyle: 'italic', margin:'12px 0 22px', color: text }}>I&apos;m currently open to senior design roles and consulting engagements</div>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
               <Link href="/work" style={{ background: 'transparent', border: `1px solid ${accent}`, color: accent, borderRadius: 2, padding: '10px 22px', fontSize: 12, textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.1em' }}>View my work</Link>
               <Link href="/hire" style={{ background: accent, color: bg, border: 'none', borderRadius: 2, padding: '10px 22px', fontSize: 12, textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Get in touch</Link>

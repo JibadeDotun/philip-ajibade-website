@@ -52,7 +52,7 @@ export default function WorkPage() {
     el.dataset.hovered = 'true';
     document.body.classList.add('cursor-hover');
     if (symRef.current) symRef.current.style.opacity = '1';
-    if (symRef.current) symRef.current.textContent = ['∇','∫','∑','∂','φ','∞','∴','∵','π','λ','δ','∈','⊂','≡','∮'][Math.floor(Math.random() * 15)];
+    if (symRef.current) symRef.current.textContent = ['∇','∫','∑','∂','φ','∞','∴','∵','π','λ','δ','∈','⊂','≡','∮'][(el.textContent?.length ?? 0) % 15];
   };
   const handleHoverLeave = (el: HTMLElement) => {
     delete el.dataset.hovered;

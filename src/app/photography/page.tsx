@@ -37,7 +37,7 @@ export default function PhotographyPage() {
   useEffect(()=>{const onScrollHint=()=>{const scrollY=window.scrollY,wh=window.innerHeight,dh=document.documentElement.scrollHeight,diff=dh-scrollY-wh,past=scrollY>wh*0.8,near=diff<300;setShowScroll(!past&&!near)};window.addEventListener('scroll',onScrollHint);onScrollHint();return()=>window.removeEventListener('scroll',onScrollHint);},[]);
 
   const hoverSymbols=['∇','∫','∑','∂','φ','∞','∴','∵','π','λ','δ','∈','⊂','≡','∮'];
-  const handleHoverEnter=(el:HTMLElement)=>{el.dataset.hovered='true';document.body.classList.add('cursor-hover');if(symRef.current){symRef.current.style.opacity='1';symRef.current.textContent=hoverSymbols[Math.floor(Math.random()*hoverSymbols.length)];}};
+  const handleHoverEnter=(el:HTMLElement)=>{el.dataset.hovered='true';document.body.classList.add('cursor-hover');if(symRef.current){symRef.current.style.opacity='1';symRef.current.textContent=hoverSymbols[(el.textContent?.length ?? 0) % hoverSymbols.length];}};
   const handleHoverLeave=(el:HTMLElement)=>{delete el.dataset.hovered;document.body.classList.remove('cursor-hover');if(symRef.current) symRef.current.style.opacity='0';};
 
   useEffect(()=>{const onMove=(e:MouseEvent)=>{if(cursorRef.current){cursorRef.current.style.left=e.clientX+'px';cursorRef.current.style.top=e.clientY+'px';} if(ringRef.current){ringRef.current.style.left=e.clientX+'px';ringRef.current.style.top=e.clientY+'px';}};window.addEventListener('mousemove',onMove);let id:number;const raf=()=>{id=requestAnimationFrame(raf)};raf();return()=>{window.removeEventListener('mousemove',onMove);cancelAnimationFrame(id);};},[]);

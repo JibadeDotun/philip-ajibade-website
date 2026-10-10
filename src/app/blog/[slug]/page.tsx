@@ -50,7 +50,7 @@ export default function BlogEntryPage({ params }: { params: Promise<{ slug: stri
   useEffect(() => { const handleScrollHint=()=>{const scrollY=window.scrollY;const windowHeight=window.innerHeight;const docHeight=document.documentElement.scrollHeight;const distanceFromBottom=docHeight-scrollY-windowHeight;const pastHero=scrollY>windowHeight*0.8;const nearBottom=distanceFromBottom<300;setShowScroll(!pastHero&&!nearBottom);}; window.addEventListener('scroll',handleScrollHint);handleScrollHint();return()=>window.removeEventListener('scroll',handleScrollHint);} , []);
 
   const hoverSymbols=['∇','∫','∑','∂','φ','∞','∴','∵','π','λ','δ','∈','⊂','≡','∮'];
-  const handleHoverEnter=(el:HTMLElement)=>{el.dataset.hovered='true';document.body.classList.add('cursor-hover');if(symRef.current){symRef.current.style.opacity='1';symRef.current.textContent=hoverSymbols[Math.floor(Math.random()*hoverSymbols.length)];}};
+  const handleHoverEnter=(el:HTMLElement)=>{el.dataset.hovered='true';document.body.classList.add('cursor-hover');if(symRef.current){symRef.current.style.opacity='1';symRef.current.textContent=hoverSymbols[(el.textContent?.length ?? 0) % hoverSymbols.length];}};
   const handleHoverLeave=(el:HTMLElement)=>{delete el.dataset.hovered;document.body.classList.remove('cursor-hover');if(symRef.current) symRef.current.style.opacity='0';};
 
   useEffect(()=>{const onMove=(e:MouseEvent)=>{if(cursorRef.current){cursorRef.current.style.left=e.clientX+'px';cursorRef.current.style.top=e.clientY+'px';} if(ringRef.current){ringRef.current.style.left=e.clientX+'px';ringRef.current.style.top=e.clientY+'px';}};window.addEventListener('mousemove',onMove);let animId:number;const animRing=()=>{animId=requestAnimationFrame(animRing);};animRing();return()=>{window.removeEventListener('mousemove',onMove);cancelAnimationFrame(animId);};},[]);
@@ -121,7 +121,7 @@ export default function BlogEntryPage({ params }: { params: Promise<{ slug: stri
             {post.body.map((block,idx)=><p key={idx} style={{fontSize:15,color:text2,lineHeight:1.9,marginTop:idx===0?16:14}}>{block}</p>)}
             <div style={{borderLeft:`3px solid ${accent}`,paddingLeft:24,margin:'40px 0'}}>
               <p style={{fontFamily:'Playfair Display,serif',fontSize:24,fontStyle:'italic',color:text}}>
-                "Design is not just aesthetics—it is the application of logic and empathy, refined by consistent iteration."
+                &quot;Design is not just aesthetics—it is the application of logic and empathy, refined by consistent iteration.&quot;
               </p>
             </div>
             <h2 style={{fontFamily:'Playfair Display,serif',fontSize:24,fontWeight:700,color:text,marginBottom:12}}>Next ideas</h2>
