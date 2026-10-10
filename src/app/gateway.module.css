@@ -99,6 +99,33 @@
   .gateway { padding: 24px; --gateway-gap: 40px; }
   .navigation { max-width: 342px; }
   .link { font-size: clamp(30px, 8.2vw, 36px); line-height: 1.35; }
+  /* Wrapped mobile titles need a flowing preview rather than an overlay. */
+  .linkPreview {
+    position: static;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 0;
+    transform: none;
+    transition: max-height 320ms ease, margin-top 320ms ease, opacity 240ms ease;
+  }
+  .link:focus-visible .linkTitle { transform: none; }
+  .link:focus-visible .linkPreview {
+    max-height: 120px;
+    margin-top: 12px;
+    transform: none;
+    opacity: 1;
+  }
+}
+@media (max-width: 40rem) and (hover: hover) and (pointer: fine) {
+  .link:hover .linkTitle { transform: none; }
+  .link:hover .linkPreview {
+    max-height: 120px;
+    margin-top: 12px;
+    transform: none;
+    opacity: 1;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .link { animation: none; }
