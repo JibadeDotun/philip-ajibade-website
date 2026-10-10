@@ -11,7 +11,10 @@
   background: var(--gateway-background);
   color: var(--gateway-text);
 }
+.home { position: relative; isolation: isolate; }
 .navigation {
+  position: relative;
+  z-index: 1;
   width: min(100%, 990px);
   display: grid;
   justify-items: center;

@@ -1,0 +1,25 @@
+.viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(600px, 70vw, 1000px);
+  aspect-ratio: 1;
+  transform: translate(50vw, 50vh) translate(-50%, -50%);
+  background: radial-gradient(circle, rgb(52 84 68 / 6%) 0%, rgb(52 84 68 / 2%) 35%, transparent 68%);
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+.glow[data-active="true"] { opacity: 1; }
+@media (prefers-color-scheme: dark) {
+  .glow { background: radial-gradient(circle, rgb(180 211 188 / 5%) 0%, rgb(180 211 188 / 1.5%) 35%, transparent 68%); }
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .glow { opacity: 0.5; transition: none; }
+}
