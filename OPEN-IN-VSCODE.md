@@ -1,14 +1,12 @@
 # Philip Ajibade website
 
-This folder contains the complete Next.js website and separate Sanity Studio, including the homepage update merged in GitHub PR #1.
+This folder contains the fresh Next.js portfolio foundation. The previous website’s pages, imagery, icons, styles, and Sanity Studio have been removed.
 
 Open this folder using VS Code → File → Open Folder.
 
 Run `npm ci`, then `npm run dev` from this folder. The local preview is http://localhost:3000.
 
 Website routes live in `src/app`; the homepage styles are in `src/app/gateway.module.css`. The design guide is in `docs/design-system.md`.
-
-The Sanity Studio has its own package.json in `sanity-studio/philip-ajibade-website`; install and run it separately when needed.
 
 GitHub: https://github.com/JibadeDotun/philip-ajibade-website
 Live domain: https://philipajibade.com

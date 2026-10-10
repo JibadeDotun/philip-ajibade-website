@@ -10,11 +10,11 @@ An editorial portfolio with expressive serif headings, quiet sans-serif supporti
 
 The homepage introduces the person and offers three equally prominent entrances:
 
-- UI/UX: project index and case studies built around context, process, decisions, and outcomes.
-- Art Direction & Graphic Design: project index and visual stories built around concepts, identities, campaigns, and finished work.
+- Product and Service Design: project index and case studies built around context, process, decisions, and outcomes.
+- Art Direction: project index and visual stories built around concepts, identities, campaigns, and finished work.
 - Street Photography: gallery and photo viewer built around images, with optional captions and series context.
 
-Shared navigation: name/home, UI/UX, Art & Design, Photography, About, Contact. Use “Art Direction & Graphic Design” as the full section title; shorten only in navigation when needed. On small screens, use an accessible menu button with clear expanded state and keyboard support.
+Current navigation: the homepage’s three section links and an “All sections” return link on each section. Add navigation as new content is designed.
 
 ## Appearance
 
@@ -34,7 +34,7 @@ Use semantic tokens throughout components. Borders are decorative separators, no
 
 ## Typography
 
-Use Georgia as the working display serif and the system sans-serif stack for body text. These require no external font requests and can be replaced through tokens once the brand typeface is chosen.
+Use Hedvig Letters Serif for display headings and the system sans-serif stack for supporting text. Next.js loads the display font through `next/font`.
 
 | Role | Size | Treatment |
 | --- | --- | --- |
