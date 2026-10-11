@@ -1,0 +1,24 @@
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px 40px; align-items: start; }
+.figure, .wide { min-width: 0; margin: 0; }
+.wide { grid-column: 1 / -1; }
+.imageLink { display: block; }
+.image { display: block; width: 100%; height: auto; }
+.caption { display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; margin-top: 12px; font-size: var(--type-meta); color: var(--secondary); }
+.empty { color: var(--secondary); padding-block: 48px; line-height: 1.75; }
+.dialog { position: fixed; inset: 0; width: 100%; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--background); color: var(--foreground); overflow: auto; }
+.dialog::backdrop { background: var(--background); }
+.viewer { min-height: 100%; display: flex; flex-direction: column; padding: 20px clamp(24px, 4vw, 64px); }
+.toolbar, .controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex: none; }
+.count { font-size: var(--type-meta); font-variant-numeric: tabular-nums; }
+.viewer button { min-width: 44px; min-height: 44px; border: 0; padding: 8px 12px; font: inherit; color: inherit; background: transparent; cursor: pointer; }
+.viewer button:disabled { color: var(--secondary); cursor: default; }
+.viewer button:not(:disabled):hover { text-decoration: underline; text-underline-offset: 4px; }
+.imageLink:focus-visible, .viewer button:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.viewFigure { flex: 1; min-width: 0; margin: 16px 0; }
+.stage { display: grid; place-items: center; }
+.largeImage { display: block; width: auto; height: auto; max-width: 100%; max-height: calc(100vh - 220px); max-height: calc(100dvh - 220px); object-fit: contain; }
+.viewCaption { display: grid; justify-items: center; gap: 4px; margin-top: 16px; text-align: center; font-size: var(--type-meta); color: var(--secondary); }
+@media (max-width: 40rem) {
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .viewer { padding: 16px 24px max(16px, env(safe-area-inset-bottom)); }
+}

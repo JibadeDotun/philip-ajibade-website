@@ -1,0 +1,15 @@
+.page { padding: 180px clamp(24px, 4vw, 64px) 180px; }
+.content { width: min(100%, 1120px); margin-inline: auto; }
+.intro { display: grid; gap: 24px; margin-bottom: 72px; }
+.intro h1 { font-family: var(--font-gateway), Georgia, serif; font-weight: 400; font-size: var(--type-display); line-height: 1.2; letter-spacing: -0.015em; }
+.intro p { line-height: 1.75; }
+.sectionHeader { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.sectionHeader h2, .sectionHeader span { font: inherit; font-size: var(--type-meta); color: var(--secondary); }
+.closing { display: grid; gap: 12px; margin-top: 80px; }
+.closing a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; width: fit-content; color: var(--accent); text-underline-offset: 5px; }
+.closing a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+@media (max-width: 40rem), (max-height: 720px) {
+  .page { padding-top: 48px; padding-bottom: 48px; }
+  .intro { margin-bottom: 48px; }
+  .intro h1 { font-size: var(--type-display-mobile); }
+}
