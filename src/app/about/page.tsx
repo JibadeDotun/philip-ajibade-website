@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./page.module.css";
+import AboutGuide from "../../components/about-guide";
 
 export const metadata: Metadata = {
   title: "About | Philip Ajibade",
@@ -10,13 +11,15 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className={styles.page}>
-      <article className={styles.article}>
+      <article id="about-story" className={styles.article}>
         <header className={styles.intro}>
           <p className={styles.eyebrow}>About me</p>
           <h1>Hi, I’m Philip. I hunt down the moment people give up.</h1>
           <p>You know the one. The form asking for a number you don’t have. The button that does nothing. The app that makes you feel stupid when, really, the app is the stupid one.</p>
           <p>I’ve spent eight years chasing that moment.</p>
         </header>
+
+        <AboutGuide />
 
         <section className={styles.section} aria-labelledby="what-i-do">
           <h2 id="what-i-do">What I do</h2>

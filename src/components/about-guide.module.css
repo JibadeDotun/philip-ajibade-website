@@ -1,0 +1,14 @@
+.guide { position: sticky; top: 0; z-index: 2; padding-block: 16px 12px; background: var(--background); }
+.measure { display: flex; justify-content: space-between; gap: 16px; color: var(--secondary); font-size: var(--type-meta); }
+.value, .coordinate { font-variant-numeric: tabular-nums; font-family: ui-monospace, monospace; }
+.track { height: 1px; margin-top: 12px; background: color-mix(in srgb, var(--foreground) 18%, transparent); }
+.track span { display: block; height: 100%; background: var(--accent); transform-origin: left; }
+.points { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.points a { display: flex; align-items: center; gap: 8px; min-height: 44px; padding-block: 8px; color: var(--secondary); font-size: var(--type-meta); text-decoration: none; }
+.coordinate { font-size: 0.75rem; }
+.points a:hover, .points a[aria-current] { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+.points a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 40rem) {
+  .points { gap: 8px; }
+  .points a { flex-direction: column; align-items: flex-start; gap: 2px; }
+}

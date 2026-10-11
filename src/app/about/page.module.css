@@ -51,3 +51,8 @@
 @media (max-height: 720px) {
   .page { padding-top: 48px; padding-bottom: 48px; }
 }
+
+.section h2 { scroll-margin-top: 140px; }
+@media (prefers-reduced-motion: no-preference) {
+  :global(html:has(#about-story)) { scroll-behavior: smooth; }
+}
