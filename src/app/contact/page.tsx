@@ -15,7 +15,12 @@ export default function Page() {
         <p className={styles.intro}>A moment where people give up. A brand that doesn’t look like itself yet. A story worth capturing.</p>
         <p className={styles.invitation}>Tell me what you have in mind.</p>
         <a className={styles.email} href="mailto:hello@philipajibade.com">
-          <span>hello@philipajibade.com</span>
+          <span className={styles.connection} aria-hidden="true">
+            <span className={styles.connectionLine} />
+            <span className={styles.startPoint} />
+            <span className={styles.endPoint} />
+          </span>
+          <span className={styles.address}>hello@philipajibade.com</span>
           <span className={styles.arrow} aria-hidden="true">↗</span>
         </a>
         <p className={styles.note}>Opens your email app.</p>
