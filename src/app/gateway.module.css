@@ -127,3 +127,11 @@
   .linkPreview { display: none; }
   .linkTitle, .link:focus-visible .linkTitle { transform: none; }
 }
+
+@media (max-width: 40rem) {
+  .gateway { min-height: auto; padding-block: 40px; }
+  .title { font-size: var(--type-display-mobile); overflow-wrap: anywhere; }
+  .linkPreview { display: none; }
+  .link:focus-visible .linkTitle { transform: none; }
+  .navigation { gap: var(--gateway-gap); }
+}

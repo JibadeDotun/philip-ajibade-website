@@ -86,3 +86,7 @@
   .arrow { transition: none; }
   .email:hover .arrow { transform: none; }
 }
+
+@media (max-width: 40rem) {
+  .page { min-height: auto; padding-block: 48px; }
+}

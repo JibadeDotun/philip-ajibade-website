@@ -58,3 +58,7 @@
 }
 
 .article { overflow-wrap: anywhere; }
+
+@media (max-width: 40rem) {
+  .page { padding-top: 48px; padding-bottom: 48px; }
+}
