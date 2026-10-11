@@ -88,15 +88,15 @@ export default function LocationFooter() {
           <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" />
         </svg>
       ))}
-      <time className={styles.clock} dateTime={now?.toISOString()} aria-label={now ? `Manchester local time: ${formatter.format(now)}` : "Manchester local time"}>
+      <time hidden={!now} className={styles.clock} dateTime={now?.toISOString()} aria-label={now ? `Manchester local time: ${formatter.format(now)}` : "Manchester local time"}>
         {now ? formatter.format(now) : "--:--"}
       </time>
-      <span className={styles.separator} aria-hidden="true" />
-      <a className={styles.weather} href="https://open-meteo.com/" target="_blank" rel="noreferrer" aria-label={weather ? `Manchester weather: ${Math.round(weather.current.temperature_2m)} degrees Celsius, ${weatherDescription(weather.current.weather_code)}. Weather by Open-Meteo` : weatherFailed ? "Manchester weather unavailable. Weather by Open-Meteo" : "Loading Manchester weather. Weather by Open-Meteo"}>
-        {weather ? `${Math.round(weather.current.temperature_2m)}°C · ${weatherDescription(weather.current.weather_code)}` : weatherFailed ? "Weather unavailable" : "Loading weather…"}
+      <span hidden={!now} className={styles.separator} aria-hidden="true" />
+      <a className={styles.weather} href="https://open-meteo.com/" target="_blank" rel="noreferrer" aria-label={weather ? `Manchester weather: ${Math.round(weather.current.temperature_2m)} degrees Celsius, ${weatherDescription(weather.current.weather_code)}. Weather by Open-Meteo` : weatherFailed ? "Manchester weather unavailable. Weather by Open-Meteo" : now ? "Loading Manchester weather. Weather by Open-Meteo" : "Manchester weather. Weather by Open-Meteo"}>
+        {weather ? `${Math.round(weather.current.temperature_2m)}°C · ${weatherDescription(weather.current.weather_code)}` : weatherFailed ? "Weather unavailable" : now ? "Loading weather…" : "Manchester weather ↗"}
       </a>
       </span>
-      <button type="button" className={styles.updates} aria-pressed={paused} onClick={() => setPaused(value => !value)}>
+      <button hidden={!now} type="button" className={styles.updates} aria-pressed={paused} onClick={() => setPaused(value => !value)}>
         {paused ? "Resume live updates" : "Pause live updates"}
       </button>
     </footer>

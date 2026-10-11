@@ -60,6 +60,7 @@
   position: fixed;
   inset: 0;
   width: 100%;
+  height: 100vh;
   height: 100dvh;
   max-width: none;
   max-height: none;
@@ -68,6 +69,7 @@
   border: 0;
   overflow: auto;
   color: var(--foreground);
+  background: var(--background);
   background: color-mix(in srgb, var(--background) 95%, transparent);
   backdrop-filter: blur(16px);
 }
@@ -118,4 +120,31 @@
   .header { position: relative; }
   .identity { min-width: 0; overflow-wrap: anywhere; }
   .button { flex-shrink: 0; }
+}
+
+/* Native disclosure remains usable before hydration or if scripts fail. */
+.fallbackMenu { margin-left: auto; }
+.fallbackMenu summary { list-style: none; }
+.fallbackMenu summary::-webkit-details-marker { display: none; }
+.fallbackMenu[open] summary { position: fixed; top: 28px; right: clamp(24px, 4vw, 64px); z-index: 22; }
+.fallbackMenu[open] .menuIcon span:first-child { top: 15px; transform: rotate(45deg); }
+.fallbackMenu[open] .menuIcon span:last-child { top: 15px; transform: rotate(-45deg); }
+.fallbackNavigation {
+  position: fixed;
+  inset: 0;
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 112px 24px 64px;
+  overflow: auto;
+  background: var(--background);
+}
+.fallbackIdentity { position: absolute; top: 28px; left: clamp(24px, 4vw, 64px); display: grid; gap: 4px; text-decoration: none; }
+.fallbackIdentity:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+@media (max-width: 40rem) {
+  .fallbackMenu[open] summary, .fallbackIdentity { top: 20px; }
 }
