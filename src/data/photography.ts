@@ -1,3 +1,5 @@
+import { readSanityPhotographs } from "./sanity-photography";
+
 export type Photograph = {
   id: string;
   src: string;
@@ -17,6 +19,15 @@ export type Photograph = {
 // Keep original files backed up separately; src points to a web-ready copy.
 export const photographs: Photograph[] = [];
 
-export function getPublishedPhotographs() {
-  return photographs.filter(photo => photo.published).sort((a, b) => a.order - b.order);
+export async function getPublishedPhotographs() {
+  const local = photographs.filter(photo => photo.published).sort((a, b) => a.order - b.order);
+  const projectId = process.env.SANITY_PROJECT_ID;
+  const dataset = process.env.SANITY_DATASET || "production";
+  if (!projectId) return local;
+  try {
+    return await readSanityPhotographs(projectId, dataset);
+  } catch {
+    console.warn("Photography CMS unavailable; displaying the local selection.");
+    return local;
+  }
 }

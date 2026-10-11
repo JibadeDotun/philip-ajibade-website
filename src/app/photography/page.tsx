@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description: "Street photography by Philip Ajibade. People, places, and everyday moments.",
 };
 
-export default function Photography() {
-  const photos = getPublishedPhotographs();
+export default async function Photography() {
+  const photos = await getPublishedPhotographs();
   return (
     <main id="main-content" tabIndex={-1} className={styles.page}>
       <div className={styles.content}>

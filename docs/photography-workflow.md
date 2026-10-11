@@ -37,3 +37,7 @@ After the first selection establishes the layout, connect a CMS to the same phot
 Two columns on desktop, one on mobile, original aspect ratios, optional wide entries, image captions, responsive Next.js image sizing and lazy loading below the first image. Each photograph links directly to its image as a native fallback; capable browsers enhance it with a native modal viewer. Viewer has explicit close, bounded previous/next controls, arrow-key navigation, Escape and focus restoration.
 
 Temporary geometric test images verified portrait/landscape layout, wide entries, 320px reflow, modal navigation, disabled end controls and focus restoration. Test assets and records were removed. ESLint and TypeScript pass. Real photographic compression/quality, remote CMS delivery and physical iPhone 7 rendering still require verification after images are supplied. No full screen-reader conformance or production-build success is claimed.
+
+## Editor integration prepared
+
+A standalone Studio now lives in `studio/`; see its README for setup. The website's server loader reads Sanity's published perspective, excludes malformed/draft/version records defensively, validates the configured image path, and caches requests for 60 seconds. Project ID and dataset configuration, Studio package installation/version lock, deployment, and real upload/publish tests remain pending. Collection navigation and draft website preview are not included yet.

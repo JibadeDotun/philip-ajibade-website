@@ -1,0 +1,7 @@
+{
+  "name": "philip-photography-studio",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "sanity dev", "build": "sanity build", "deploy": "sanity deploy" },
+  "dependencies": { "sanity": "latest", "react": "^19.2.4", "react-dom": "^19.2.4" }
+}
