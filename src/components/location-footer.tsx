@@ -88,7 +88,7 @@ export default function LocationFooter() {
       <time className={styles.clock} dateTime={now?.toISOString()} aria-label={now ? `Manchester local time: ${formatter.format(now)}` : "Manchester local time"}>
         {now ? formatter.format(now) : "--:--"}
       </time>
-      <span className={styles.separator} aria-hidden="true">·</span>
+      <span className={styles.separator} aria-hidden="true" />
       <a className={styles.weather} href="https://open-meteo.com/" target="_blank" rel="noreferrer" aria-label={weather ? `Manchester weather: ${Math.round(weather.current.temperature_2m)} degrees Celsius, ${weatherDescription(weather.current.weather_code)}. Weather by Open-Meteo` : "Weather by Open-Meteo"}>
         {weather ? `${Math.round(weather.current.temperature_2m)}°C · ${weatherDescription(weather.current.weather_code)}` : weatherFailed ? "Weather unavailable" : "Loading weather…"}
       </a>
