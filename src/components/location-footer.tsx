@@ -32,19 +32,22 @@ function weatherDescription(code: number) {
 }
 
 export default function LocationFooter() {
+  const [paused, setPaused] = useState(false);
   const [now, setNow] = useState<Date | null>(null);
 
   const [weather, setWeather] = useState<ManchesterWeather | null>(null);
   const [weatherFailed, setWeatherFailed] = useState(false);
 
   useEffect(() => {
+    if (paused) return;
     const update = () => setNow(new Date());
     const initial = window.setTimeout(update, 0);
-    const interval = window.setInterval(update, 1000);
+    const interval = paused ? undefined : window.setInterval(update, 1000);
     return () => { window.clearTimeout(initial); window.clearInterval(interval); };
-  }, []);
+  }, [paused]);
 
   useEffect(() => {
+    if (paused) return;
     let disposed = false;
     let controller: AbortController | null = null;
     async function refresh() {
@@ -62,9 +65,9 @@ export default function LocationFooter() {
       } finally { window.clearTimeout(timeout); }
     }
     void refresh();
-    const interval = window.setInterval(refresh, 10 * 60 * 1000);
+    const interval = paused ? undefined : window.setInterval(refresh, 10 * 60 * 1000);
     return () => { disposed = true; controller?.abort(); window.clearInterval(interval); };
-  }, []);
+  }, [paused]);
 
   const dayIndex = now && weather ? weather.daily.sunrise.findIndex(sunrise => dayFormatter.format(new Date(sunrise * 1000)) === dayFormatter.format(now)) : -1;
   const daytime = now && weather && dayIndex >= 0
@@ -93,6 +96,9 @@ export default function LocationFooter() {
         {weather ? `${Math.round(weather.current.temperature_2m)}°C · ${weatherDescription(weather.current.weather_code)}` : weatherFailed ? "Weather unavailable" : "Loading weather…"}
       </a>
       </span>
+      <button type="button" className={styles.updates} aria-pressed={paused} onClick={() => setPaused(value => !value)}>
+        {paused ? "Resume live updates" : "Pause live updates"}
+      </button>
     </footer>
   );
 }

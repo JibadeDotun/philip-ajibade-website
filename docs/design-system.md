@@ -82,3 +82,7 @@ Check both system themes, live theme changes, keyboard navigation, visible focus
 ## Remaining brand decisions
 
 Display name and introduction; final typefaces; logo or wordmark; project and photo assets; contact/social destinations. These do not prevent establishing the shared system, but should be settled before populated portfolio pages are published.
+
+## Accessibility refinement — 11 October 2026
+
+Typography now uses shared display, identity, body (1rem), and metadata (0.875rem) tokens. Secondary text uses #444840 in light mode and #B9BDB5 in dark mode instead of opacity. Standalone link targets have a minimum 44px height. Service previews flow when expanded, support Escape dismissal, and stay available on touch devices. The live footer offers pause/resume. Full WCAG conformance remains unclaimed pending complete screen-reader, zoom, theme and device testing.
