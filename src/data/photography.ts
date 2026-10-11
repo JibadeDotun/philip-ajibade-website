@@ -21,9 +21,9 @@ export const photographs: Photograph[] = [];
 
 export async function getPublishedPhotographs() {
   const local = photographs.filter(photo => photo.published).sort((a, b) => a.order - b.order);
-  const projectId = process.env.SANITY_PROJECT_ID;
+  // Public project identifier; environment settings can override it for other deployments.
+  const projectId = process.env.SANITY_PROJECT_ID || "uljstmd1";
   const dataset = process.env.SANITY_DATASET || "production";
-  if (!projectId) return local;
   try {
     return await readSanityPhotographs(projectId, dataset);
   } catch {

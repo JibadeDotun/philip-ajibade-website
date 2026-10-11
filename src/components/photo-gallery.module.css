@@ -1,9 +1,24 @@
-.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px 40px; align-items: start; }
-.figure, .wide { min-width: 0; margin: 0; }
-.wide { grid-column: 1 / -1; }
-.imageLink { display: block; }
-.image { display: block; width: 100%; height: auto; }
-.caption { display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; margin-top: 12px; font-size: var(--type-meta); color: var(--secondary); }
+/* Equal-length groups make the loop seamless; photographs keep their own ratio. */
+.reel { --photo-height: clamp(220px, 30vw, 360px); display: grid; gap: 36px; }
+.row { overflow: hidden; padding: 6px; }
+.track { display: flex; width: max-content; }
+.moving { animation: drift 65s linear infinite; }
+.reverse { animation-direction: reverse; }
+.group { display: flex; align-items: start; gap: 24px; padding-right: 24px; }
+.figure { flex: none; min-width: 0; margin: 0; }
+.imageLink { display: block; border-radius: 10px; overflow: hidden; }
+.image { display: block; height: var(--photo-height); width: auto; }
+.caption { display: grid; gap: 4px; margin-top: 12px; font-size: var(--type-meta); color: var(--secondary); }
+.motionControl { display: flex; justify-content: flex-end; margin: -16px 0 16px; }
+.motionControl button { min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--secondary); font: inherit; font-size: var(--type-meta); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.motionControl button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.row:focus-within .track, .reel[data-paused="true"] .track { animation-play-state: paused; }
+@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .moving { animation: none; }
+  .row { overflow-x: auto; }
+  .group[aria-hidden="true"], .motionControl { display: none; }
+}
 .empty { color: var(--secondary); padding-block: 48px; line-height: 1.75; }
 .dialog { position: fixed; inset: 0; width: 100%; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--background); color: var(--foreground); overflow: auto; }
 .dialog::backdrop { background: var(--background); }
@@ -19,6 +34,6 @@
 .largeImage { display: block; width: auto; height: auto; max-width: 100%; max-height: calc(100vh - 220px); max-height: calc(100dvh - 220px); object-fit: contain; }
 .viewCaption { display: grid; justify-items: center; gap: 4px; margin-top: 16px; text-align: center; font-size: var(--type-meta); color: var(--secondary); }
 @media (max-width: 40rem) {
-  .grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .reel { --photo-height: 250px; gap: 28px; }
   .viewer { padding: 16px 24px max(16px, env(safe-area-inset-bottom)); }
 }

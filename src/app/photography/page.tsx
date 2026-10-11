@@ -21,7 +21,7 @@ export default async function Photography() {
         <section aria-labelledby="selected-photographs">
           <div className={styles.sectionHeader}>
             <h2 id="selected-photographs">Selected photographs</h2>
-            {photos.length > 0 && <span>{photos.length} photographs</span>}
+            {photos.length > 0 && <span>{photos.length} {photos.length === 1 ? "photograph" : "photographs"}</span>}
           </div>
           <PhotoGallery photos={photos} />
         </section>

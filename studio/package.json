@@ -2,6 +2,15 @@
   "name": "philip-photography-studio",
   "private": true,
   "type": "module",
-  "scripts": { "dev": "sanity dev", "build": "sanity build", "deploy": "sanity deploy" },
-  "dependencies": { "sanity": "latest", "react": "^19.2.4", "react-dom": "^19.2.4" }
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "sanity": "6.18.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "styled-components": "^6.1.15"
+  }
 }
