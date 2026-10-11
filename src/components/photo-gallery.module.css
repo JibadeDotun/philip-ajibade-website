@@ -1,9 +1,8 @@
 /* Equal-length groups make the loop seamless; photographs keep their own ratio. */
 .reel { --photo-height: clamp(220px, 30vw, 360px); display: grid; gap: 36px; }
-.row { overflow: hidden; padding: 6px; }
+.row { overflow-x: auto; overflow-y: hidden; padding: 6px 6px 14px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.row:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .track { display: flex; width: max-content; }
-.moving { animation: drift 65s linear infinite; }
-.reverse { animation-direction: reverse; }
 .group { display: flex; align-items: start; gap: 24px; padding-right: 24px; }
 .figure { flex: none; min-width: 0; margin: 0; }
 .imageLink { display: block; border-radius: 10px; overflow: hidden; }
@@ -12,10 +11,7 @@
 .motionControl { display: flex; justify-content: flex-end; margin: -16px 0 16px; }
 .motionControl button { min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--secondary); font: inherit; font-size: var(--type-meta); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
 .motionControl button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.row:focus-within .track, .reel[data-paused="true"] .track { animation-play-state: paused; }
-@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
-  .moving { animation: none; }
   .row { overflow-x: auto; }
   .group[aria-hidden="true"], .motionControl { display: none; }
 }

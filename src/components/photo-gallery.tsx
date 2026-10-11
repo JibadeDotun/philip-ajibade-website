@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Photograph } from "../data/photography";
 import styles from "./photo-gallery.module.css";
 
@@ -27,16 +27,6 @@ export default function PhotoGallery({ photos }: { photos: Photograph[] }) {
     setIndex(value => Math.max(0, Math.min(photos.length - 1, value + offset)));
   }
 
-  function setRowSpeed(row: HTMLDivElement, rate: number) {
-    const track = row.firstElementChild;
-    if (!track || typeof track.getAnimations !== "function") return;
-    // Change playback speed without resetting the loop's current position.
-    for (const animation of track.getAnimations()) {
-      if (typeof animation.updatePlaybackRate === "function") animation.updatePlaybackRate(rate);
-      else animation.playbackRate = rate;
-    }
-  }
-
   if (!photos.length) return <p className={styles.empty}>The first collection is being curated. Check back soon.</p>;
 
   return (
@@ -47,10 +37,8 @@ export default function PhotoGallery({ photos }: { photos: Photograph[] }) {
         </button>
       </div>}
       <div className={styles.reel} data-paused={paused}>
-        {rows.map((row, rowIndex) => <div key={rowIndex} className={styles.row}
-          onPointerEnter={event => { if (event.pointerType === "mouse") setRowSpeed(event.currentTarget, 0.25); }}
-          onPointerLeave={event => setRowSpeed(event.currentTarget, 1)}>
-          <div className={`${styles.track} ${photos.length > 1 ? styles.moving : ""} ${rowIndex % 2 ? styles.reverse : ""}`}>
+        {rows.map((row, rowIndex) => <PhotoRow key={rowIndex} rowIndex={rowIndex} paused={paused} moving={photos.length > 1}>
+          <div className={styles.track}>
           {(photos.length > 1 ? [false, true] : [false]).map(copy => <div key={String(copy)} className={styles.group} aria-hidden={copy || undefined}>
           {row.map(({ item, itemIndex }) => (
           <figure key={item.id} className={styles.figure}>
@@ -64,7 +52,7 @@ export default function PhotoGallery({ photos }: { photos: Photograph[] }) {
           ))}
           </div>)}
           </div>
-        </div>)}
+        </PhotoRow>)}
       </div>
       <dialog ref={dialog} className={styles.dialog} aria-labelledby="photograph-title"
         onClose={() => origin.current?.focus()}
@@ -96,4 +84,64 @@ export default function PhotoGallery({ photos }: { photos: Photograph[] }) {
       </dialog>
     </>
   );
+}
+
+function PhotoRow({ children, rowIndex, paused, moving }: {
+  children: React.ReactNode; rowIndex: number; paused: boolean; moving: boolean;
+}) {
+  const row = useRef<HTMLDivElement>(null);
+  const speed = useRef(1);
+  const manualUntil = useRef(0);
+  const touching = useRef(false);
+  const keyboardInteraction = useRef(true);
+
+  useEffect(() => {
+    const keyboard = () => { keyboardInteraction.current = true; };
+    const pointer = () => { keyboardInteraction.current = false; };
+    window.addEventListener("keydown", keyboard);
+    window.addEventListener("pointerdown", pointer);
+    return () => {
+      window.removeEventListener("keydown", keyboard);
+      window.removeEventListener("pointerdown", pointer);
+    };
+  }, []);
+
+  useEffect(() => {
+    const element = row.current;
+    if (!element || !moving) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    let previous = 0;
+    let position = element.scrollLeft;
+    function tick(time: number) {
+      if (!element) return;
+      const elapsed = previous ? Math.min(time - previous, 50) : 0;
+      previous = time;
+      const group = element.firstElementChild?.firstElementChild as HTMLElement | undefined;
+      const loopWidth = group?.offsetWidth || 0;
+      const manual = touching.current || Date.now() < manualUntil.current;
+      const keyboardFocused = keyboardInteraction.current && element.contains(document.activeElement);
+      if (paused || reduced.matches || manual || keyboardFocused) {
+        position = element.scrollLeft;
+      } else if (loopWidth > element.clientWidth) {
+        position += elapsed * loopWidth / 65000 * speed.current * (rowIndex % 2 ? -1 : 1);
+        position = ((position % loopWidth) + loopWidth) % loopWidth;
+        element.scrollLeft = position;
+      }
+      frame = requestAnimationFrame(tick);
+    }
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [moving, paused, rowIndex]);
+
+  return <div ref={row} className={styles.row} tabIndex={0}
+    role="region" aria-label={`Photograph row ${rowIndex + 1}, scroll sideways to browse`}
+    onPointerEnter={event => { if (event.pointerType === "mouse") speed.current = 0.25; }}
+    onPointerLeave={() => { speed.current = 1; manualUntil.current = 0; }}
+    onWheel={() => { keyboardInteraction.current = false; manualUntil.current = Date.now() + 2000; }}
+    onTouchStart={() => { keyboardInteraction.current = false; touching.current = true; }}
+    onTouchEnd={() => { touching.current = false; manualUntil.current = Date.now() + 2000; }}
+    onTouchCancel={() => { touching.current = false; }}>
+    {children}
+  </div>;
 }
