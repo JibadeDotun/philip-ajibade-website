@@ -37,3 +37,6 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
 }
 
 html:has(dialog[open]) { overflow: hidden; }
+
+body { display: flex; flex-direction: column; min-height: 100svh; }
+body > main { flex: 1; }
