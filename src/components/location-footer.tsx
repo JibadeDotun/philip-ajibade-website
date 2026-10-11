@@ -92,7 +92,7 @@ export default function LocationFooter() {
         {now ? formatter.format(now) : "--:--"}
       </time>
       <span className={styles.separator} aria-hidden="true" />
-      <a className={styles.weather} href="https://open-meteo.com/" target="_blank" rel="noreferrer" aria-label={weather ? `Manchester weather: ${Math.round(weather.current.temperature_2m)} degrees Celsius, ${weatherDescription(weather.current.weather_code)}. Weather by Open-Meteo` : "Weather by Open-Meteo"}>
+      <a className={styles.weather} href="https://open-meteo.com/" target="_blank" rel="noreferrer" aria-label={weather ? `Manchester weather: ${Math.round(weather.current.temperature_2m)} degrees Celsius, ${weatherDescription(weather.current.weather_code)}. Weather by Open-Meteo` : weatherFailed ? "Manchester weather unavailable. Weather by Open-Meteo" : "Loading Manchester weather. Weather by Open-Meteo"}>
         {weather ? `${Math.round(weather.current.temperature_2m)}°C · ${weatherDescription(weather.current.weather_code)}` : weatherFailed ? "Weather unavailable" : "Loading weather…"}
       </a>
       </span>

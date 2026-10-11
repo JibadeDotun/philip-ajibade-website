@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className={styles.page}>
+    <main id="main-content" tabIndex={-1} className={styles.page}>
       <article id="about-story" className={styles.article}>
         <header className={styles.intro}>
           <p className={styles.eyebrow}>About me</p>

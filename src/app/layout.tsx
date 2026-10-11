@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={display.variable}>
-      <body><SiteHeader />{children}<LocationFooter /></body>
+      <body><a className="skip-link" href="#main-content">Skip to content</a><SiteHeader />{children}<LocationFooter /></body>
     </html>
   );
 }

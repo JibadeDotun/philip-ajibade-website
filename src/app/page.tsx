@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className={`${styles.gateway} ${styles.home}`}>
+    <main id="main-content" tabIndex={-1} className={`${styles.gateway} ${styles.home}`}>
       <CursorGlow />
       <h1 className={styles.srOnly}>Philip Ajibade — selected work</h1>
       <nav className={styles.navigation} aria-label="Explore portfolios">

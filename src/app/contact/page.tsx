@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className={styles.page}>
+    <main id="main-content" tabIndex={-1} className={styles.page}>
       <div className={styles.content}>
         <h1>Let’s go find it.</h1>
         <p className={styles.intro}>Have something in mind? Let’s talk.</p>

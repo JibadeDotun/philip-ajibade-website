@@ -56,3 +56,5 @@
 @media (prefers-reduced-motion: no-preference) {
   :global(html:has(#about-story)) { scroll-behavior: smooth; }
 }
+
+.article { overflow-wrap: anywhere; }
