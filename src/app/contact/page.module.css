@@ -5,7 +5,6 @@
   padding: 160px clamp(24px, 4vw, 64px) 180px;
 }
 .content { width: min(100%, 760px); text-align: center; }
-.label { color: var(--secondary); font-size: var(--type-meta); margin-bottom: 24px; }
 .content h1 {
   font-family: var(--font-gateway), Georgia, serif;
   font-size: var(--type-display);
@@ -15,7 +14,6 @@
   text-wrap: balance;
 }
 .intro { max-width: 44ch; margin: 24px auto 0; line-height: 1.75; text-wrap: balance; }
-.invitation { margin-top: 20px; line-height: 1.75; }
 .email {
   position: relative;
   display: inline-flex;
@@ -75,7 +73,6 @@
 .arrow { flex: none; transition: transform 180ms ease; }
 .email:hover .arrow { transform: translate(2px, -2px); }
 .email:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
-.note { color: var(--secondary); font-size: var(--type-meta); margin-top: 12px; }
 @media (max-width: 40rem) {
   .page { padding-top: 144px; padding-bottom: 200px; }
   .content h1 { font-size: var(--type-display-mobile); }
