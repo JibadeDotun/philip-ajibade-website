@@ -122,6 +122,8 @@
 .link[data-dismissed="true"] .linkTitle { transform: none; }
 
 @media (hover: none) and (pointer: coarse) {
-  .linkPreview { position: static; width: 100%; margin-top: 10px; opacity: 1; visibility: visible; transform: none; }
-  .linkTitle { transform: none; }
+  /* Touch links navigate directly; hover previews must not expand the page. */
+  .navigation { gap: var(--gateway-gap); }
+  .linkPreview { display: none; }
+  .linkTitle, .link:focus-visible .linkTitle { transform: none; }
 }
