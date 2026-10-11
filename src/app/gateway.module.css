@@ -4,7 +4,7 @@
   --gateway-accent: #345444;
   --gateway-gap: clamp(40px, 3.8vw, 56px);
   color-scheme: light;
-  min-height: calc(100svh - 116px);
+  min-height: 100svh;
   display: grid;
   place-items: center;
   padding: 64px clamp(24px, 4vw, 64px);
@@ -20,8 +20,7 @@
   justify-items: center;
   gap: var(--gateway-gap);
   text-align: center;
-  /* A small optical adjustment balances the text within the viewport. */
-  padding-bottom: clamp(8px, 1.5vh, 16px);
+
 }
 .link {
   display: block;
@@ -130,4 +129,8 @@
 @media (prefers-reduced-motion: reduce) {
   .link { animation: none; }
   .linkTitle, .linkPreview { transition: none; }
+}
+
+@media (max-height: 600px) {
+  .gateway { min-height: auto; padding-block: 40px; }
 }

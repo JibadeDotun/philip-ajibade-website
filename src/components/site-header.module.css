@@ -107,3 +107,7 @@
   .dialog[open] { animation: none; }
   .identity, .button, .menuLink { transition: none; }
 }
+
+@media (max-height: 600px) {
+  .header { position: relative; }
+}
