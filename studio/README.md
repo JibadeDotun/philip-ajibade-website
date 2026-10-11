@@ -15,9 +15,8 @@ Create or choose a project at https://www.sanity.io/manage and a public dataset 
 From the website folder, in a free VS Code terminal:
 
 ```bash
-cd studio
-npm install
-npm run dev
+npm run studio:install
+npm run studio:dev
 ```
 
 Sign in to Sanity when prompted. The Studio CLI reports its local address (normally http://localhost:3333). Installation resolves the `latest` Sanity bootstrap dependency; commit the generated Studio package lock and pin the resolved Sanity version before deploying the editor. Packages could not be installed from the agent terminal because npm DNS/network access is unavailable.
