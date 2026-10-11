@@ -46,3 +46,7 @@
 @media (max-width: 40rem) {
   .footer { position: static; flex: none; }
 }
+
+@media (max-width: 40rem) {
+  .timeRow, .updates { display: none; }
+}
