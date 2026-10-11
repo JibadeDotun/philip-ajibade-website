@@ -16,9 +16,14 @@
 .label { opacity: 0.6; font-size: 12px; }
 .clock { font-variant-numeric: tabular-nums; }
 
-.timeRow { display: inline-flex; align-items: center; gap: 7px; }
+.timeRow { display: inline-flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: center; }
 .icon { width: 16px; height: 16px; flex: none; }
 
 @media (max-height: 600px) {
   .footer { position: static; }
 }
+
+.separator { opacity: 0.4; margin-inline: 3px; }
+.weather { color: inherit; text-decoration: none; }
+.weather:hover { text-decoration: underline; text-underline-offset: 3px; }
+.weather:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
