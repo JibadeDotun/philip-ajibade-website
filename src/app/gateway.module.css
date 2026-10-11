@@ -20,7 +20,7 @@
   width: min(100%, 990px);
   display: grid;
   justify-items: center;
-  gap: var(--gateway-gap);
+  gap: max(var(--gateway-gap), var(--preview-clearance, 40px));
   text-align: center;
 
 }
@@ -46,7 +46,7 @@
 }
 .link:nth-child(2) { animation-delay: 70ms; }
 .link:nth-child(3) { animation-delay: 140ms; }
-/* Hidden previews occupy no space; revealed copy flows without clipping. */
+/* Measured overlays keep title positions fixed as previews change. */
 .linkWindow {
   display: block;
   position: relative;
@@ -59,10 +59,10 @@
   transform-origin: center;
 }
 .linkPreview {
-  position: static;
-  width: 100%;
-  max-height: 0;
-  overflow: hidden;
+  position: absolute;
+  top: calc(100% - var(--preview-height, 48px) / 2);
+  left: 50%;
+  width: min(85vw, 520px);
   margin-top: 0;
   display: grid;
   justify-items: center;
@@ -75,16 +75,16 @@
   letter-spacing: 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
+  transform: translate(-50%, 8px);
 }
 .previewDescription { max-width: 44ch; text-wrap: balance; }
 .previewPrompt { font-size: var(--type-meta); color: var(--gateway-accent); }
 @media (hover: hover) and (pointer: fine) {
-  .link:hover .linkTitle { transform: translateY(-0.12em) scale(0.88); }
-  .link:hover .linkPreview { transform: none; max-height: none; margin-top: 12px; opacity: 1; visibility: visible; }
+  .link:hover .linkTitle { transform: translateY(calc(var(--preview-height, 48px) / -2 - 8px)) scale(0.88); }
+  .link:hover .linkPreview { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
 }
-.link:focus-visible .linkTitle { transform: translateY(-0.12em) scale(0.88); }
-.link:focus-visible .linkPreview { transform: none; max-height: none; margin-top: 12px; opacity: 1; visibility: visible; }
+.link:focus-visible .linkTitle { transform: translateY(calc(var(--preview-height, 48px) / -2 - 8px)) scale(0.88); }
+.link:focus-visible .linkPreview { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
 .link:focus-visible {
   outline: 2px solid var(--gateway-accent);
   outline-offset: 8px;
@@ -107,35 +107,6 @@
   .gateway { padding: 24px; --gateway-gap: 40px; }
   .navigation { max-width: 342px; }
   .link { font-size: var(--type-display-mobile); line-height: 1.35; }
-  /* Wrapped mobile titles need a flowing preview rather than an overlay. */
-  .linkPreview {
-    position: static;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0;
-    margin-top: 0;
-    transform: none;
-    transition: max-height 320ms ease, margin-top 320ms ease, opacity 240ms ease;
-  }
-  .link:focus-visible .linkTitle { transform: none; }
-  .link:focus-visible .linkPreview {
-    max-height: none;
-    margin-top: 12px;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-  }
-}
-@media (max-width: 40rem) and (hover: hover) and (pointer: fine) {
-  .link:hover .linkTitle { transform: none; }
-  .link:hover .linkPreview {
-    max-height: none;
-    margin-top: 12px;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .link { animation: none; }
@@ -147,24 +118,10 @@
 }
 
 /* Escape dismisses a preview without forcing the user to move focus. */
-.link[data-dismissed="true"] .linkPreview { max-height: 0; margin-top: 0; opacity: 0; visibility: hidden; }
+.link[data-dismissed="true"] .linkPreview { opacity: 0; visibility: hidden; }
 .link[data-dismissed="true"] .linkTitle { transform: none; }
-@media (max-width: 40rem) {
-  .link[data-dismissed="true"] .linkPreview { max-height: 0; margin-top: 0; }
-}
 
-/* Flow previews at narrow widths and under zoom so larger copy cannot collide. */
-@media (min-width: 40.001rem) and (max-width: 75rem) {
-  .linkPreview { position: static; width: 100%; max-height: 0; overflow: hidden; padding: 0; margin-top: 0; transform: none; }
-  .link:focus-visible .linkTitle { transform: none; }
-  .link:focus-visible .linkPreview { max-height: none; margin-top: 12px; transform: none; opacity: 1; visibility: visible; }
-  .link[data-dismissed="true"] .linkPreview { max-height: 0; margin-top: 0; }
-}
-@media (min-width: 40.001rem) and (max-width: 75rem) and (hover: hover) and (pointer: fine) {
-  .link:hover .linkTitle { transform: none; }
-  .link:hover .linkPreview { max-height: none; margin-top: 12px; transform: none; opacity: 1; visibility: visible; }
-}
 @media (hover: none) and (pointer: coarse) {
-  .linkPreview { position: static; width: 100%; max-height: none; margin-top: 10px; padding: 0; opacity: 1; visibility: visible; transform: none; }
+  .linkPreview { position: static; width: 100%; margin-top: 10px; opacity: 1; visibility: visible; transform: none; }
   .linkTitle { transform: none; }
 }
