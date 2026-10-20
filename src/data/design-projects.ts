@@ -15,4 +15,11 @@ export const designProjects: DesignProject[] = [{
   period: "2017–2019",
   summary: "Research synthesis, journey mapping and interactive prototypes for RFA and family-finding workflows.",
   heroPreview: null,
+}, {
+  slug: "goldwise",
+  title: "Making precious metals investing easier to navigate",
+  category: "Fintech · GoldWise",
+  period: "Four-month project",
+  summary: "Research, onboarding and mobile trading flows for people with different levels of investment experience.",
+  heroPreview: null,
 }];

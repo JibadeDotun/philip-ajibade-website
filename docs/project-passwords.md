@@ -1,6 +1,6 @@
 # Case-study access
 
-Project cards remain public. Case-study pages check access on the server before rendering their content. The initial registered project is `cws-cares`; new case-study pages must use the same check and be added to the registry in `src/lib/project-access.ts`.
+Project cards remain public. Case-study pages check access on the server before rendering their content. The registered projects are `cws-cares` and `goldwise`; new case-study pages must use the same check and be added to the registry in `src/lib/project-access.ts`.
 
 Set `PROJECT_PASSWORD` to your chosen strong shared password in the root `.env.local` for local development. Restart `npm run dev` after changing it. Set the same variable in Vercel's production environment and redeploy before publishing. Never prefix it with `NEXT_PUBLIC_`, commit the password, or put it in a URL.
 

@@ -5,6 +5,7 @@ const projectId = process.env.SANITY_PROJECT_ID || "uljstmd1";
 const dataset = process.env.SANITY_DATASET || "production";
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
+    "/product-service-design/goldwise/media/*": ["./project-assets/goldwise/**/*"],
     "/product-service-design/cws-cares/media/*": ["./project-assets/cws-cares/**/*"],
   },
   images: {

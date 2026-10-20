@@ -2,7 +2,7 @@ import "server-only";
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
-const projects = new Set(["cws-cares"]);
+const projects = new Set(["cws-cares", "goldwise"]);
 export function projectPassword(slug: string) {
   return projects.has(slug) ? process.env.PROJECT_PASSWORD || "" : "";
 }
