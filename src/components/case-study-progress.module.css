@@ -1,0 +1,14 @@
+.bar { position: fixed; inset: 0 0 auto; z-index: 40; background: var(--background); border-bottom: 1px solid color-mix(in srgb, var(--foreground) 18%, transparent); visibility: hidden; opacity: 0; pointer-events: none; }
+.visible { visibility: visible; opacity: 1; pointer-events: auto; }
+.bar ol { width: min(100% - 48px, 1120px); margin: 0 auto; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.bar li { min-width: 0; }
+.bar a { min-height: 72px; height: 100%; padding: 12px 8px; display: flex; flex-direction: column; justify-content: center; gap: 5px; color: var(--secondary); font-size: 12px; line-height: 1.35; text-decoration: none; border-bottom: 3px solid transparent; }
+.number { font-size: 10px; font-variant-numeric: tabular-nums; }
+.bar a[aria-current="location"] { color: var(--accent); border-bottom-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.bar a:hover { color: var(--accent); }
+.bar a:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+@media (max-width: 640px) {
+  .bar ol { width: calc(100% - 16px); }
+  .bar a { padding: 10px 3px; min-height: 88px; font-size: 9px; overflow-wrap: anywhere; }
+  .number { font-size: 9px; }
+}

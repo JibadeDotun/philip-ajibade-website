@@ -1,0 +1,11 @@
+.page { padding: 180px clamp(24px, 4vw, 64px); }
+.content { width: min(100%, 600px); margin-inline: auto; display: grid; gap: 24px; }
+.content h1 { font-family: var(--font-gateway), Georgia, serif; font-weight: 400; font-size: var(--type-display); line-height: 1.2; }
+.label { color: var(--secondary); font-size: var(--type-meta); }
+.link { width: fit-content; display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); text-underline-offset: 5px; }
+.form { display: grid; gap: 12px; margin-block: 8px; }
+.form input { width: 100%; min-height: 48px; border: 1px solid var(--secondary); padding: 12px; font: inherit; color: var(--foreground); background: var(--background); border-radius: 0; }
+.form button { width: fit-content; min-height: 48px; padding: 12px 20px; background: var(--foreground); color: var(--background); border: 1px solid var(--foreground); font: inherit; cursor: pointer; }
+.form button:disabled { opacity: .65; cursor: wait; }
+.link:focus-visible, .form input:focus-visible, .form button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 40rem), (max-height: 720px) { .page { padding-block: 48px; } .content h1 { font-size: var(--type-display-mobile); } }
