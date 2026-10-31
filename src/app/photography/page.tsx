@@ -18,7 +18,7 @@ export default async function Photography() {
           <h1>Photography</h1>
           <p>People, places, and everyday moments.</p>
         </header>
-        <section aria-labelledby="selected-photographs">
+        <section className={styles.galleryCard} aria-labelledby="selected-photographs">
           <div className={styles.sectionHeader}>
             <h2 id="selected-photographs">Selected photographs</h2>
             {photos.length > 0 && <span>{photos.length} {photos.length === 1 ? "photograph" : "photographs"}</span>}

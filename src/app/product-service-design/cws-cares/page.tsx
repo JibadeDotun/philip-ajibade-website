@@ -2,15 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import { hasProjectAccess } from "../../../lib/project-access";
-import ProjectGate from "../../../components/project-gate";
 import CaseStudyProgress from "../../../components/case-study-progress";
 import sections from "../../../data/cws-cares.json";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "CWS-CARES Case Study | Philip Ajibade",
-  robots: { index: false, follow: false },
   description: "Research synthesis, journey mapping and interactive prototypes for RFA approvals and family-finding workflows.",
 };
 const sectionLabels: Record<string, string> = { contribution: "My role", challenge: "The challenge", mapping: "Experience mapping", research: "Research to priorities", rfa: "RFA prototyping", "family-finding": "Family finding", reflection: "Contribution & reflection" };
@@ -28,7 +25,6 @@ function formatted(text: string) {
   return text.split(/(\*\*.*?\*\*)/g).map((part, index) => part.startsWith("**") ? <strong key={index}>{part.slice(2, -2)}</strong> : <Fragment key={index}>{part}</Fragment>);
 }
 export default async function CwsCares() {
-  if (!await hasProjectAccess("cws-cares")) return <ProjectGate slug="cws-cares" title="CWS-CARES" />;
   return <main id="main-content" tabIndex={-1} className={styles.page}>
     <CaseStudyProgress sections={sections.map(section => ({ id: section.id, label: sectionLabels[section.id] }))} />
     <article className={styles.article}>

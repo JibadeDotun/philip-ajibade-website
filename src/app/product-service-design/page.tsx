@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import ProjectReveal from "../../components/project-reveal";
 import { designProjects } from "../../data/design-projects";
 import styles from "./portfolio.module.css";
 
@@ -15,18 +16,29 @@ export default function ProductServiceDesign() {
       </header>
       <section aria-labelledby="selected-projects">
         <h2 id="selected-projects" className={styles.label}>Selected projects</h2>
-        {designProjects.map(project => <Link key={project.slug} href={`/product-service-design/${project.slug}`} className={styles.project}>
-          <div className={styles.hero}>
-            {project.heroPreview
-              ? <Image src={project.heroPreview} alt="" fill sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1088px) 92vw, 960px" className={styles.heroImage} />
-              : <div className={styles.placeholder} aria-hidden="true"><span /><span /><span /></div>}
-            <span className={styles.previewLabel}>{project.heroPreview ? "Private case study" : "Hero preview to follow"}</span>
-          </div>
-          <span className={styles.label}>{project.category} · {project.period} · Password protected</span>
-          <h3>{project.title}</h3>
-          <p>{project.summary}</p>
-          <span className={styles.action}>Read the case study <span aria-hidden="true">↗</span></span>
-        </Link>)}
+        <div className={styles.projects}>
+        {designProjects.map((project, index) => <ProjectReveal key={project.slug}>
+          <Link href={`/product-service-design/${project.slug}`} className={styles.project}>
+            <div className={styles.hero} aria-hidden="true">
+              {project.heroPreview && <Image src={project.heroPreview} alt="" width={project.heroWidth} height={project.heroHeight}
+                style={{ display: "block", width: "100%", height: "100%", objectFit: "contain" }}
+                sizes="(max-width: 640px) calc(100vw - 72px), (max-width: 1408px) 88vw, 1216px"
+                loading={index === 0 ? "eager" : "lazy"} className={styles.heroImage} />}
+            </div>
+            <div className={styles.projectInfo}>
+              <div className={styles.projectTitle}>
+                <span className={styles.label}>{project.slug === "cws-cares" ? "CWS-CARES" : "GoldWise"} · {project.period}</span>
+                <h3>{project.title}</h3>
+                <span className={styles.access}>{project.category}</span>
+              </div>
+              <div className={styles.description}>
+                <p>{project.summary}</p>
+
+              </div>
+            </div>
+          </Link>
+        </ProjectReveal>)}
+        </div>
       </section>
     </div>
   </main>;

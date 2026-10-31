@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { hasProjectAccess } from "../../../lib/project-access";
-import ProjectGate from "../../../components/project-gate";
 import CaseStudyProgress from "../../../components/case-study-progress";
 import sections from "../../../data/goldwise.json";
 import styles from "../cws-cares/page.module.css";
@@ -10,7 +8,6 @@ import styles from "../cws-cares/page.module.css";
 export const metadata: Metadata = {
   title: "GoldWise Case Study | Philip Ajibade",
   description: "Research, onboarding and mobile trading flows for a precious metals investment platform.",
-  robots: { index: false, follow: false },
 };
 const media = "/product-service-design/goldwise/media/";
 const visuals: Record<string, { file: string; alt: string; caption: string; width: number; height: number }[]> = {
@@ -27,7 +24,6 @@ const visuals: Record<string, { file: string; alt: string; caption: string; widt
   ],
 };
 export default async function Goldwise() {
-  if (!await hasProjectAccess("goldwise")) return <ProjectGate slug="goldwise" title="GoldWise" />;
   return <main id="main-content" tabIndex={-1} className={styles.page}>
     <CaseStudyProgress sections={sections.map(({ id, title }) => ({ id, label: title }))} />
     <article className={styles.article}>

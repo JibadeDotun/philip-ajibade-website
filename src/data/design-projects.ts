@@ -4,8 +4,11 @@ export type DesignProject = {
   category: string;
   period: string;
   summary: string;
-  // Use a separately exported, already-blurred public preview, never a confidential original.
+  // Sharp public preview images for the project listing.
   heroPreview: string | null;
+  heroWidth: number;
+  heroHeight: number;
+  supportingPreviews?: string[];
 };
 
 export const designProjects: DesignProject[] = [{
@@ -14,12 +17,18 @@ export const designProjects: DesignProject[] = [{
   category: "Public services",
   period: "2017–2019",
   summary: "Research synthesis, journey mapping and interactive prototypes for RFA and family-finding workflows.",
-  heroPreview: null,
+  heroPreview: "/project-previews/cws-cares/application.png",
+  heroWidth: 2046,
+  heroHeight: 1536,
+  supportingPreviews: ["/project-previews/cws-cares/service.png", "/project-previews/cws-cares/flow.png"],
 }, {
   slug: "goldwise",
   title: "Making precious metals investing easier to navigate",
   category: "Fintech · GoldWise",
-  period: "Four-month project",
+  period: "2022",
   summary: "Research, onboarding and mobile trading flows for people with different levels of investment experience.",
-  heroPreview: null,
+  heroPreview: "/project-previews/goldwise/overview.png",
+  heroWidth: 3337,
+  heroHeight: 1876,
+  supportingPreviews: ["/project-previews/goldwise/onboarding.png", "/project-previews/goldwise/wireframes.png"],
 }];

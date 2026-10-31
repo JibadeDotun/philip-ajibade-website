@@ -1,6 +1,5 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { hasProjectAccess } from "../../../../../lib/project-access";
 
 export const runtime = "nodejs";
 const assets = new Set([
@@ -10,7 +9,6 @@ const assets = new Set([
 ]);
 
 export async function GET(request: Request, context: { params: Promise<{ asset: string }> }) {
-  if (!await hasProjectAccess("cws-cares")) return new Response(null, { status: 401 });
   const { asset } = await context.params;
   if (!assets.has(asset)) return new Response(null, { status: 404 });
   let data: Buffer;
