@@ -2,11 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { visibleArtProjects } from "../../../data/art-direction";
+import { visibleArtProjects, type ArtVisual } from "../../../data/art-direction";
 import shared from "../../product-service-design/cws-cares/page.module.css";
 import styles from "../art-direction.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
+
+function Gallery({ visuals }: { visuals: ArtVisual[] }) {
+  return <div className={styles.gallery}>
+    {visuals.map(visual => <figure key={visual.src} className={visual.wide ? styles.wide : undefined}>
+      <Image src={visual.src} alt={visual.alt} width={visual.width} height={visual.height} sizes={visual.wide ? "(max-width: 1008px) 90vw, 960px" : "(max-width: 640px) 90vw, 470px"} />
+      {visual.caption && <figcaption>{visual.caption}</figcaption>}
+    </figure>)}
+  </div>;
+}
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -24,6 +33,8 @@ export default async function ArtProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = visibleArtProjects.find(item => item.slug === slug);
   if (!project) notFound();
+  const chapters = project.chapters ?? [];
+  const outcome = project.outcome ?? [];
   return <main id="main-content" tabIndex={-1} className={shared.page}>
     <article className={shared.article}>
       <Link href="/art-direction" className={shared.back}>← All art direction</Link>
@@ -51,6 +62,12 @@ export default async function ArtProjectPage({ params }: Props) {
         <figcaption>The full film. <a href={project.film.watchUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></figcaption>
       </figure>}
 
+      {chapters.length > 0 && <nav className={shared.contents} aria-label="Case study sections">
+        <p className={shared.contentsLabel}>In this case study</p>
+        <ol>{[{ id: "brief", title: project.briefTitle ?? "The brief" }, ...(project.contribution.length ? [{ id: "direction", title: project.contributionTitle ?? "The art direction" }] : []), ...chapters, ...(outcome.length ? [{ id: "results", title: "The results" }] : [])].map((item, index) =>
+          <li key={item.id}><a href={`#${item.id}`}><span className={shared.sectionNumber}>{String(index + 1).padStart(2, "0")}</span><span>{item.title}</span><span className={shared.sectionArrow} aria-hidden="true">↗</span></a></li>)}</ol>
+      </nav>}
+
       <section className={shared.section} aria-labelledby="brief">
         <h2 id="brief">{project.briefTitle ?? "The brief"}</h2>
         <div className={shared.copy}>{project.brief.map(text => <p key={text}>{text}</p>)}</div>
@@ -61,14 +78,22 @@ export default async function ArtProjectPage({ params }: Props) {
         <div className={shared.copy}>{project.contribution.map(text => <p key={text}>{text}</p>)}</div>
       </section>}
 
+      {chapters.map(chapter => <div key={chapter.id}>
+        <section className={shared.section} aria-labelledby={chapter.id}>
+          <h2 id={chapter.id}>{chapter.title}</h2>
+          <div className={shared.copy}>{chapter.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
+        </section>
+        {chapter.visuals.length > 0 && <Gallery visuals={chapter.visuals} />}
+      </div>)}
+
       {project.visuals.length > 0
-        ? <div className={styles.gallery}>
-            {project.visuals.map(visual => <figure key={visual.src} className={visual.wide ? styles.wide : undefined}>
-              <Image src={visual.src} alt={visual.alt} width={visual.width} height={visual.height} sizes={visual.wide ? "(max-width: 1008px) 90vw, 960px" : "(max-width: 640px) 90vw, 470px"} />
-              {visual.caption && <figcaption>{visual.caption}</figcaption>}
-            </figure>)}
-          </div>
-        : <p className={styles.pending}>Style frames, character designs and stills to come.</p>}
+        ? <Gallery visuals={project.visuals} />
+        : chapters.length === 0 && <p className={styles.pending}>Style frames, character designs and stills to come.</p>}
+
+      {outcome.length > 0 && <section className={shared.section} aria-labelledby="results">
+        <h2 id="results">The results</h2>
+        <div className={shared.copy}>{outcome.map(text => <p key={text}>{text}</p>)}</div>
+      </section>}
 
       {project.credits.length > 0 && <section className={shared.section} aria-labelledby="credits">
         <h2 id="credits">Credits</h2>

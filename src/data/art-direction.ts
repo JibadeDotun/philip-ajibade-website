@@ -1,5 +1,7 @@
 export type ArtVisual = { src: string; alt: string; caption?: string; width: number; height: number; wide?: boolean };
 
+export type ArtChapter = { id: string; title: string; paragraphs: string[]; visuals: ArtVisual[] };
+
 export type ArtProject = {
   slug: string;
   name: string;
@@ -19,11 +21,138 @@ export type ArtProject = {
   film?: { title: string; embedUrl: string; watchUrl: string };
   cover?: ArtVisual;
   visuals: ArtVisual[];
+  chapters?: ArtChapter[];
+  outcome?: string[];
   /** Keep false until real visuals and Philip's own account of his role are in place. */
   published: boolean;
 };
 
 export const artProjects: ArtProject[] = [{
+  slug: "access-pensions",
+  name: "Access Pensions",
+  title: "Launching a new pension brand after a merger",
+  summary: "The integrated campaign that introduced Access Pensions, formed from the merger of Sigma Pensions and First Guarantee Pensions, to customers and staff.",
+  year: "2022",
+  format: "Integrated campaign",
+  role: "",
+  studio: "Disrupt DNA",
+  studioLabel: "Agency",
+  recognition: [],
+  brief: [
+    "In December 2022, Sigma Pensions and First Guarantee Pensions came together as Access Pensions, making it one of Nigeria's largest pension fund administrators. The new brand set out to give every generation the knowledge, advice and tools to create their future.",
+    "The campaign had two jobs. Outside, it had to introduce a name nobody yet knew and convince existing and new customers that they would get more from their pensions. Inside, it had to bring staff from the merging businesses behind one story.",
+  ],
+  contribution: [],
+  credits: [
+    { role: "Agency", name: "Disrupt DNA" },
+    { role: "Client", name: "Access Pensions" },
+  ],
+  cover: { src: "/art-direction/access-pensions/shape-your-future-portraits-1.jpg", alt: "Shape your future portraits: a nurse, a woman in a hijab and a young man, each framed in a green border", width: 1974, height: 921 },
+  visuals: [],
+  chapters: [
+    {
+      id: "customer",
+      title: "Starting with the customer",
+      paragraphs: [
+        "Before any campaign, we mapped who a merged pension fund administrator actually serves. The customer-first view runs from high-net-worth individuals through the mass affluent and the employed and self-employed mass market to young people starting out.",
+        "At one end the relationship is low volume, high value and high human touch; at the other it is high volume, lower value and mostly digital. Micro-pensions and alternative retirement savings run across the whole range. That spread is why the work had to speak to a senior executive and a market trader with equal conviction.",
+        "From the map came a brand language built on progress, hope, togetherness and giving more: words the campaigns could draw on whatever the audience.",
+      ],
+      visuals: [
+        { src: "/art-direction/access-pensions/customer-first-view.jpg", alt: "Customer-first view: a spectrum from high-net-worth individuals to youth, from high human touch to high digital touch, with micro-pensions across the range", caption: "The customer-first view", width: 2000, height: 1125, wide: true },
+        { src: "/art-direction/access-pensions/brand-language.jpg", alt: "Brand language word cloud with phrases such as Progress, Moving forward, Give MORE, Give hope and Connected community", caption: "The brand language", width: 2000, height: 1125, wide: true },
+      ],
+    },
+    {
+      id: "future-shapers",
+      title: "Big idea: Future Shapers",
+      paragraphs: [
+        "The first idea put the customer in charge: whatever your age or work, your future is yours to shape. It ran as four campaign lines.",
+        "Age doesn't matter used everyday humour, people relaxing with popcorn or a face mask, to say it is never too early or too late to plan. No reduce your age took a Pidgin line about people understating their age and turned it into a nudge to start planning now, with a comic skit to carry it. Your future. Shape it your way used line illustrations of people raised up on a plinth, and Shape your future put real faces from across the customer map, from nurses to traders to retirees, at the centre.",
+      ],
+      visuals: [
+        { src: "/art-direction/access-pensions/age-doesnt-matter-men.jpg", alt: "Age doesn't matter: two men laughing over popcorn, with the line Shape your future your way", width: 1510, height: 1105 },
+        { src: "/art-direction/access-pensions/age-doesnt-matter-women.jpg", alt: "Age doesn't matter: two women with cucumber slices over their eyes", width: 1510, height: 1105 },
+        { src: "/art-direction/access-pensions/age-doesnt-matter-outdoor.jpg", alt: "Age doesn't matter billboard and street pole mockups", caption: "Outdoor mockups", width: 1962, height: 809, wide: true },
+        { src: "/art-direction/access-pensions/no-reduce-your-age-posters.jpg", alt: "No reduce your age posters with oversized caricature heads on small bodies", width: 1554, height: 1083, wide: true },
+        { src: "/art-direction/access-pensions/no-reduce-your-age-bus.jpg", alt: "No reduce your age livery on a coach", caption: "Vehicle mockup", width: 1930, height: 1097, wide: true },
+        { src: "/art-direction/access-pensions/shape-it-your-way-posters.jpg", alt: "Your future. Shape it your way posters: a line-drawn figure standing on a green plinth", width: 1971, height: 1017, wide: true },
+        { src: "/art-direction/access-pensions/shape-it-your-way-print.jpg", alt: "Shape it your way print layout with a line-drawn chef carrying a tray", width: 1522, height: 1083 },
+        { src: "/art-direction/access-pensions/shape-it-your-way-bus.jpg", alt: "Shape it your way livery on a city bus", caption: "Vehicle mockup", width: 1562, height: 1101 },
+        { src: "/art-direction/access-pensions/shape-your-future-portraits-2.jpg", alt: "Shape your future portraits: a farmer, a man in a flat cap, a woman in a gele", width: 1995, height: 933, wide: true },
+        { src: "/art-direction/access-pensions/shape-your-future-portraits-3.jpg", alt: "Shape your future portraits of two older Nigerians", width: 1554, height: 1083 },
+        { src: "/art-direction/access-pensions/shape-your-future-station.jpg", alt: "Shape your future posters on a station wall", caption: "Station mockup", width: 1586, height: 1097 },
+        { src: "/art-direction/access-pensions/shape-your-future-social.jpg", alt: "Shape your future on Instagram and on an airport digital screen", caption: "Social and digital mockups", width: 1908, height: 996, wide: true },
+      ],
+    },
+    {
+      id: "films",
+      title: "Films: The Power in Your Hands",
+      paragraphs: [
+        "Two TV commercials carried Future Shapers onto screen. The first opens at dawn on a fishing village. A boy and his friends make paper boats; as they grow up, the paper boats become real ones and then a larger, better-equipped fishing boat, while the voiceover moves from birth dreams to giving more to customers. It closes on the line: now, the future is in your hands.",
+        "The second follows a father, a mother and a son who saves towards a speed boat, ending on the promise that we put the power in your hands. A radio script built around a young woman's first job carried the same idea to listeners.",
+      ],
+      visuals: [
+        { src: "/art-direction/access-pensions/storyboard-dawn.jpg", alt: "Storyboard: at dawn, the bow of a boat heads towards a village", caption: "Storyboard, The Power in Your Hands", width: 1544, height: 1022, wide: true },
+        { src: "/art-direction/access-pensions/storyboard-homecoming.jpg", alt: "Storyboard: women and children welcome the fishermen as they reach the river bank", width: 1902, height: 1046, wide: true },
+        { src: "/art-direction/access-pensions/storyboard-market.jpg", alt: "Storyboard: women roast fish and carry it to the market", width: 1844, height: 1043, wide: true },
+        { src: "/art-direction/access-pensions/storyboard-paper-boats.jpg", alt: "Storyboard: kids in class, then a boy and his friends making paper boats", width: 1917, height: 1041, wide: true },
+        { src: "/art-direction/access-pensions/storyboard-new-boat.jpg", alt: "Storyboard: a life-size boat appears, then three young men admire their new fishing boat", width: 1939, height: 1043, wide: true },
+        { src: "/art-direction/access-pensions/storyboard-sunset.jpg", alt: "Storyboard: the young men set out in bigger boats as their fathers watch from the shore at sunset", width: 1925, height: 1043, wide: true },
+      ],
+    },
+    {
+      id: "fueling-hope",
+      title: "Big idea: Fueling Hope",
+      paragraphs: [
+        "The second idea was about the drive to imagine something better and the help needed to build it. Its centrepiece, Vantage Pointe, is an illustrated film told in reverse: a young ballerina, then the studio where she trained, then the moment her father hands her her first pair of pointe shoes. The line: if we can imagine it, we can create a world where everyone is inspired and empowered to shape the future, but not alone.",
+        "The same illustrated world became the Imagine it, Create it key visuals. Two photographic lines sat alongside: Enjoy your life, take control of your future now, for traders and retirees, and Control your future, for working professionals.",
+      ],
+      visuals: [
+        { src: "/art-direction/access-pensions/vantage-pointe-first-shoes.jpg", alt: "Vantage Pointe frame: a father presents his daughter with her first pair of pointe shoes", caption: "Vantage Pointe, illustrated film frames", width: 1897, height: 1070, wide: true },
+        { src: "/art-direction/access-pensions/vantage-pointe-twirl.jpg", alt: "Vantage Pointe frames: close-up of pointe shoes, then the girl as a teenager dancing on a car", width: 1958, height: 1014, wide: true },
+        { src: "/art-direction/access-pensions/vantage-pointe-studio.jpg", alt: "Vantage Pointe frame: an instructor helps a young girl in a busy ballet studio", width: 1640, height: 1045 },
+        { src: "/art-direction/access-pensions/shape-the-future-ballet.jpg", alt: "Shape the future: an instructor guides the young ballerina", width: 1546, height: 1099 },
+        { src: "/art-direction/access-pensions/future-shapers-key-visual.jpg", alt: "Illustrated key visual: a father gives his daughter pointe shoes, with the line Future shapers", width: 1526, height: 1087 },
+        { src: "/art-direction/access-pensions/imagine-it-create-it.jpg", alt: "Imagine it, create it: the ballerina mid-leap in front of her family", width: 1522, height: 1083 },
+        { src: "/art-direction/access-pensions/create-your-future.jpg", alt: "Create your future: the ballerina dancing in a spotlight on stage", width: 1522, height: 1083 },
+        { src: "/art-direction/access-pensions/imagine-create-shape.jpg", alt: "Imagine it, Create it, Shape it: four illustrated frames in one layout", width: 1522, height: 1083 },
+        { src: "/art-direction/access-pensions/enjoy-your-life-market.jpg", alt: "Enjoy your life: a woman laughing as she roasts plantain at a market stall", width: 1520, height: 1083, wide: true },
+        { src: "/art-direction/access-pensions/enjoy-your-life-trader.jpg", alt: "Enjoy your life: an older market trader smiling in a headwrap", width: 1549, height: 1103 },
+        { src: "/art-direction/access-pensions/enjoy-your-life-portrait.jpg", alt: "Enjoy your life: a grey-bearded man in a blazer", width: 1546, height: 1100 },
+        { src: "/art-direction/access-pensions/control-your-future.jpg", alt: "Control your future posters: an engineer, a businesswoman and a senior executive", width: 1955, height: 918, wide: true },
+      ],
+    },
+    {
+      id: "bright-future",
+      title: "Big idea: A Bright Future",
+      paragraphs: [
+        "The third idea was the most direct: the future is bright. Each execution paired the line with one of three promises, More security, More possibilities and More wealth, and with a person for whom that promise matters most: a retiree, an engineer and a student.",
+      ],
+      visuals: [
+        { src: "/art-direction/access-pensions/bright-future-elder.jpg", alt: "The future is bright: a smiling older man, with More security", width: 1550, height: 1103, wide: true },
+        { src: "/art-direction/access-pensions/bright-future-engineer.jpg", alt: "The future is bright: an engineer in a hard hat, with More possibilities", width: 1546, height: 1099 },
+        { src: "/art-direction/access-pensions/bright-future-student.jpg", alt: "The future is bright: a student reading, with More wealth", width: 1549, height: 1102 },
+        { src: "/art-direction/access-pensions/bright-future-outdoor-and-press.jpg", alt: "The future is bright on a billboard and in The Punch newspaper", caption: "Outdoor and press mockups", width: 1967, height: 857, wide: true },
+      ],
+    },
+    {
+      id: "internal",
+      title: "Inside the merger: Together for More",
+      paragraphs: [
+        "A merger is also a change for the people inside it. The internal campaign, Big Picture, gave staff from the merging businesses one story to tell: choose security, choose stability, choose Access Pensions.",
+        "The visuals turned the new company's strengths into a single arc: industry experts to help with retirement plans, more ways to access and contribute to your funds, over 530 staff, over 790,000 people who trust us, and Nigeria's fourth largest pension fund administrator, under a 33 years mark. Together for More messages carried the benefits staff could talk about: more liquidity, access to 25% pension withdrawal and an ecosystem of pension, banking and loans.",
+      ],
+      visuals: [
+        { src: "/art-direction/access-pensions/choose-security-arc.jpg", alt: "Choose security, Choose Access Pensions: an arc of five icons with the company's key facts and a 33 years badge", width: 1552, height: 1105 },
+        { src: "/art-direction/access-pensions/choose-stability-arc.jpg", alt: "Choose stability, Choose Access Pensions: the same arc layout", width: 1534, height: 1093 },
+        { src: "/art-direction/access-pensions/choose-security-blocks.jpg", alt: "Choose security: the key facts set as five coloured blocks", width: 1540, height: 1097, wide: true },
+      ],
+    },
+  ],
+  outcome: [],
+  published: false,
+}, {
   slug: "the-song-maiden",
   name: "The Song Maiden",
   title: "Art direction for an award-winning animated short",
