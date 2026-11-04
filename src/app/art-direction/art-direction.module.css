@@ -3,42 +3,20 @@
 .recognition { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .recognition li { font-size: var(--type-meta); color: var(--secondary); }
 .recognition li::before { content: "★ "; color: var(--accent); }
+.hero { margin-bottom: 72px; }
+.hero img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.film { margin: 0 0 72px; }
 .film { display: grid; gap: 12px; }
 .film figcaption { font-size: var(--type-meta); color: var(--secondary); }
 .film figcaption a { color: inherit; text-underline-offset: 4px; }
 .film iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 4px; background: #000; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 24px); margin-block: 24px 72px; }
+.gallery figure { margin: 0; display: grid; gap: 10px; }
+.gallery .wide { grid-column: 1 / -1; }
+.gallery img { display: block; width: 100%; height: auto; border-radius: 4px; }
 .gallery figcaption { font-size: var(--type-meta); color: var(--secondary); line-height: 1.6; }
 .pending { padding: 32px; border: 1px dashed color-mix(in srgb, var(--foreground) 30%, transparent); border-radius: 4px; color: var(--secondary); font-size: var(--type-meta); margin-bottom: 72px; }
 .credits { display: grid; grid-template-columns: max-content 1fr; gap: 10px 32px; margin: 0; font-size: var(--type-meta); }
 .credits dt { color: var(--secondary); }
 .credits dd { margin: 0; }
-@media (max-width: 40rem) { .credits { grid-template-columns: 1fr; gap: 4px; } .credits dd { margin-bottom: 12px; } }
-
-/* Artwork breaks out of the 960px text column, up to --art-width, keeping the page gutter. */
-.hero, .film, .gallery {
-  --art-width: min(1360px, calc(100vw - 2 * clamp(24px, 4vw, 64px)));
-  width: var(--art-width);
-  margin-inline: calc((100% - var(--art-width)) / 2);
-}
-.hero { margin-bottom: 96px; }
-.heroFrame { width: min(100%, calc(min(82vh, 860px) * var(--ratio))); margin-inline: auto; }
-.film { --art-width: min(1200px, calc(100vw - 2 * clamp(24px, 4vw, 64px))); margin-block: 0 96px; }
-.gallery { display: grid; gap: clamp(12px, 1.6vw, 24px); margin-block: 32px 96px; }
-/* Each image's share of the row follows its aspect ratio, so paired images line up at the same height. */
-.row {
-  --row-gap: clamp(12px, 1.6vw, 24px);
-  --row-height: min(82vh, 860px);
-  display: flex; align-items: flex-start; gap: var(--row-gap);
-  /* Caps the row's height for tall artwork; wide rows still fill the full width. */
-  width: min(100%, calc(var(--row-height) * var(--row-ratio) + var(--row-gap) * var(--row-gaps)));
-  margin-inline: auto;
-}
-.row figure { flex: var(--ratio) 1 0%; min-width: 0; margin: 0; display: grid; gap: 10px; }
-.row figcaption { font-size: var(--type-meta); color: var(--secondary); line-height: 1.6; }
-@media (max-width: 40rem) {
-  .row { flex-direction: column; }
-  .row { width: 100%; }
-  .row figure { flex: none; width: 100%; }
-  .hero { margin-bottom: 64px; }
-  .gallery { margin-block: 24px 64px; }
-}
+@media (max-width: 40rem) { .gallery { grid-template-columns: 1fr; } .credits { grid-template-columns: 1fr; gap: 4px; } .credits dd { margin-bottom: 12px; } }

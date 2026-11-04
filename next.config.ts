@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
     "/product-service-design/cws-cares/media/*": ["./project-assets/cws-cares/**/*"],
   },
   images: {
-    qualities: [75, 85],
     remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io", pathname: `/images/${projectId}/${dataset}/**` }],
   },
 };
