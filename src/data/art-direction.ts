@@ -221,8 +221,8 @@ export const artProjects: ArtProject[] = [{
         "Around it we proposed #YourPowerToMove, a YouTube series following influencers who run side businesses and everyday Nigerians who run their own, documenting their challenges and showing Oxygen as a tool for growth. The #OxygenPowerUp challenge took the idea into activations: a social challenge for small business owners and social media vendors, and Project Power 1000, a market activation for traders, artisans and neighbourhood stores.",
       ],
       visuals: [
-        { src: "/art-direction/oxygen/your-power-to-move.jpg", alt: "Your power to move posters: a woman and a man rising out of a teal Oxygen ring surrounded by floating objects", width: 1522, height: 1035 },
-        { src: "/art-direction/oxygen/power-to-move-instagram.jpg", alt: "Mockup of an Oxygen Instagram profile with Power to Move posts", caption: "Social mockup", width: 827, height: 873 },
+        { src: "/art-direction/oxygen/your-power-to-move-woman.jpg", alt: "Your power to move poster: a smiling young person rising out of a teal Oxygen ring, surrounded by floating clothes and tools", width: 763, height: 1080 },
+        { src: "/art-direction/oxygen/your-power-to-move-man.jpg", alt: "Your power to move poster: a man in a yellow jacket rising out of a teal Oxygen ring, surrounded by a laptop and gadgets", width: 763, height: 1080 },
         { src: "/art-direction/oxygen/power-up-chef.jpg", alt: "Power Up poster: a chef beside an orange 3D kitchen, with the line Boost your business with Oxygen", width: 1780, height: 997, wide: true },
         { src: "/art-direction/oxygen/power-up-artisan.jpg", alt: "Power Up poster: an artisan with a tool belt beside an orange 3D jigsaw", width: 1791, height: 1004, wide: true },
         { src: "/art-direction/oxygen/power-up-teacher.jpg", alt: "Power Up poster: a woman in a classroom", width: 1293, height: 868 },
@@ -297,8 +297,7 @@ export const artProjects: ArtProject[] = [{
   film: { title: "The Song Maiden, full short film on YouTube", embedUrl: "https://www.youtube-nocookie.com/embed/Q3UsmRP-u8g?rel=0", watchUrl: "https://www.youtube.com/watch?v=Q3UsmRP-u8g" },
   cover: { src: "/art-direction/the-song-maiden/village-of-song.jpg", alt: "Greyscale painting of the village of Song at night, beneath a full moon and three flat-topped mountains, framed by trees and rocks.", width: 2000, height: 855 },
   visuals: [
-    { src: "/art-direction/the-song-maiden/maiden-key-art.jpg", alt: "Key art of the Maiden holding a glowing light, with The Song Maiden title and the line freedom or nothing.", caption: "Key art · The Maiden and the film's title mark.", width: 880, height: 855 },
-    { src: "/art-direction/the-song-maiden/maiden-on-the-clifftop.jpg", alt: "The Maiden standing on a clifftop with her arms spread wide against a pale sky.", caption: "The mountain · Where the Maiden feels free.", width: 1180, height: 855 },
+    { src: "/art-direction/the-song-maiden/key-art-and-clifftop.png", alt: "Left: key art of the Maiden holding a glowing light, with The Song Maiden title and the line freedom or nothing. Right: the Maiden on a clifftop with her arms spread wide against a pale sky.", caption: "Key art, with the film's title mark · The mountain, where the Maiden feels free.", width: 2000, height: 813, wide: true },
     { src: "/art-direction/the-song-maiden/expressions-and-title.jpg", alt: "Pencil expression sheet of the Maiden beside the hand-lettered Song Maiden title with a red ribbon.", caption: "Expression studies and title lettering.", width: 2000, height: 855, wide: true },
     { src: "/art-direction/the-song-maiden/character-lineup.jpg", alt: "Line-up of the film's characters in greyscale, from the Maiden's betrothed to her parents, friends and villagers.", caption: "Character line-up · The people of Song.", width: 1400, height: 855, wide: true },
     { src: "/art-direction/the-song-maiden/maiden-hair-and-pov.jpg", alt: "Studies of the Maiden's hair and frames shown from her point of view.", caption: "The Maiden's hair, and the village seen through her eyes.", width: 2000, height: 855, wide: true },
@@ -391,8 +390,7 @@ export const artProjects: ArtProject[] = [{
   visuals: [
     { src: "/art-direction/premiumtrust-bank-up/next-level-posters.jpg", alt: "Two posters reading on to the next level, with a woman leaping and a man on a scooter.", caption: "On to the Next Level · Posters.", width: 1633, height: 1142 },
     { src: "/art-direction/premiumtrust-bank-up/next-level-print.jpg", alt: "Mockup of two on to the next level posters.", caption: "On to the Next Level · Print mockup.", width: 2000, height: 1500 },
-    { src: "/art-direction/premiumtrust-bank-up/next-level-building.jpg", alt: "Mockup of an on to the next level banner on a building.", caption: "On to the Next Level · Building banner mockup.", width: 1367, height: 2048 },
-    { src: "/art-direction/premiumtrust-bank-up/dare-for-better-social.jpg", alt: "Phone mockup showing a dare for better post on Instagram.", caption: "Dare for Better · Social post mockup.", width: 1416, height: 1392 },
+    { src: "/art-direction/premiumtrust-bank-up/building-and-social.png", alt: "Left: mockup of an On to the Next Level banner on a building. Right: phone mockup showing a Dare for Better post on Instagram.", caption: "On to the Next Level building banner mockup · Dare for Better social post mockup.", width: 2000, height: 1163, wide: true },
     { src: "/art-direction/premiumtrust-bank-up/dare-for-better-posters.jpg", alt: "Two dare for better posters with portraits cut through by the upward arrow.", caption: "Dare for Better · Posters built around the logo\'s upward arrow.", width: 1633, height: 1142 },
     { src: "/art-direction/premiumtrust-bank-up/dare-for-better-print.jpg", alt: "Mockup of two dare for better posters.", caption: "Dare for Better · Print mockup.", width: 2000, height: 1333 },
     { src: "/art-direction/premiumtrust-bank-up/dare-for-better-billboard.jpg", alt: "Mockup of a dare for better billboard.", caption: "Dare for Better · Billboard mockup.", width: 1444, height: 942 },
