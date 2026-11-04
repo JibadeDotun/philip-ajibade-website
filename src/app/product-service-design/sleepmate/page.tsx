@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: "SleepMate Case Study | Philip Ajibade",
   description: "SleepMate (2023): sole UI Designer for Dawn Health’s sleep management mobile app. User flows, wireframes, visual design and guided sleep logging.",
 };
-const prototype = "https://www.figma.com/proto/VMSRavEltkU8yjf3feN9G6/Sleep-Mate-UI?page-id=0%3A1&node-id=56%3A4751&starting-point-node-id=56%3A4714";
+const prototype = "https://www.figma.com/proto/mur02lbApfEZ5vNTzy7WQF/SleepMAte?node-id=101-517&page-id=0%3A1&starting-point-node-id=101%3A517";
+const prototypeEmbed = "https://embed.figma.com/proto/mur02lbApfEZ5vNTzy7WQF/SleepMAte?node-id=101-517&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=101%3A517&show-proto-sidebar=1&embed-host=share";
 const progressLabels = ["Overview", "Challenge", "User flow", "Wireframes", "Visual system", "Dashboard", "Logging", "Features", "Reflection"];
 const media = "/project-previews/sleepmate/";
 const visuals: Record<string, { file: string; alt: string; caption: string; width: number; height: number; narrow?: boolean }> = {
@@ -63,6 +64,16 @@ export default function Sleepmate() {
           </figure>}
         </section>;
       })}
+      <figure className={`${shared.figure} ${styles.figure}`}>
+        <iframe
+          title="SleepMate interactive Figma prototype"
+          src={prototypeEmbed}
+          loading="lazy"
+          allowFullScreen
+          style={{ display: "block", width: "100%", height: "min(780px, 85svh)", minHeight: "480px", border: "1px solid var(--secondary)", background: "#170724" }}
+        />
+        <figcaption>Interactive prototype · Explore the SleepMate screens and flows. Use the full-screen control for a larger view.</figcaption>
+      </figure>
       <footer className={`${shared.closing} ${styles.closing}`}>
         <p>SleepMate · Interface design for Dawn Health, 2023</p>
         <a href={prototype} target="_blank" rel="noopener noreferrer">View the interactive prototype ↗</a>
