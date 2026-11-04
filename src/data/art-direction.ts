@@ -172,17 +172,24 @@ export const artProjects: ArtProject[] = [{
   summary: "Disrupt DNA's integrated brand and marketing proposal for Oxygen, the digital bank launched by Grow Microfinance Bank, part of Access Corporation.",
   year: "2022",
   format: "Brand launch proposal",
-  role: "",
+  role: "Art Director & Photographer",
   studio: "Disrupt DNA",
   studioLabel: "Agency",
-  recognition: [],
+  contributionTitle: "My role",
+  recognition: [
+    "Won the pitch for Disrupt DNA",
+  ],
   brief: [
     "Grow Microfinance Bank, a subsidiary of Access Corporation, was launching a full-service digital bank under the name Oxygen, starting with digital loans for individuals and businesses and growing into full digital banking.",
     "The brief asked for an integrated marketing and communications strategy covering the brand and corporate launch, products, promotions, sponsorships and corporate initiatives. Our aim was a disruptive entry into digital lending: to build awareness and trust, position Oxygen as a leader, and drive sign-ups, app downloads and loans.",
-    "This was a proposal, presented in December 2022. The posters and mockups shown are the creative we presented.",
+    "We presented the proposal in December 2022, and Disrupt DNA won the work. The posters and mockups shown are the creative from that proposal.",
   ],
-  contribution: [],
+  contribution: [
+    "I was the art director on the proposal, shaping how the strategy and all three big ideas looked across posters, outdoor, social and film.",
+    "I also did the photography for the campaign creative.",
+  ],
   credits: [
+    { role: "Art Director & Photographer", name: "Philip Ajibade" },
     { role: "Agency", name: "Disrupt DNA" },
     { role: "Client", name: "Grow Microfinance Bank (Oxygen)" },
   ],
@@ -252,8 +259,10 @@ export const artProjects: ArtProject[] = [{
       ],
     },
   ],
-  outcome: [],
-  published: false,
+  outcome: [
+    "All three big ideas went to the client, and Disrupt DNA won the work.",
+  ],
+  published: true,
 }, {
   slug: "the-song-maiden",
   name: "The Song Maiden",
