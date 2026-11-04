@@ -206,8 +206,9 @@ export const artProjects: ArtProject[] = [{
         "The launch was planned in three phases: a pre-launch tease on social media, a digital launch to drive sign-ups and app downloads, then an on-ground and traditional launch with events, outdoor and radio. A twelve-month calendar of seasonal campaigns and a media plan across TV, radio, outdoor, print and digital carried it beyond launch.",
       ],
       visuals: [
-        { src: "/art-direction/oxygen/logo-reveal.jpg", alt: "The Oxygen logo on orange and on black, frames from the logo reveal animation", caption: "Logo reveal animation", width: 1715, height: 391, wide: true },
-        { src: "/art-direction/oxygen/oxygen-logo.jpg", alt: "The Oxygen logo: a teal ring looped through a smaller ring, above the word OXYGEN", width: 500, height: 560 },
+        { src: "/art-direction/oxygen/logo-reveal-orange.jpg", alt: "Frame from the logo reveal animation: the Oxygen logo in teal on orange", caption: "Logo reveal animation", width: 1880, height: 848 },
+        { src: "/art-direction/oxygen/logo-reveal-black.jpg", alt: "Frame from the logo reveal animation: the glowing Oxygen logo on black", width: 1730, height: 780 },
+        { src: "/art-direction/oxygen/oxygen-logo-mark.jpg", alt: "The Oxygen logo: a teal ring looped through a smaller ring, above the word OXYGEN", width: 1400, height: 1929 },
         { src: "/art-direction/oxygen/oxygen-is-coming.jpg", alt: "Teaser poster: a 3D teal Oxygen mark with the line Oxygen is coming", caption: "Pre-launch teaser", width: 746, height: 1028 },
         { src: "/art-direction/oxygen/launch-road-map.jpg", alt: "Launch road map in three phases: pre-launch, digital launch and on-ground launch, with objectives, tactics and channels for each", caption: "The launch road map", width: 1803, height: 1040, wide: true },
       ],
