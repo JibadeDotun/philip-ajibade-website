@@ -1,0 +1,9 @@
+.trigger { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 6px; overflow: hidden; }
+.trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.image { display: block; width: 100%; height: auto; }
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .image { transition: transform 700ms cubic-bezier(.22, 1, .36, 1); }
+  .trigger:hover .image { transform: scale(1.015); }
+}
+/* Artwork can be large and detailed: let it use the whole stage. */
+.large { max-height: calc(100vh - 200px); max-height: calc(100dvh - 200px); }

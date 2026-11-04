@@ -1,19 +1,47 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArtImage, ArtLightbox } from "../../../components/art-lightbox";
 import { visibleArtProjects, type ArtVisual } from "../../../data/art-direction";
 import shared from "../../product-service-design/cws-cares/page.module.css";
 import styles from "../art-direction.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
 
+/** Widest the artwork runs, wider than the text column. Keep in step with --art-width in the CSS. */
+const ART_WIDTH = 1360;
+/** Tallest a row of images may be, in pixels. Keep in step with --row-height in the CSS. */
+const ROW_HEIGHT = 860;
+
+/**
+ * Lays images out in rows. A wide image takes a row; other images pair up, and each pair is sized
+ * by aspect ratio so both images in a row share one height.
+ */
 function Gallery({ visuals }: { visuals: ArtVisual[] }) {
+  const rows: ArtVisual[][] = [];
+  for (const visual of visuals) {
+    const last = rows[rows.length - 1];
+    if (!visual.wide && last && last.length === 1 && !last[0].wide) last.push(visual);
+    else rows.push([visual]);
+  }
   return <div className={styles.gallery}>
-    {visuals.map(visual => <figure key={visual.src} className={visual.wide ? styles.wide : undefined}>
-      <Image src={visual.src} alt={visual.alt} width={visual.width} height={visual.height} sizes={visual.wide ? "(max-width: 1008px) 90vw, 960px" : "(max-width: 640px) 90vw, 470px"} />
-      {visual.caption && <figcaption>{visual.caption}</figcaption>}
-    </figure>)}
+    {rows.map(row => {
+      const total = row.reduce((sum, visual) => sum + visual.width / visual.height, 0);
+      // A row never grows taller than ROW_HEIGHT, so tall artwork stays on screen.
+      const rowWidth = Math.min(ART_WIDTH, ROW_HEIGHT * total);
+      return <div key={row[0].src} className={styles.row}
+        style={{ "--row-ratio": total, "--row-gaps": row.length - 1 } as React.CSSProperties}>
+        {row.map(visual => {
+          const ratio = visual.width / visual.height;
+          const width = Math.round(rowWidth * ratio / total);
+          const sizes = `(max-width: 640px) 100vw, (max-width: ${ART_WIDTH + 128}px) ${Math.round(width / ART_WIDTH * 100)}vw, ${width}px`;
+          return <figure key={visual.src} style={{ "--ratio": ratio } as React.CSSProperties}>
+            <ArtImage visual={visual} sizes={sizes} />
+            {visual.caption && <figcaption>{visual.caption}</figcaption>}
+          </figure>;
+        })}
+      </div>;
+    })}
   </div>;
 }
 
@@ -35,7 +63,9 @@ export default async function ArtProjectPage({ params }: Props) {
   if (!project) notFound();
   const chapters = project.chapters ?? [];
   const outcome = project.outcome ?? [];
+  const allVisuals = [...(project.cover ? [project.cover] : []), ...chapters.flatMap(chapter => chapter.visuals), ...project.visuals];
   return <main id="main-content" tabIndex={-1} className={shared.page}>
+    <ArtLightbox visuals={allVisuals}>
     <article className={shared.article}>
       <Link href="/art-direction" className={shared.back}>← All art direction</Link>
       <header className={shared.intro}>
@@ -53,7 +83,7 @@ export default async function ArtProjectPage({ params }: Props) {
       </header>
 
       {project.cover
-        ? <div className={styles.hero}><Image src={project.cover.src} alt={project.cover.alt} width={project.cover.width} height={project.cover.height} priority sizes="(max-width: 1008px) 90vw, 960px" /></div>
+        ? <div className={styles.hero}><div className={styles.heroFrame} style={{ "--ratio": project.cover.width / project.cover.height } as React.CSSProperties}><ArtImage visual={project.cover} priority sizes={`(max-width: ${ART_WIDTH + 128}px) 100vw, ${ART_WIDTH}px`} /></div></div>
         : <p className={styles.pending}>Key visual to come.</p>}
 
       {project.film && <figure className={styles.film}>
@@ -106,5 +136,6 @@ export default async function ArtProjectPage({ params }: Props) {
         <Link href="/art-direction">Back to all art direction →</Link>
       </footer>
     </article>
+    </ArtLightbox>
   </main>;
 }
