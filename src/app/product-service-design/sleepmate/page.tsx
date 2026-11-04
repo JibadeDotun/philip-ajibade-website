@@ -14,11 +14,12 @@ const prototype = "https://www.figma.com/proto/mur02lbApfEZ5vNTzy7WQF/SleepMAte?
 const prototypeEmbed = "https://embed.figma.com/proto/mur02lbApfEZ5vNTzy7WQF/SleepMAte?node-id=101-517&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=101%3A517&show-proto-sidebar=1&embed-host=share";
 const progressLabels = ["Overview", "Challenge", "User flow", "Wireframes", "Visual system", "Dashboard", "Logging", "Features", "Reflection"];
 const media = "/project-previews/sleepmate/";
-const visuals: Record<string, { file: string; alt: string; caption: string; width: number; height: number; narrow?: boolean }> = {
+type Visual = { file: string; alt: string; caption: string; width: number; height: number; narrow?: boolean };
+const visuals: Record<string, Visual | Visual[]> = {
   features: { file: "better-sleep-screens.png", alt: "Better Sleep screens showing article, podcast and video browsing in the purple SleepMate interface.", caption: "Better Sleep screens · Reading, podcast and video content share one browsing pattern. Sample media thumbnails are blurred; titles are placeholder content from the designs.", width: 1920, height: 902 },
   flow: { file: "user-flow-diagram.png", alt: "SleepMate user flow connecting the dashboard and three logging steps with Better Sleep, Sleep Alarm, Sound and Theme.", caption: "User flow · The end states describe intended behaviour, including proposed sharing and sleep support; they are not validated outcomes.", width: 1616, height: 1218 },
   wireframes: { file: "wireframe-screens.png", alt: "Low-fidelity SleepMate wireframes showing the dashboard, three logging steps, confirmation and Better Sleep screens.", caption: "Low-fidelity wireframes · Navigation, content hierarchy and a repeatable logging layout, before visual styling.", width: 1936, height: 1501 },
-  "visual-system": { file: "visual-system.png", alt: "Outfit typography specimen and SleepMate purple colour palette.", caption: "Visual system · Outfit in four weights and a four-step purple palette. On the original board the Purple swatch carries the light-purple label; the swatch itself is #5A2F82.", width: 1632, height: 2048 },
+  "visual-system": [{ file: "visual-system.png", alt: "Outfit typography specimen and SleepMate purple colour palette.", caption: "Visual system · Outfit in four weights and a four-step purple palette. On the original board the Purple swatch carries the light-purple label; the swatch itself is #5A2F82.", width: 1632, height: 2048 }, { file: "light-theme-screens.png", alt: "Light theme versions of the SleepMate dashboard, waking-time step and Sleep Alarm screens.", caption: "Light theme · The same layouts and components in the light appearance. The album thumbnail is blurred.", width: 1524, height: 1070 }],
   dashboard: { file: "dashboard-screens.png", alt: "Three SleepMate dashboard screens: a recorded night with a semicircular sleep summary, the empty state with an add button, and a second recorded day.", caption: "Dashboard · The same layout supports a first entry and a recorded day.", width: 1502, height: 978 },
   logging: { file: "logging-screens.png", alt: "Sleep logging screens with an hour, minute and AM/PM selector, waking-state options and a confirmation illustration.", caption: "Logging · One question per screen, with a step indicator and visible selection feedback.", width: 933, height: 1374, narrow: true },
 };
@@ -39,7 +40,7 @@ export default function Sleepmate() {
       </header>
       <div className={styles.hero}>
         <div className={styles.heroTitle}><span>SleepMate</span><span>A considered interface for the everyday sleep diary.</span></div>
-        <Image src={`${media}dashboard-screens.png`} alt="SleepMate dashboard designs in the purple visual identity." width={1502} height={978} priority sizes="(max-width: 1008px) 90vw, 960px" />
+        <Image src={`${media}hero-dark-screens.png`} alt="SleepMate dark theme screens: the dashboard with a sleep summary, the waking-time step and the weekly sleep chart." width={1524} height={1070} priority sizes="(max-width: 1008px) 90vw, 960px" />
         <a href={prototype} target="_blank" rel="noopener noreferrer">Explore the interactive prototype <span aria-hidden="true">↗</span></a>
       </div>
       <nav className={shared.contents} aria-label="Case study sections">
@@ -47,7 +48,8 @@ export default function Sleepmate() {
         <ol>{sections.map((section, index) => <li key={section.id}><a href={`#${section.id}`}><span className={shared.sectionNumber}>{String(index + 1).padStart(2, "0")}</span><span>{section.title}</span><span aria-hidden="true">↗</span></a></li>)}</ol>
       </nav>
       {sections.map((section, index) => {
-        const visual = visuals[section.id];
+        const entry = visuals[section.id];
+        const list = entry ? (Array.isArray(entry) ? entry : [entry]) : [];
         return <section key={section.id} className={shared.section} aria-labelledby={section.id}>
           <h2 id={section.id}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>{section.title}</h2>
           <div className={shared.copy}>{section.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
@@ -56,12 +58,12 @@ export default function Sleepmate() {
             <li><span>02 / Wake</span><h3>When did you wake up?</h3><p>Use the same input pattern for the morning’s waking time.</p></li>
             <li><span>03 / State</span><h3>How did you feel?</h3><p>Select Rested, Tired or Sick, then submit the record.</p></li>
           </ol>}
-          {visual && <figure className={`${shared.figure} ${styles.figure}${visual.narrow ? ` ${styles.narrow}` : ""}`}>
+          {list.map(visual => <figure key={visual.file} className={`${shared.figure} ${styles.figure}${visual.narrow ? ` ${styles.narrow}` : ""}`}>
             <a href={`${media}${visual.file}`} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size image: ${visual.alt}`}>
               <Image src={`${media}${visual.file}`} alt={visual.alt} width={visual.width} height={visual.height} className={shared.artifact} sizes="(max-width: 1008px) 90vw, 960px" />
             </a>
             <figcaption>{visual.caption}<span>Open image for full-size detail ↗</span></figcaption>
-          </figure>}
+          </figure>)}
         </section>;
       })}
       <figure className={`${shared.figure} ${styles.figure}`}>
