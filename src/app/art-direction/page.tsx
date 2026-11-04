@@ -35,9 +35,9 @@ export default function ArtDirection() {
               </div>
               <div className={listing.projectInfo}>
                 <div className={listing.projectTitle}>
-                  <span className={listing.label}>{project.name} · {project.year}</span>
+                  <span className={listing.label}>{[project.name, project.year].filter(Boolean).join(" · ")}</span>
                   <h3>{project.title}</h3>
-                  <span className={listing.access}>{project.format} · {project.role}</span>
+                  <span className={listing.access}>{[project.format, project.role].filter(Boolean).join(" · ")}</span>
                 </div>
                 <div className={listing.description}><p>{project.summary}</p></div>
               </div>

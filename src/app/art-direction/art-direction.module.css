@@ -5,7 +5,7 @@
 .recognition li::before { content: "★ "; color: var(--accent); }
 .hero { margin-bottom: 72px; }
 .hero img { display: block; width: 100%; height: auto; border-radius: 4px; }
-.film { margin-bottom: 72px; }
+.film { margin: 0 0 72px; }
 .film { display: grid; gap: 12px; }
 .film figcaption { font-size: var(--type-meta); color: var(--secondary); }
 .film figcaption a { color: inherit; text-underline-offset: 4px; }

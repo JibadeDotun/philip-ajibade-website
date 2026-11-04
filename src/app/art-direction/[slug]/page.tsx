@@ -6,30 +6,39 @@ import { visibleArtProjects } from "../../../data/art-direction";
 import shared from "../../product-service-design/cws-cares/page.module.css";
 import styles from "../art-direction.module.css";
 
-const project = visibleArtProjects.find(item => item.slug === "the-song-maiden");
+type Props = { params: Promise<{ slug: string }> };
 
-export const metadata: Metadata = {
-  title: "The Song Maiden | Art Direction | Philip Ajibade",
-  description: "Art direction by Philip Ajibade for The Song Maiden, an animated short film that won Best Animation at the 2022 AFRIFF Globe Awards.",
-};
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return visibleArtProjects.map(project => ({ slug: project.slug }));
+}
 
-export default function TheSongMaiden() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = visibleArtProjects.find(item => item.slug === slug);
+  if (!project) return {};
+  return { title: `${project.name} | Art Direction | Philip Ajibade`, description: project.summary };
+}
+
+export default async function ArtProjectPage({ params }: Props) {
+  const { slug } = await params;
+  const project = visibleArtProjects.find(item => item.slug === slug);
   if (!project) notFound();
   return <main id="main-content" tabIndex={-1} className={shared.page}>
     <article className={shared.article}>
       <Link href="/art-direction" className={shared.back}>← All art direction</Link>
       <header className={shared.intro}>
-        <p className={shared.eyebrow}>{project.name} · {project.studio} · {project.year}</p>
+        <p className={shared.eyebrow}>{[project.name, project.studio, project.year].filter(Boolean).join(" · ")}</p>
         <h1>{project.title}</h1>
         <p>{project.summary}</p>
         <dl className={shared.details}>
-          <div><dt>My role</dt><dd>{project.role}</dd></div>
-          <div><dt>Studio</dt><dd>{project.studio}</dd></div>
+          {project.role && <div><dt>My role</dt><dd>{project.role}</dd></div>}
+          {project.studio && <div><dt>{project.studioLabel ?? "Studio"}</dt><dd>{project.studio}</dd></div>}
           <div><dt>Format</dt><dd>{project.format}</dd></div>
         </dl>
-        <ul className={styles.recognition} aria-label="Recognition">
+        {project.recognition.length > 0 && <ul className={styles.recognition} aria-label="Recognition">
           {project.recognition.map(item => <li key={item}>{item}</li>)}
-        </ul>
+        </ul>}
       </header>
 
       {project.cover
@@ -43,12 +52,12 @@ export default function TheSongMaiden() {
       </figure>}
 
       <section className={shared.section} aria-labelledby="brief">
-        <h2 id="brief">The film</h2>
+        <h2 id="brief">{project.briefTitle ?? "The brief"}</h2>
         <div className={shared.copy}>{project.brief.map(text => <p key={text}>{text}</p>)}</div>
       </section>
 
       {project.contribution.length > 0 && <section className={shared.section} aria-labelledby="direction">
-        <h2 id="direction">The art direction</h2>
+        <h2 id="direction">{project.contributionTitle ?? "The art direction"}</h2>
         <div className={shared.copy}>{project.contribution.map(text => <p key={text}>{text}</p>)}</div>
       </section>}
 
@@ -61,12 +70,12 @@ export default function TheSongMaiden() {
           </div>
         : <p className={styles.pending}>Style frames, character designs and stills to come.</p>}
 
-      <section className={shared.section} aria-labelledby="credits">
+      {project.credits.length > 0 && <section className={shared.section} aria-labelledby="credits">
         <h2 id="credits">Credits</h2>
         <dl className={styles.credits}>
           {project.credits.map(credit => <div key={credit.role + credit.name} style={{ display: "contents" }}><dt>{credit.role}</dt><dd>{credit.name}</dd></div>)}
         </dl>
-      </section>
+      </section>}
 
       <footer className={shared.closing}>
         <Link href="/art-direction">Back to all art direction →</Link>
