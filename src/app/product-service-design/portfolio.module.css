@@ -24,6 +24,17 @@
   @media (hover: hover) and (pointer: fine) {
     .project:hover .heroImage { transform: scale(1.025); }
     .project:hover .action span { transform: translate(3px, -3px); }
+    /* The card tilts towards the pointer; ProjectReveal sets the angles. */
+    .project {
+      transform: perspective(1600px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+      transition: transform 300ms cubic-bezier(.22, 1, .36, 1), box-shadow 300ms ease, background-color 300ms ease;
+    }
+    [data-tilting] > .project {
+      transform: perspective(1600px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.01);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
+      background-color: rgba(120, 125, 110, .07);
+      will-change: transform;
+    }
   }
 }
 @media (max-width: 40rem) {
