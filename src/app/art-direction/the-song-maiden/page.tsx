@@ -37,7 +37,9 @@ export default function TheSongMaiden() {
         : <p className={styles.pending}>Key visual to come.</p>}
 
       {project.film && <figure className={styles.film}>
-        <iframe src={project.film.embedUrl} title={project.film.title} loading="lazy" allow="fullscreen; picture-in-picture" allowFullScreen />
+        <iframe src={project.film.embedUrl} title={project.film.title} loading="lazy" referrerPolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowFullScreen />
+        <figcaption>The full film. <a href={project.film.watchUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></figcaption>
       </figure>}
 
       <section className={shared.section} aria-labelledby="brief">

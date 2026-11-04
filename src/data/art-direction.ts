@@ -13,7 +13,7 @@ export type ArtProject = {
   brief: string[];
   contribution: string[];
   credits: { role: string; name: string }[];
-  film?: { title: string; embedUrl: string };
+  film?: { title: string; embedUrl: string; watchUrl: string };
   cover?: ArtVisual;
   visuals: ArtVisual[];
   /** Keep false until real visuals and Philip's own account of his role are in place. */
@@ -44,11 +44,12 @@ export const artProjects: ArtProject[] = [{
     "With the animators, I worked on movement and on a shift in animation style when the Maiden's world turns dark. With the video editors, I shaped the transitions so that her flight to the mountain reads as an emotional climb as well as a physical one.",
   ],
   credits: [
-    { role: "Producer & Creative Director", name: "Nkem Nwaturuocha" },
+    { role: "Writer, Director & Producer", name: "Nkem Nwaturuocha" },
     { role: "Art Director & Graphic Designer", name: "Philip Ajibade" },
     { role: "Studio", name: "Disrupt DNA Studios" },
     { role: "Images", name: "The Song Maiden art book, Disrupt DNA Studios" },
   ],
+  film: { title: "The Song Maiden, full short film on YouTube", embedUrl: "https://www.youtube-nocookie.com/embed/Q3UsmRP-u8g?rel=0", watchUrl: "https://www.youtube.com/watch?v=Q3UsmRP-u8g" },
   cover: { src: "/art-direction/the-song-maiden/village-of-song.jpg", alt: "Greyscale painting of the village of Song at night, beneath a full moon and three flat-topped mountains, framed by trees and rocks.", width: 2000, height: 855 },
   visuals: [
     { src: "/art-direction/the-song-maiden/maiden-key-art.jpg", alt: "Key art of the Maiden holding a glowing light, with The Song Maiden title and the line freedom or nothing.", caption: "Key art · The Maiden and the film's title mark.", width: 880, height: 855 },

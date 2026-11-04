@@ -6,6 +6,9 @@
 .hero { margin-bottom: 72px; }
 .hero img { display: block; width: 100%; height: auto; border-radius: 4px; }
 .film { margin-bottom: 72px; }
+.film { display: grid; gap: 12px; }
+.film figcaption { font-size: var(--type-meta); color: var(--secondary); }
+.film figcaption a { color: inherit; text-underline-offset: 4px; }
 .film iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 4px; background: #000; }
 .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 24px); margin-block: 24px 72px; }
 .gallery figure { margin: 0; display: grid; gap: 10px; }
