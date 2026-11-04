@@ -64,7 +64,7 @@ export const artProjects: ArtProject[] = [{
     { src: "/art-direction/the-song-maiden/environments-and-cave.jpg", alt: "Landscape studies of the plains and a great tree, with a cave scene of a woman and two children.", caption: "Landscape studies and a cave scene.", width: 2000, height: 855, wide: true },
     { src: "/art-direction/the-song-maiden/cliffs.jpg", alt: "Studies of steep cliffs and mist, with the Maiden small on a ledge.", caption: "Environment · The cliffs the Maiden climbs.", width: 2000, height: 855, wide: true },
   ],
-  published: false,
+  published: true,
 }];
 
 /** Unpublished projects are previewable in development but hidden in production. */
