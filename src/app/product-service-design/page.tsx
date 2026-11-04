@@ -27,7 +27,7 @@ export default function ProductServiceDesign() {
             </div>
             <div className={styles.projectInfo}>
               <div className={styles.projectTitle}>
-                <span className={styles.label}>{project.slug === "cws-cares" ? "CWS-CARES" : "GoldWise"} · {project.period}</span>
+                <span className={styles.label}>{project.name} · {project.period}</span>
                 <h3>{project.title}</h3>
                 <span className={styles.access}>{project.category}</span>
               </div>
