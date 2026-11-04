@@ -1,0 +1,19 @@
+.cardHero { display: grid; place-items: center; background: color-mix(in srgb, var(--foreground) 6%, transparent); }
+.cardTitle { font-family: var(--font-gateway), Georgia, serif; font-size: clamp(2rem, 1rem + 4vw, 4rem); color: var(--secondary); }
+.recognition { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.recognition li { font-size: var(--type-meta); color: var(--secondary); }
+.recognition li::before { content: "★ "; color: var(--accent); }
+.hero { margin-bottom: 72px; }
+.hero img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.film { margin-bottom: 72px; }
+.film iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 4px; background: #000; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 24px); margin-block: 24px 72px; }
+.gallery figure { margin: 0; display: grid; gap: 10px; }
+.gallery .wide { grid-column: 1 / -1; }
+.gallery img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.gallery figcaption { font-size: var(--type-meta); color: var(--secondary); line-height: 1.6; }
+.pending { padding: 32px; border: 1px dashed color-mix(in srgb, var(--foreground) 30%, transparent); border-radius: 4px; color: var(--secondary); font-size: var(--type-meta); margin-bottom: 72px; }
+.credits { display: grid; grid-template-columns: max-content 1fr; gap: 10px 32px; margin: 0; font-size: var(--type-meta); }
+.credits dt { color: var(--secondary); }
+.credits dd { margin: 0; }
+@media (max-width: 40rem) { .gallery { grid-template-columns: 1fr; } .credits { grid-template-columns: 1fr; gap: 4px; } .credits dd { margin-bottom: 12px; } }
