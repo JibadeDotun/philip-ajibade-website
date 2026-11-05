@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   title: "Sparkle Case Study | Philip Ajibade",
   description: "Sparkle (2020): UI/UX Designer for the website of a new Nigerian digital and lifestyle bank. Research, site structure, personal and business home pages, product pages and a connected prototype.",
 };
+const prototype = "https://www.figma.com/proto/hzQe5yMjwiiOmPClxIzCi3/Sparkle-Website-Redesign--DDNA-?node-id=4-101&starting-point-node-id=4%3A101&scaling=scale-down-width";
+const liveSite = "https://www.sparkle.ng";
 const progressLabels = ["Overview", "Challenge", "Research", "Structure", "Home pages", "Products", "Company", "States", "Reflection"];
 const media = "/project-previews/sparkle/";
 type Visual = { file: string; alt: string; caption: string; width: number; height: number };
@@ -50,6 +52,10 @@ export default function Sparkle() {
       </header>
       <div className={styles.hero}>
         <Image src={`${media}hero-home-personal.jpg`} alt="Sparkle personal home page: the headline We're not a bank, we're a tribe, app store buttons and a phone and Sparkle card on a dark background." width={1440} height={900} priority sizes="(max-width: 1008px) 90vw, 960px" />
+        <div className={styles.heroLinks}>
+          <a href={prototype} target="_blank" rel="noopener noreferrer">Explore the interactive prototype <span aria-hidden="true">↗</span></a>
+          <a href={liveSite} target="_blank" rel="noopener noreferrer">Visit sparkle.ng <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
       <nav className={shared.contents} aria-label="Case study sections">
         <p className={shared.contentsLabel}>In this case study</p>
@@ -71,6 +77,8 @@ export default function Sparkle() {
       })}
       <footer className={`${shared.closing} ${styles.closing}`}>
         <p>Sparkle · Website design, 2020</p>
+        <a href={prototype} target="_blank" rel="noopener noreferrer">View the interactive prototype ↗</a>
+        <a href={liveSite} target="_blank" rel="noopener noreferrer">Visit the live Sparkle website ↗</a>
         <Link href="/product-service-design">Back to all design projects →</Link>
       </footer>
     </article>
