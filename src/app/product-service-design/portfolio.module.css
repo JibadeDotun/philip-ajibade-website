@@ -5,7 +5,27 @@
 .intro p, .description p { max-width: 60ch; line-height: 1.75; }
 .label { font: inherit; font-size: var(--type-meta); color: var(--secondary); }
 .projects { display: grid; gap: clamp(64px, 8vw, 120px); margin-top: 32px; }
-.project { display: block; padding: 24px 24px 32px; border: 1px solid rgba(90, 95, 85, .2); border-radius: 32px; background: rgba(120, 125, 110, .035); color: inherit; text-decoration: none; overflow: hidden; }
+.project { display: block; padding: 24px 24px 32px; border-radius: 32px; color: inherit; text-decoration: none; overflow: hidden; }
+/* Frosted glass: a translucent sheet with a bright top edge, a soft shadow and a blur of whatever sits behind. */
+.project {
+  --glass-fill: linear-gradient(150deg, rgba(255, 255, 255, .62), rgba(255, 255, 255, .28) 55%, rgba(255, 255, 255, .4));
+  --glass-edge: rgba(255, 255, 255, .75);
+  --glass-line: rgba(90, 95, 85, .14);
+  --glass-shadow: inset 0 1px 0 var(--glass-edge), 0 1px 2px rgba(20, 22, 18, .04), 0 18px 40px -22px rgba(20, 22, 18, .18);
+  border: 1px solid var(--glass-line);
+  background: var(--glass-fill);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+@media (prefers-color-scheme: dark) {
+  .project {
+    --glass-fill: linear-gradient(150deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03) 55%, rgba(255, 255, 255, .06));
+    --glass-edge: rgba(255, 255, 255, .14);
+    --glass-line: rgba(255, 255, 255, .09);
+    --glass-shadow: inset 0 1px 0 var(--glass-edge), 0 18px 40px -22px rgba(0, 0, 0, .6);
+  }
+}
 .hero { position: relative; width: 100%; aspect-ratio: 1.827; overflow: hidden; border-radius: clamp(16px, 1.8vw, 24px); background: #e7e9e8; }
 .heroImage { display: block; width: 100%; height: 100%; max-width: 100%; object-fit: contain; object-position: center; }
 .projectInfo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 72px); align-items: center; padding: 44px 0 0; }
@@ -31,8 +51,7 @@
     }
     [data-tilting] > .project {
       transform: perspective(1600px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.01);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
-      background-color: rgba(120, 125, 110, .07);
+      box-shadow: inset 0 1px 0 var(--glass-edge), 0 24px 48px -20px rgba(20, 22, 18, .22);
       will-change: transform;
     }
   }
