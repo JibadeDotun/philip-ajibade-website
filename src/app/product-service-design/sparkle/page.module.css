@@ -1,11 +1,7 @@
 .page { --accent: #3f7d16; }
 .intro { max-width: 850px; margin-bottom: 48px; }
-.hero { overflow: hidden; margin-bottom: 64px; background: #0f110d; color: #f3f6ee; border-radius: 4px; }
+.hero { overflow: hidden; margin-bottom: 28px; background: #0f110d; color: #f3f6ee; border-radius: 4px; }
 .hero img { width: 100%; height: auto; display: block; }
-.heroLinks { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 20px 28px; font-size: var(--type-meta); }
-.heroLinks a { color: #f3f6ee; text-underline-offset: 5px; }
-.heroLinks a:hover { color: #b6e36a; }
-.heroLinks a:focus-visible { outline: 3px solid #b6e36a; outline-offset: 4px; }
 .number { display: block; font-family: system-ui, sans-serif; font-size: .75rem; color: var(--accent); margin-bottom: 14px; letter-spacing: .12em; }
 .figure { grid-column: 1 / -1; margin-block: 12px; }
 .closing { padding-top: 36px; border-top: 1px solid var(--secondary); }
@@ -15,3 +11,20 @@
 .page nav[aria-label="Reading progress"] a { min-height: 72px; padding: 12px 10px; font-size: 12px; overflow-wrap: normal; white-space: nowrap; }
 @media (max-width: 40rem) { .page nav[aria-label="Reading progress"] li { flex-basis: 98px; } }
 @media (max-width: 40rem) { .hero { margin-bottom: 40px; } }
+
+/* Pill buttons: a filled primary action and an outlined secondary one. */
+.actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 64px; }
+.closing .actions { margin-block: 8px 0; }
+.actions .primary, .actions .secondary {
+  display: inline-flex; align-items: center; gap: .4em; min-height: 56px; padding: 0 30px;
+  border: 1.5px solid var(--foreground); border-radius: 999px;
+  font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; text-decoration: none;
+  transition: transform 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+.actions .primary { background: var(--foreground); color: var(--background); }
+.actions .secondary { background: transparent; color: var(--foreground); }
+.actions .primary:hover { background: color-mix(in srgb, var(--foreground) 85%, var(--background)); }
+.actions .secondary:hover { background: color-mix(in srgb, var(--foreground) 6%, transparent); }
+.actions .primary:focus-visible, .actions .secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (prefers-reduced-motion: no-preference) { .actions .primary:hover, .actions .secondary:hover { transform: translateY(-1px); } }
+@media (max-width: 40rem) { .actions { margin-bottom: 40px; } .actions .primary, .actions .secondary { flex: 1 1 100%; justify-content: center; } }
