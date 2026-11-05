@@ -24,7 +24,6 @@ export const designProjects: DesignProject[] = [{
   heroPreview: "/project-previews/sparkle/hero-home-personal.jpg",
   heroWidth: 1440,
   heroHeight: 900,
-  published: false,
 }, {
   slug: "cws-cares",
   name: "CWS-CARES",
