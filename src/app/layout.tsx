@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Hedvig_Letters_Serif } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import SiteHeader from "../components/site-header";
 import LocationFooter from "../components/location-footer";
@@ -10,14 +9,6 @@ const display = Hedvig_Letters_Serif({
   weight: "400",
   display: "swap",
   variable: "--font-gateway",
-});
-
-// Handwritten face (Shelby) for the written-out surname in the header.
-const nameScript = localFont({
-  src: "../fonts/shelby.woff2",
-  weight: "400",
-  display: "swap",
-  variable: "--font-name-script",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${nameScript.variable}`}>
+    <html lang="en" className={display.variable}>
       <body><a className="skip-link" href="#main-content">Skip to content</a><SiteHeader />{children}<LocationFooter /></body>
     </html>
   );

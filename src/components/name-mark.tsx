@@ -3,18 +3,14 @@
 import { useEffect, useState } from "react";
 import styles from "./name-mark.module.css";
 
-type State = "plain" | "yoruba" | "say";
-/** The order the surname moves through, and how long each version stays, in milliseconds. */
-const SEQUENCE: { state: State; hold: number }[] = [
-  { state: "plain", hold: 5200 },
-  { state: "yoruba", hold: 3400 },
-  { state: "say", hold: 3400 },
-];
+type State = "plain" | "say";
+/** How long each version of the surname stays on screen, in milliseconds. */
+const HOLD: Record<State, number> = { plain: 5200, say: 3400 };
 
 /**
- * "Philip Ajibade" over "Designer". Now and then the surname is written out by hand,
- * then turns into its pronunciation, before settling back.
- * "Designer" stays put. Hovering or focusing the link shows the handwritten version at once.
+ * "Philip Ajibade" over "Designer". Now and then the surname turns into its pronunciation,
+ * /ah-jee-BAH-deh/, then settles back. "Designer" stays put.
+ * Hovering or focusing the link shows the pronunciation at once.
  */
 export default function NameMark({ cycle = true }: { cycle?: boolean }) {
   const [state, setState] = useState<State>("plain");
@@ -23,16 +19,16 @@ export default function NameMark({ cycle = true }: { cycle?: boolean }) {
     if (!cycle) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduced.matches) return;
-    let index = 0;
+    let current: State = "plain";
     let timer = 0;
     const advance = () => {
       if (document.visibilityState === "visible") {
-        index = (index + 1) % SEQUENCE.length;
-        setState(SEQUENCE[index].state);
+        current = current === "plain" ? "say" : "plain";
+        setState(current);
       }
-      timer = window.setTimeout(advance, SEQUENCE[index].hold);
+      timer = window.setTimeout(advance, HOLD[current]);
     };
-    timer = window.setTimeout(advance, SEQUENCE[0].hold);
+    timer = window.setTimeout(advance, HOLD.plain);
     const stop = () => { if (reduced.matches) { window.clearTimeout(timer); setState("plain"); } };
     reduced.addEventListener?.("change", stop);
     return () => { window.clearTimeout(timer); reduced.removeEventListener?.("change", stop); };
@@ -43,7 +39,6 @@ export default function NameMark({ cycle = true }: { cycle?: boolean }) {
       Philip{" "}
       <span className={styles.swap} data-state={state}>
         <span className={styles.plain}>Ajibade</span>
-        <span className={styles.yoruba}>Ajibade</span>
         <span className={styles.say}>/ah-jee-BAH-deh/</span>
       </span>
     </span>
