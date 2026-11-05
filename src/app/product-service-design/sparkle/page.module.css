@@ -1,6 +1,6 @@
 .page { --accent: #3f7d16; }
 .intro { max-width: 850px; margin-bottom: 48px; }
-.hero { overflow: hidden; margin-bottom: 28px; background: #0f110d; color: #f3f6ee; border-radius: 4px; }
+.hero { overflow: hidden; margin-bottom: 32px; background: #0f110d; color: #f3f6ee; border-radius: 4px; }
 .hero img { width: 100%; height: auto; display: block; }
 .number { display: block; font-family: system-ui, sans-serif; font-size: .75rem; color: var(--accent); margin-bottom: 14px; letter-spacing: .12em; }
 .figure { grid-column: 1 / -1; margin-block: 12px; }
@@ -10,10 +10,10 @@
 .page nav[aria-label="Reading progress"] li { flex: 1 0 92px; }
 .page nav[aria-label="Reading progress"] a { min-height: 72px; padding: 12px 10px; font-size: 12px; overflow-wrap: normal; white-space: nowrap; }
 @media (max-width: 40rem) { .page nav[aria-label="Reading progress"] li { flex-basis: 98px; } }
-@media (max-width: 40rem) { .hero { margin-bottom: 40px; } }
+@media (max-width: 40rem) { .hero { margin-bottom: 24px; } }
 
 /* Pill buttons: a filled primary action and an outlined secondary one. */
-.actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 64px; }
+.actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
 .closing .actions { margin-block: 8px 0; }
 .actions .primary, .actions .secondary {
   display: inline-flex; align-items: center; gap: .4em; min-height: 56px; padding: 0 30px;
@@ -27,4 +27,4 @@
 .actions .secondary:hover { background: color-mix(in srgb, var(--foreground) 6%, transparent); }
 .actions .primary:focus-visible, .actions .secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 @media (prefers-reduced-motion: no-preference) { .actions .primary:hover, .actions .secondary:hover { transform: translateY(-1px); } }
-@media (max-width: 40rem) { .actions { margin-bottom: 40px; } .actions .primary, .actions .secondary { flex: 1 1 100%; justify-content: center; } }
+@media (max-width: 40rem) { .actions { margin-bottom: 24px; } .actions .primary, .actions .secondary { flex: 1 1 100%; justify-content: center; } }
