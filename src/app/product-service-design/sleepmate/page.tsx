@@ -8,7 +8,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "SleepMate Case Study | Philip Ajibade",
-  description: "SleepMate (2023): sole UI Designer for Dawn Health’s sleep management mobile app. User flows, wireframes, visual design and guided sleep logging.",
+  description: "SleepMate (2022): UI Designer for Dawn Health’s sleep management mobile app. User flows, wireframes, visual design and guided sleep logging.",
 };
 const prototype = "https://www.figma.com/proto/mur02lbApfEZ5vNTzy7WQF/SleepMAte?node-id=101-517&page-id=0%3A1&starting-point-node-id=101%3A517";
 const prototypeEmbed = "https://embed.figma.com/proto/mur02lbApfEZ5vNTzy7WQF/SleepMAte?node-id=101-517&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=101%3A517&show-proto-sidebar=1&embed-host=share";
@@ -33,9 +33,9 @@ export default function Sleepmate() {
         <h1>Designing a clearer way to record and review sleep</h1>
         <p>A purple-led mobile interface that brings sleep logging, daily summaries and bedtime tools into one experience.</p>
         <dl className={shared.details}>
-          <div><dt>My role</dt><dd>Sole UI Designer</dd></div>
+          <div><dt>My role</dt><dd>UI Designer</dd></div>
           <div><dt>Client</dt><dd>Dawn Health</dd></div>
-          <div><dt>Scope</dt><dd>Flows, wireframes, UI & prototyping · 2023</dd></div>
+          <div><dt>Scope</dt><dd>Flows, wireframes, UI & prototyping · 2022</dd></div>
         </dl>
       </header>
       <div className={styles.hero}>
@@ -77,7 +77,7 @@ export default function Sleepmate() {
         <figcaption>Interactive prototype · Explore the SleepMate screens and flows. Use the full-screen control for a larger view.</figcaption>
       </figure>
       <footer className={`${shared.closing} ${styles.closing}`}>
-        <p>SleepMate · Interface design for Dawn Health, 2023</p>
+        <p>SleepMate · Interface design for Dawn Health, 2022</p>
         <a href={prototype} target="_blank" rel="noopener noreferrer">View the interactive prototype ↗</a>
         <Link href="/product-service-design">Back to all design projects →</Link>
       </footer>
