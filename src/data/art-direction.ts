@@ -242,8 +242,6 @@ export const artProjects: ArtProject[] = [{
       ],
       visuals: [
         { src: "/art-direction/oxygen/dont-think-just-breathe-full.png", alt: "Don't think about it, just breathe: three portraits with eyes closed against orange and teal", width: 2400, height: 965, wide: true },
-        { src: "/art-direction/oxygen/we-dey-breathe-full.png", alt: "We dey breathe: three small business owners smiling, holding We Dey Breathe signs", width: 2400, height: 965, wide: true },
-        { src: "/art-direction/oxygen/breathe-oxygen-will-help-you-full.png", alt: "Breathe, Oxygen will help you: a tech worker, an entrepreneur and a graduate clutching their throats", width: 2371, height: 1080, wide: true },
       ],
     },
     {
