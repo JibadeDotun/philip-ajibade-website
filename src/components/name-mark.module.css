@@ -1,0 +1,42 @@
+.name {
+  font-family: var(--font-gateway), Georgia, serif;
+  font-size: var(--type-identity);
+  line-height: 1.3;
+  color: var(--foreground);
+}
+.role {
+  font-family: system-ui, sans-serif;
+  font-size: var(--type-meta);
+  line-height: 1.4;
+  color: var(--secondary);
+}
+/* Both versions share one grid cell, so the link never changes size as the name turns. */
+.swap { display: inline-grid; vertical-align: top; }
+.swap > * { grid-area: 1 / 1; white-space: nowrap; }
+.yoruba {
+  font-family: var(--font-name-italic), Georgia, serif;
+  font-style: italic;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+}
+.say { font-style: italic; letter-spacing: .02em; }
+.yoruba, .say { opacity: 0; transform: translateY(.45em); }
+
+.swap[data-state="yoruba"] > .plain,
+a:hover .swap > .plain,
+a:focus-visible .swap > .plain { opacity: 0; transform: translateY(-.45em); }
+.swap[data-state="yoruba"] > .yoruba,
+.swap[data-state="yoruba"] > .say,
+a:hover .swap > .yoruba,
+a:hover .swap > .say,
+a:focus-visible .swap > .yoruba,
+a:focus-visible .swap > .say { opacity: 1; transform: none; }
+.swap[data-state="yoruba"] > .yoruba,
+a:hover .swap > .yoruba,
+a:focus-visible .swap > .yoruba { font-variation-settings: "SOFT" 100, "WONK" 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .swap > * { transition: opacity 420ms ease, transform 620ms cubic-bezier(.22, 1, .36, 1); }
+  .yoruba { transition: opacity 420ms ease, transform 620ms cubic-bezier(.22, 1, .36, 1), font-variation-settings 1200ms ease; }
+  .role .swap > :last-child { transition-delay: 60ms; }
+}
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }

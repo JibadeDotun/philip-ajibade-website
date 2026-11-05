@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRef } from "react";
+import NameMark from "./name-mark";
 import styles from "./site-header.module.css";
 
 const items = [
@@ -27,7 +28,7 @@ export default function SiteHeader() {
   return (
     <>
       <header className={styles.header}>
-        <Link href="/" className={styles.identity}><span className={styles.name}>Philip Ajibade</span><span className={styles.role}>Designer</span></Link>
+        <Link href="/" className={styles.identity}><NameMark /></Link>
         <details className={styles.fallbackMenu}>
           <summary ref={trigger} className={styles.button} aria-label="Open menu" onClick={openMenu}>
             <span className={styles.menuIcon} aria-hidden="true"><span /><span /></span>
@@ -42,7 +43,7 @@ export default function SiteHeader() {
       </header>
       <dialog ref={dialog} id="site-menu" className={styles.dialog} aria-label="Site navigation" onClose={() => { trigger.current?.focus(); }}>
         <div className={styles.menuHeader}>
-          <Link href="/" className={styles.identity} onClick={closeMenu}><span className={styles.name}>Philip Ajibade</span><span className={styles.role}>Designer</span></Link>
+          <Link href="/" className={styles.identity} onClick={closeMenu}><NameMark cycle={false} /></Link>
           <button type="button" className={styles.button} aria-label="Close menu" autoFocus onClick={closeMenu}>
             <span className={styles.closeIcon} aria-hidden="true"><span /><span /></span>
           </button>
