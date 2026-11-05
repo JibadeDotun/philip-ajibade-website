@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Hedvig_Letters_Serif } from "next/font/google";
+import { Great_Vibes, Hedvig_Letters_Serif } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "../components/site-header";
 import LocationFooter from "../components/location-footer";
@@ -11,13 +11,12 @@ const display = Hedvig_Letters_Serif({
   variable: "--font-gateway",
 });
 
-// Variable italic used for the Yorùbá spelling of the surname, Ajíbádé, in the header.
-const nameItalic = Fraunces({
-  subsets: ["latin"],
-  style: "italic",
-  axes: ["SOFT", "WONK"],
+// Cursive script used for the Yorùbá spelling of the surname, Ajíbádé, in the header.
+const nameScript = Great_Vibes({
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
   display: "swap",
-  variable: "--font-name-italic",
+  variable: "--font-name-script",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${nameItalic.variable}`}>
+    <html lang="en" className={`${display.variable} ${nameScript.variable}`}>
       <body><a className="skip-link" href="#main-content">Skip to content</a><SiteHeader />{children}<LocationFooter /></body>
     </html>
   );
