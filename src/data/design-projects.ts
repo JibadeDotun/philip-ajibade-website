@@ -9,6 +9,8 @@ export type DesignProject = {
   heroPreview: string | null;
   heroWidth: number;
   heroHeight: number;
+  /** Which part of the preview stays in view when it is cropped to fill the card. */
+  heroPosition?: string;
   supportingPreviews?: string[];
   /** Set to false to keep a project off the live site while it is being checked. */
   published?: boolean;
@@ -56,6 +58,7 @@ export const designProjects: DesignProject[] = [{
   heroPreview: "/project-previews/sleepmate/dashboard-screens.png",
   heroWidth: 1502,
   heroHeight: 978,
+  heroPosition: "center",
   supportingPreviews: ["/project-previews/sleepmate/logging-screens.png", "/project-previews/sleepmate/wireframe-screens.png"],
 }];
 

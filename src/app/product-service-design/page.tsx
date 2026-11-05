@@ -21,7 +21,7 @@ export default function ProductServiceDesign() {
           <Link href={`/product-service-design/${project.slug}`} className={styles.project}>
             <div className={styles.hero} aria-hidden="true">
               {project.heroPreview && <Image src={project.heroPreview} alt="" width={project.heroWidth} height={project.heroHeight}
-                style={{ display: "block", width: "100%", height: "100%", objectFit: "contain" }}
+                style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: project.heroPosition ?? "center top" }}
                 sizes="(max-width: 640px) calc(100vw - 72px), (max-width: 1408px) 88vw, 1216px"
                 loading={index === 0 ? "eager" : "lazy"} className={styles.heroImage} />}
             </div>
