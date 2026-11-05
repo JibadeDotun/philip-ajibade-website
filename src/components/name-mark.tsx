@@ -12,9 +12,9 @@ const SEQUENCE: { state: State; hold: number }[] = [
 ];
 
 /**
- * "Philip Ajibade" over "Designer". Now and then the surname turns into the Yorùbá spelling,
- * Ajíbádé, in a cursive script, then into its pronunciation, before settling back.
- * "Designer" stays put. Hovering or focusing the link shows Ajíbádé at once.
+ * "Philip Ajibade" over "Designer". Now and then the surname is written out by hand,
+ * then turns into its pronunciation, before settling back.
+ * "Designer" stays put. Hovering or focusing the link shows the handwritten version at once.
  */
 export default function NameMark({ cycle = true }: { cycle?: boolean }) {
   const [state, setState] = useState<State>("plain");
@@ -43,7 +43,7 @@ export default function NameMark({ cycle = true }: { cycle?: boolean }) {
       Philip{" "}
       <span className={styles.swap} data-state={state}>
         <span className={styles.plain}>Ajibade</span>
-        <span className={styles.yoruba} lang="yo">Ajíbádé</span>
+        <span className={styles.yoruba}>Ajibade</span>
         <span className={styles.say}>/ah-jee-BAH-deh/</span>
       </span>
     </span>

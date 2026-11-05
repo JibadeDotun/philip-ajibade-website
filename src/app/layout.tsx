@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Great_Vibes, Hedvig_Letters_Serif } from "next/font/google";
+import { Hedvig_Letters_Serif } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SiteHeader from "../components/site-header";
 import LocationFooter from "../components/location-footer";
@@ -11,9 +12,9 @@ const display = Hedvig_Letters_Serif({
   variable: "--font-gateway",
 });
 
-// Cursive script used for the Yorùbá spelling of the surname, Ajíbádé, in the header.
-const nameScript = Great_Vibes({
-  subsets: ["latin", "latin-ext"],
+// Handwritten face (Shelby) for the written-out surname in the header.
+const nameScript = localFont({
+  src: "../fonts/shelby.woff2",
   weight: "400",
   display: "swap",
   variable: "--font-name-script",
