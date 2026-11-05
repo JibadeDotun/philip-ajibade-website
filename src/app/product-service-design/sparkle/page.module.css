@@ -1,16 +1,13 @@
 .page { --accent: #3f7d16; }
 .intro { max-width: 850px; margin-bottom: 48px; }
 .hero { overflow: hidden; margin-bottom: 64px; background: #0f110d; color: #f3f6ee; border-radius: 4px; }
-.heroTitle { padding: clamp(24px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.heroTitle span:first-child { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; }
-.heroTitle span:last-child { max-width: 25ch; color: #b6e36a; font-size: var(--type-meta); }
 .hero img { width: 100%; height: auto; display: block; }
 .number { display: block; font-family: system-ui, sans-serif; font-size: .75rem; color: var(--accent); margin-bottom: 14px; letter-spacing: .12em; }
 .figure { grid-column: 1 / -1; margin-block: 12px; }
 .closing { padding-top: 36px; border-top: 1px solid var(--secondary); }
 @media (prefers-color-scheme: dark) { .page { --accent: #b6e36a; } }
-@media (max-width: 40rem) { .heroTitle { align-items: flex-start; flex-direction: column; gap: 12px; } .hero { margin-bottom: 40px; } }
 .page nav[aria-label="Reading progress"] ol { display: flex; width: min(calc(100% - 32px), 1120px); overflow-x: auto; }
 .page nav[aria-label="Reading progress"] li { flex: 1 0 92px; }
 .page nav[aria-label="Reading progress"] a { min-height: 72px; padding: 12px 10px; font-size: 12px; overflow-wrap: normal; white-space: nowrap; }
 @media (max-width: 40rem) { .page nav[aria-label="Reading progress"] li { flex-basis: 98px; } }
+@media (max-width: 40rem) { .hero { margin-bottom: 40px; } }

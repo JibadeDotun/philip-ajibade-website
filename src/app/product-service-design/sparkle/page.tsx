@@ -49,7 +49,6 @@ export default function Sparkle() {
         </dl>
       </header>
       <div className={styles.hero}>
-        <div className={styles.heroTitle}><span>Sparkle</span><span>We&rsquo;re not a bank, we&rsquo;re a tribe.</span></div>
         <Image src={`${media}hero-home-personal.jpg`} alt="Sparkle personal home page: the headline We're not a bank, we're a tribe, app store buttons and a phone and Sparkle card on a dark background." width={1440} height={900} priority sizes="(max-width: 1008px) 90vw, 960px" />
       </div>
       <nav className={shared.contents} aria-label="Case study sections">
