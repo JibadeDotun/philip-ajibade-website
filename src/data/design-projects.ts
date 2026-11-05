@@ -10,9 +10,22 @@ export type DesignProject = {
   heroWidth: number;
   heroHeight: number;
   supportingPreviews?: string[];
+  /** Set to false to keep a project off the live site while it is being checked. */
+  published?: boolean;
 };
 
 export const designProjects: DesignProject[] = [{
+  slug: "sparkle",
+  name: "Sparkle",
+  title: "Introducing a new digital bank to Nigeria",
+  category: "Fintech · Sparkle",
+  period: "2020",
+  summary: "UI/UX Designer for the launch website of a new digital and lifestyle bank, from research and site structure to personal, business and product pages.",
+  heroPreview: "/project-previews/sparkle/hero-home-personal.jpg",
+  heroWidth: 1440,
+  heroHeight: 900,
+  published: false,
+}, {
   slug: "cws-cares",
   name: "CWS-CARES",
   title: "Designing for RFA approvals and sibling-placement decisions",
@@ -46,3 +59,6 @@ export const designProjects: DesignProject[] = [{
   heroHeight: 978,
   supportingPreviews: ["/project-previews/sleepmate/logging-screens.png", "/project-previews/sleepmate/wireframe-screens.png"],
 }];
+
+/** Projects shown on the listing: unpublished ones appear only in local development. */
+export const visibleDesignProjects = designProjects.filter(project => project.published !== false || process.env.NODE_ENV !== "production");

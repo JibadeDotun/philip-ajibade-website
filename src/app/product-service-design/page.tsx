@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ProjectReveal from "../../components/project-reveal";
-import { designProjects } from "../../data/design-projects";
+import { visibleDesignProjects } from "../../data/design-projects";
 import styles from "./portfolio.module.css";
 
 export const metadata: Metadata = { title: "Product and Service Design | Philip Ajibade" };
@@ -17,7 +17,7 @@ export default function ProductServiceDesign() {
       <section aria-labelledby="selected-projects">
         <h2 id="selected-projects" className={styles.label}>Selected projects</h2>
         <div className={styles.projects}>
-        {designProjects.map((project, index) => <ProjectReveal key={project.slug}>
+        {visibleDesignProjects.map((project, index) => <ProjectReveal key={project.slug}>
           <Link href={`/product-service-design/${project.slug}`} className={styles.project}>
             <div className={styles.hero} aria-hidden="true">
               {project.heroPreview && <Image src={project.heroPreview} alt="" width={project.heroWidth} height={project.heroHeight}
