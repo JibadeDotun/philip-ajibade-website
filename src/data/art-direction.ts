@@ -193,7 +193,7 @@ export const artProjects: ArtProject[] = [{
     { role: "Agency", name: "Disrupt DNA" },
     { role: "Client", name: "Grow Microfinance Bank (Oxygen)" },
   ],
-  cover: { src: "/art-direction/oxygen/power-up-tailor-full.jpg", alt: "Power Up poster: a woman in an orange suit beside an orange 3D sewing machine, with the line Boost your business with Oxygen", width: 1080, height: 605 },
+  cover: { src: "/art-direction/oxygen/power-up-tailor-hq.jpg", alt: "Power Up poster: a woman in an orange suit beside an orange 3D sewing machine, with the line Boost your business with Oxygen", width: 2400, height: 1345 },
   visuals: [],
   chapters: [
     {
@@ -222,9 +222,9 @@ export const artProjects: ArtProject[] = [{
       ],
       visuals: [
         { src: "/art-direction/oxygen/your-power-to-move-woman.jpg", alt: "Your power to move poster: a smiling young person rising out of a teal Oxygen ring, surrounded by floating clothes and tools", width: 763, height: 1080 },
-        { src: "/art-direction/oxygen/your-power-to-move-man.jpg", alt: "Your power to move poster: a man in a yellow jacket rising out of a teal Oxygen ring, surrounded by a laptop and gadgets", width: 763, height: 1080 },
+        { src: "/art-direction/oxygen/your-power-to-move-man-hq.jpg", alt: "Your power to move poster: a man in a yellow jacket rising out of a teal Oxygen ring, surrounded by a laptop and gadgets", width: 1400, height: 1980 },
         { src: "/art-direction/oxygen/power-up-chef-full.jpg", alt: "Power Up poster: a chef beside an orange 3D kitchen, with the line Boost your business with Oxygen", width: 1080, height: 605, wide: true },
-        { src: "/art-direction/oxygen/power-up-artisan-full.jpg", alt: "Power Up poster: an artisan with a tool belt beside an orange 3D jigsaw", width: 1080, height: 605, wide: true },
+        { src: "/art-direction/oxygen/power-up-artisan-hq.jpg", alt: "Power Up poster: an artisan with a tool belt beside an orange 3D jigsaw", width: 2400, height: 1345, wide: true },
         { src: "/art-direction/oxygen/power-up-teacher-full.jpg", alt: "Power Up poster: a woman in a classroom", width: 1280, height: 853 },
         { src: "/art-direction/oxygen/power-up-baker-full.jpg", alt: "Power Up poster: a man in a bakery", width: 1280, height: 853 },
         { src: "/art-direction/oxygen/power-up-professional-full.jpg", alt: "Power Up poster: a woman in a modern office", width: 1280, height: 853 },
@@ -255,10 +255,10 @@ export const artProjects: ArtProject[] = [{
       visuals: [
         { src: "/art-direction/oxygen/give-life-to-your-business-full.jpg", alt: "Give life to your business: a seamstress with fabric, outlined by an orange sewing machine drawing", width: 1080, height: 766 },
         { src: "/art-direction/oxygen/give-life-to-your-dreams-family-full.jpg", alt: "Give life to your dreams: a young family framed by an orange house drawing", width: 1080, height: 766 },
-        { src: "/art-direction/oxygen/give-life-laptop.jpg", alt: "Give life to your dreams poster with an orange 3D laptop", width: 1240, height: 1748 },
-        { src: "/art-direction/oxygen/give-life-cap.jpg", alt: "Give life to your dreams poster with an orange 3D graduation cap", width: 1240, height: 1748 },
-        { src: "/art-direction/oxygen/give-life-ship.jpg", alt: "Give life to your dreams poster with an orange 3D ship", width: 1240, height: 1748 },
-        { src: "/art-direction/oxygen/give-life-house.jpg", alt: "Give life to your dreams poster with an orange 3D house", width: 1240, height: 1748 },
+        { src: "/art-direction/oxygen/give-life-cap-hq.jpg", alt: "Give life to your dreams poster with an orange 3D graduation cap", width: 1240, height: 1748 },
+        { src: "/art-direction/oxygen/give-life-ship-hq.jpg", alt: "Give life to your dreams poster with an orange 3D cargo ship", width: 1240, height: 1748 },
+        { src: "/art-direction/oxygen/give-life-house-hq.jpg", alt: "Give life to your dreams poster with an orange 3D house", width: 1240, height: 1748 },
+        { src: "/art-direction/oxygen/give-life-car.jpg", alt: "Give life to your dreams poster with an orange 3D car", width: 1240, height: 1748 },
       ],
     },
   ],
