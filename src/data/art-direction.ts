@@ -204,12 +204,10 @@ export const artProjects: ArtProject[] = [{
         "We gave the brand a personality built on two archetypes. The Creator was the core, in line with the belief that if it can be imagined, it can be created. The Hero sat beneath it, about rising above challenges and pushing people to be the best they can be. The voice was experienced, compassionate and guiding; the tone empowering, reassuring and inspiring.",
         "The audience ran from medium-sized businesses down to individual traders, and from the mass affluent to students and low-income workers. Personas made them real: Taofiq, a neighbourhood barber saving for a bigger shop; Eric, a salary earner funding bigger investments; and Sam, an office assistant whose salary runs out mid-month.",
         "The launch was planned in three phases: a pre-launch tease on social media, a digital launch to drive sign-ups and app downloads, then an on-ground and traditional launch with events, outdoor and radio. A twelve-month calendar of seasonal campaigns and a media plan across TV, radio, outdoor, print and digital carried it beyond launch.",
+        "The pre-launch teasers had to build anticipation before the name meant anything to anyone. Torn paper suggests something about to be revealed, and the 3D mark introduced the logo as an object people would come to recognise, so by launch day the symbol already felt familiar.",
       ],
       visuals: [
-        { src: "/art-direction/oxygen/logo-reveal-orange.jpg", alt: "Frame from the logo reveal animation: the Oxygen logo in teal on orange", caption: "Logo reveal animation", width: 1880, height: 848 },
-        { src: "/art-direction/oxygen/logo-reveal-black.jpg", alt: "Frame from the logo reveal animation: the glowing Oxygen logo on black", width: 1730, height: 780 },
-        { src: "/art-direction/oxygen/logo-and-teasers.png", alt: "Left: the Oxygen logo in teal. Middle: teaser poster with the logo peeking through torn orange paper and the line Oxygen is coming in March. Right: teaser poster with a 3D teal Oxygen mark and the line Oxygen is coming.", caption: "The logo and the pre-launch teasers", width: 2400, height: 1047, wide: true },
-        { src: "/art-direction/oxygen/launch-road-map.jpg", alt: "Launch road map in three phases: pre-launch, digital launch and on-ground launch, with objectives, tactics and channels for each", caption: "The launch road map", width: 1803, height: 1040, wide: true },
+        { src: "/art-direction/oxygen/pre-launch-teasers.png", alt: "Left: teaser poster with the Oxygen logo peeking through torn orange paper and the line Oxygen is coming in March. Right: teaser poster with a 3D teal Oxygen mark and the line Oxygen is coming.", caption: "Pre-launch teasers", width: 1660, height: 1080, wide: true },
       ],
     },
     {
@@ -218,6 +216,7 @@ export const artProjects: ArtProject[] = [{
       paragraphs: [
         "Nobody wants to feel static in life. Power to Move was about the lift people need to get their personal and business plans off the ground, with Oxygen as the power that gets them going. It ran through three messages: Your power to move, Power Up and Powered by Oxygen.",
         "Around it we proposed #YourPowerToMove, a YouTube series following influencers who run side businesses and everyday Nigerians who run their own, documenting their challenges and showing Oxygen as a tool for growth. The #OxygenPowerUp challenge took the idea into activations: a social challenge for small business owners and social media vendors, and Project Power 1000, a market activation for traders, artisans and neighbourhood stores.",
+        "Why this direction: Oxygen's first product was lending, and a loan is only worth taking if it moves something forward. Power to Move frames the loan as momentum rather than debt and casts the customer as the one doing the moving, with Oxygen supplying the lift, which is the Hero side of the brand at work. The visuals make that promise literal: people lifted off the ground, and trades rebuilt in Oxygen orange around the person who runs them, so one idea could speak to a tailor, a tradesman or a farmer in their own terms.",
       ],
       visuals: [
         { src: "/art-direction/oxygen/your-power-to-move-woman-hq.jpg", alt: "Your power to move poster: a smiling young woman floating inside glowing rings, with scissors, a tape measure and a sewing machine", width: 1400, height: 1980 },
@@ -226,10 +225,6 @@ export const artProjects: ArtProject[] = [{
         { src: "/art-direction/oxygen/power-up-artisan-hq.jpg", alt: "Power Up poster: an artisan with a tool belt beside an orange 3D jigsaw", width: 2400, height: 1345, wide: true },
         { src: "/art-direction/oxygen/boost-market.jpg", alt: "Boost your business with Oxygen poster: a crate of fruit and a garden fork under a single spotlight in the dark", caption: "Boost your business with Oxygen", width: 1400, height: 1980 },
         { src: "/art-direction/oxygen/boost-dress-form.jpg", alt: "Boost your business with Oxygen poster: a tailor's dress form under a single spotlight in the dark", width: 1400, height: 1980 },
-        { src: "/art-direction/oxygen/power-up-teacher-full.jpg", alt: "Power Up poster: a woman in a classroom", width: 1280, height: 853 },
-        { src: "/art-direction/oxygen/power-up-baker-full.jpg", alt: "Power Up poster: a man in a bakery", width: 1280, height: 853 },
-        { src: "/art-direction/oxygen/power-up-professional-full.jpg", alt: "Power Up poster: a woman in a modern office", width: 1280, height: 853 },
-        { src: "/art-direction/oxygen/power-up-cook-full.jpg", alt: "Power Up poster: a woman in a professional kitchen", width: 1280, height: 853 },
         { src: "/art-direction/oxygen/powered-by-oxygen-hq.png", alt: "Powered by Oxygen posters: a roadside mechanic and a car on a lift, a driver and his car, a farmer and a tractor", caption: "Powered by Oxygen", width: 2400, height: 1057, wide: true },
       ],
     },
@@ -239,6 +234,7 @@ export const artProjects: ArtProject[] = [{
       paragraphs: [
         "Getting finance for personal and business plans is stressful; the second idea told people they could relax, because Oxygen is with them every step of the way. Its messages were Don't think about it, just breathe; We dey breathe; and Breathe, Oxygen will help you get that.",
         "The TV script followed four people at the moment they run out of air: a new father facing a hospital bill, a woman being evicted, Ada watching the electricity men climb the pole outside her salon, and Mama Kamiso as her food kiosk is closed. Each scene then flips to the outcome, with the bill paid, a new home, the lights back on and a new restaurant full of customers. A radio script between two friends, Setemi and Tope, played the same joke for listeners.",
+        "Why this direction: for many of the people in our personas, money worries feel physical: the bill that cannot be paid, the rent that is due, the stall that might close. Breathe names that feeling and offers relief, which suits the compassionate, reassuring tone set out in the strategy. It also plays on the brand name, so every execution repeats Oxygen while talking about the customer's problem, and lines in Pidgin made it sound like everyday conversation rather than a bank.",
       ],
       visuals: [
         { src: "/art-direction/oxygen/dont-think-just-breathe-full.png", alt: "Don't think about it, just breathe: three portraits with eyes closed against orange and teal", width: 2400, height: 965, wide: true },
@@ -250,6 +246,7 @@ export const artProjects: ArtProject[] = [{
       paragraphs: [
         "Can life exist without oxygen? The third idea positioned Oxygen as the financial partner that gives life to things, through four messages: give life to your business, your dreams, your passion and your hustle. Orange line drawings sketched each dream around the person who holds it.",
         "Its TV script, Rise with Oxygen, followed young Africans in Nigeria, Senegal, Rwanda and DR Congo, a new graduate employee, a fashion student, a young woman in tech and an aspiring musician, as each gets their chance to prove themselves. It ends by rewinding to show every one of them opening the Oxygen app, with the line: we are Africa's life force. A Pidgin radio spot about a shop with nothing left to sell closed on the promise that a business with Oxygen cannot die.",
+        "Why this direction: this was the most emotional of the three ideas and the one with the widest reach. It positions Oxygen as essential rather than optional, and speaks to the Creator side of the brand: dreams, passion and hustle that need a partner to become real. A single device, the orange line drawing or 3D object standing for the dream, stretches from a seamstress's business to a family home, and a young cast across four countries pointed towards the brand's ambition to grow beyond Nigeria.",
       ],
       visuals: [
         { src: "/art-direction/oxygen/give-life-to-your-business-full.jpg", alt: "Give life to your business: a seamstress with fabric, outlined by an orange sewing machine drawing", width: 1080, height: 766 },
