@@ -312,6 +312,7 @@ export const artProjects: ArtProject[] = [{
   published: true,
 }, {
   slug: "breezepay",
+  card: { src: "/art-direction/breezepay/card-preview.jpg", alt: "", width: 2437, height: 1334 },
   name: "BreezePay",
   title: "A brand identity for cardless, cashless payments",
   summary: "Corporate identity and style guide for BreezePay, a cardless payment platform integrated with Access Bank, created at Disrupt DNA.",
