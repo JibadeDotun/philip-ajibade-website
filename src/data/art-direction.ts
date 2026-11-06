@@ -20,6 +20,8 @@ export type ArtProject = {
   credits: { role: string; name: string }[];
   film?: { title: string; embedUrl: string; watchUrl: string };
   cover?: ArtVisual;
+  /** Optional image for the listing card, made to the card's shape; falls back to the cover. */
+  card?: ArtVisual;
   visuals: ArtVisual[];
   chapters?: ArtChapter[];
   outcome?: string[];
@@ -29,6 +31,7 @@ export type ArtProject = {
 
 export const artProjects: ArtProject[] = [{
   slug: "access-pensions",
+  card: { src: "/art-direction/access-pensions/card-preview.jpg", alt: "", width: 2092, height: 1145 },
   name: "Access Pensions",
   title: "Launching a new pension brand after a merger",
   summary: "The integrated campaign that introduced Access Pensions, formed from the merger of Sigma Pensions and First Guarantee Pensions. New customer sign-ups rose by 35%.",

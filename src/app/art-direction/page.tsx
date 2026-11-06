@@ -23,11 +23,11 @@ export default function ArtDirection() {
       <section aria-labelledby="selected-work">
         <h2 id="selected-work" className={listing.label}>Selected work</h2>
         <div className={listing.projects}>
-          {visibleArtProjects.map((project, index) => <ProjectReveal key={project.slug}>
+          {visibleArtProjects.map((project, index) => { const preview = project.card ?? project.cover; return <ProjectReveal key={project.slug}>
             <Link href={`/art-direction/${project.slug}`} className={listing.project}>
               <div className={`${listing.hero} ${styles.cardHero}`} aria-hidden="true">
-                {project.cover
-                  ? <Image src={project.cover.src} alt="" width={project.cover.width} height={project.cover.height}
+                {preview
+                  ? <Image src={preview.src} alt="" width={preview.width} height={preview.height}
                       style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
                       sizes="(max-width: 640px) calc(100vw - 72px), (max-width: 1408px) 88vw, 1216px"
                       loading={index === 0 ? "eager" : "lazy"} className={listing.heroImage} />
@@ -42,7 +42,7 @@ export default function ArtDirection() {
                 <div className={listing.description}><p>{project.summary}</p></div>
               </div>
             </Link>
-          </ProjectReveal>)}
+          </ProjectReveal>; })}
         </div>
       </section>
     </div>
