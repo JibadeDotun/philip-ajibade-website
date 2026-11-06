@@ -55,10 +55,9 @@ export const designProjects: DesignProject[] = [{
   category: "Health · Dawn Health",
   period: "2022",
   summary: "UI Designer for Dawn Health’s sleep app, from user flows and wireframes to a purple-led visual system and guided sleep logging.",
-  heroPreview: "/project-previews/sleepmate/dashboard-screens.png",
-  heroWidth: 1502,
-  heroHeight: 978,
-  heroPosition: "center",
+  heroPreview: "/project-previews/sleepmate/card-preview.png",
+  heroWidth: 2043,
+  heroHeight: 1118,
   supportingPreviews: ["/project-previews/sleepmate/logging-screens.png", "/project-previews/sleepmate/wireframe-screens.png"],
 }];
 
